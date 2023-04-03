@@ -2,66 +2,53 @@
 sidebar_position: 90
 ---
 
-# 📙 Vocabulary Reference
+# 📙 词汇表
 
-Please refer to this page for a list of terms and concepts that we will use throughout this course.
+请查阅本页面，获取我们在这门课程中将使用的术语和概念列表。
 
-#### Large Language Models (LLMs), Pretrained Language Models (PLMs)(@branch2022evaluating), Language Models (LMs), and foundation models
+#### 大型语言模型 (LLM)，预训练语言模型 (PLM) , 语言模型 (LM) 和基础模型
 
-These terms all refer more or less to the same thing: large AIs (neural networks), which have usually been trained 
-on a huge amount of text.
+这些术语或多或少都指的是同一件事情：大型的人工智能 (神经网络)，通常经过大量的文本训练而来。
 
-#### Masked Language Models (MLMs)
+#### 遮盖语言模型 (MLMs)
 
-MLMs are a type of NLP model, which have a special token, usually `[MASK]`, which is
-replaced with a word from the vocabulary. The model then predicts the word that
-was masked. For example, if the sentence is "The dog is [MASK] the cat", the model
-will predict "chasing" with high probability.
+遮盖语言模型是一种 NLP 模型，其中有一个特殊的标记，通常是 `[MASK]` ，该标记会被替换为词汇表中的一个单词。模型然后预测被遮盖的单词。例如，如果句子为 "The dog is [MASK] the cat"，模型很可能会预测为 "chasing"。
 
-#### Labels
+#### 标签
 
-The concept of labels is best understood with an example.
+标签的概念可以通过以下的例子更好地理解。
 
-Say we want to classify some Tweets as mean or not mean. If we have a list of Tweets and 
-their corresponding *label* (mean or not mean), we can train a model to classify
-whether tweets are mean or not. Labels are generally just possibilities for the
-classification task.
+假设我们想要将一些推文分类为恶意或非恶意的。如果我们有一份推文列表以及它们对应的 *标签* (恶意或非恶意)，我们可以训练一个模型，将推文分类为恶意或非恶意。标签通常只是分类任务的可能性。
 
-#### Label Space
+#### 标签空间
 
-All of the possible labels for a given task ('mean' and 'not mean' for the above example).
+给定任务的所有可能标签(上面的例子中是 '恶意' 和 '非恶意')。
 
-#### Sentiment Analysis 
- 
-Sentiment analysis is the task of classifying text into positive, negative, or other sentiments. 
+#### 情感分析
 
-#### "Model" vs. "AI" vs. "LLM"
+情感分析是将文本分类为积极、消极或其他情感的任务。
 
-These terms are used somewhat interchangeably throughout this course, but they do
-not always mean the same thing. LLMs are a type of AI, as noted above, but not all AIs are LLMs.
-When we mentioned models in this course, we are referring to AI models. As such, in this course,
-you can consider the terms "model" and "AI" to be interchangeable.
+#### “模型” vs. “AI” vs. “LLM”
 
-#### Machine Learning (ML)
+这些术语在本课程中有时可以互换使用，但并不总是指同一件事情。如上所述，LLM是一种AI类型，但并非所有AI都是LLM。当我们在这门课程中提到模型时，我们是指AI模型。因此，在这门课程中，您可以认为“模型”和“AI”这两个术语可以互换使用。
 
-ML is a field of study that focuses on algorithms that
-can learn from data. ML is a subfield of AI.
+#### 机器学习 (ML)
+
+机器学习是专注于能够从数据中学习的算法的研究领域。ML是AI的一个子领域。
 
 #### Verbalizer
 
-In the classification setting, verbalizers are mappings from labels to words in
-a language model's vocabulary(@schick2020exploiting). For example, consider 
-performing sentiment classification with the following prompt:
+在分类环境中，verbalizer 是指从语言模型的词汇表中的单词到标签的映射方式。例如，考虑使用以下提示进行情感分类：
 
 ```text
 Tweet: "I love hotpockets"
 What is the sentiment of this tweet? Say 'pos' or 'neg'.
 ```
 
-Here, the verbalizer is the mapping from the conceptual labels of `positive` and `negative` to the tokens `pos` and `neg`.
+在这里， verbalizer 是从概念标签 `positive` 和 `negative` 到标记 `pos` 和 `neg` 的映射方式。
 
-#### Reinforcement Learning from Human Feedback (RLHF)
+#### 从人类反馈中加强学习 (RLHF)
 
-RLHF is a method for fine tuning LLMs according to human preference data.
+RLHF 是一种根据人类偏好数据对LLM进行微调的方法。
 
 <!-- %%RemarkAutoGlossary::list_all%% -->

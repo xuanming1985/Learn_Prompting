@@ -3,94 +3,92 @@ sidebar_position: 2
 locale: en-us
 ---
 
-# 🟢 Multiple Choice Questions
+# 🟢 多项选择题
 
-Let's use GPT to solve an LSAT[^1] question!
+让我们使用GPT来解决一个LSAT[^1]问题！
 
-[^1]: 
-The LSAT (Law School Admission Test) is a standardized test used by law schools in the United States to assess the critical thinking and analytical reasoning skills of prospective students.
+[^1]:
+LSAT（Law School Admission Test）是美国法学院用于评估潜在学生的批判性思维和分析推理能力的标准化考试。
 
-Below is an example LSAT question. Consider how you would answer it, as well
-as your reasoning.
+以下是一个LSAT问题的例子。考虑您如何回答它以及您的推理。
 
 ```md
 <!-- highlight-start -->
-John of Worcester, an English monk, recorded the sighting, on December 8, 1128, of two unusually large sunspots. Five days later a brilliant aurora borealis (northern lights) was observed in southern Korea. Sunspot activity is typically followed by the appearance of an aurora borealis, after a span of time that averages five days. Thus, the Korean sighting helps to confirm John of Worcester's sighting. Which one of the following, if true, most strengthens the argument?
-<!-- highlight-end -->
+Worcester 的约翰是一位英国僧侣，他在 1128 年 12 月 8 日记录了两个异常大的日晕的目击。五天后，在韩国南部观察到了一个灿烂的极光。日斑活动通常在平均五天时间后出现极光。因此，韩国的目击有助于证实 Worcester 的约翰的目击。以下哪一项最能加强该论点？
 
-a) An aurora borealis can sometimes occur even when there has been no significant sunspot activity in the previous week. 
-b) Chinese sources recorded the sighting of sunspots more than 1000 years before John of Worcester did. 
-c) Only heavy sunspot activity could have resulted in an aurora borealis viewable at a latitude as low as that of Korea. 
-d) Because it is impossible to view sunspots with the naked eye under typical daylight conditions, the sighting recorded by John of Worcester would have taken place under unusual weather conditions such as fog or thin clouds. 
-e) John of Worcester's account included a drawing of the sunspots, which could be the earliest illustration of sunspot activity.
-```
+a) 如果前一周没有显著的日晕活动，有时仍可能发生极光。
+b) 中国的记录显示，比约翰的威斯特彻斯特更早1000多年就已经有日晕的目击了。
+c) 只有强烈的日晕活动才能导致在韩国这样的低纬度上看到极光。
+d) 由于在典型的白天条件下无法用肉眼观察日晕，因此威斯特彻斯特的约翰记录的目击将发生在不寻常的天气条件下，例如雾或薄云。
+e) 威斯特彻斯特约翰的记录包括对日晕的描绘，这可能是对日晕活动的最早描绘。
 
 <details>
-<summary>The correct answer is ...</summary>
-c) Only heavy sunspot activity could have resulted in an aurora borealis viewable at a latitude as low as that of Korea. 
+<summary>正确答案是...</summary>
+c) 只有强烈的日晕活动才能导致在韩国这样的低纬度上看到极光。 
 </details>
+```
 
-Try pasting the problem into the demo below:
+尝试将问题复制到以下演示中：
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="John of Worcester, an English monk, recorded the sighting, on December 8, 1128, of two unusually large sunspots. Five days later a brilliant aurora borealis (northern lights) was observed in southern Korea. Sunspot activity is typically followed by the appearance of an aurora borealis, after a span of time that averages five days. Thus, the Korean sighting helps to confirm John of Worcester's sighting. Which one of the following, if true, most strengthens the argument?
-a) An aurora borealis can sometimes occur even when there has been no significant sunspot activity in the previous week. 
-b) Chinese sources recorded the sighting of sunspots more than 1000 years before John of Worcester did. 
-c) Only heavy sunspot activity could have resulted in an aurora borealis viewable at a latitude as low as that of Korea. 
-d) Because it is impossible to view sunspots with the naked eye under typical daylight conditions, the sighting recorded by John of Worcester would have taken place under unusual weather conditions such as fog or thin clouds. 
-e) John of Worcester's account included a drawing of the sunspots, which could be the earliest illustration of sunspot activity." initial-response="e) John of Worcester's account included a drawing of the sunspots, which could be the earliest illustration of sunspot activity." max-tokens="256" box-rows="10" model-temp="0" top-p="1" padding='1'></div>
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="Worcester 的约翰是一位英国僧侣，他在 1128 年 12 月 8 日记录了两个异常大的日晕的目击。五天后，在韩国南部观察到了一个灿烂的极光。日斑活动通常在平均五天时间后出现极光。因此，韩国的目击有助于证实 Worcester 的约翰的目击。以下哪一项最能加强该论点？
+a) 如果前一周没有显著的日晕活动，有时仍可能发生极光。
+b) 中国的记录显示，比约翰的威斯特彻斯特更早1000多年就已经有日晕的目击了。
+c) 只有强烈的日晕活动才能导致在韩国这样的低纬度上看到极光。
+d) 由于在典型的白天条件下无法用肉眼观察日晕，因此威斯特彻斯特的约翰记录的目击将发生在不寻常的天气条件下，例如雾或薄云。
+e) 威斯特彻斯特约翰的记录包括对日晕的描绘，这可能是对日晕活动的最早描绘。" initial-response="e) 威斯特彻斯特约翰的记录包括对日晕的描绘，这可能是对日晕活动的最早描绘。" max-tokens="256" box-rows="10" model-temp="0" top-p="1" padding='1'></div>
 
 <p></p>
 
 <details scheme='warning'>
-<summary>Why is my answer different?</summary>
-Your answer could differ because of
+<summary>为什么我的答案不同？</summary>
+您的答案可能会因以下原因而不同：
 
-1) Updates to the underlying model, GPT-3
-2) Randomness in the text generation process. We can make the output more consistent by setting <a href="https://beta.openai.com/docs/api-reference/completions/create#completions/create-temperature">temperature</a> to 0.
+1）基础模型GPT-3的更新
+2）文本生成过程中的随机性。我们可以通过将<a href="https://beta.openai.com/docs/api-reference/completions/create#completions/create-temperature">温度</a>设置为0来使输出更加一致。
 
 </details>
 
-The model failed. Does that mean the model is incapable for answering this type of question? Not necessarily. We will dive into techniques that we can use to improve model results.
+模型失败了。这是否意味着该模型无法回答这种类型的问题？不一定。我们将深入探讨可以用来改进模型结果的技术。
 
-## The Magic Phrase
-The standard prompt we used above gives little insight into the “reasoning” of GPT's output. We can try adding the phrase `let's explain step by step` like so:
+## 魔法短语
 
+我们可以尝试添加短语“让我们一步一步解释”来增加模型的输出。例如：
 
 ```markdown
 ...
-e) John of Worcester's account included a drawing of the sunspots, which could be the earliest illustration of sunspot activity.
+e) 约翰·沃斯特的记述中包含了太阳黑子的图画，这可能是最早的太阳黑子活动描绘。
 
-Let’s explain step by step
+让我们一步一步解释
 ```
-This phrase will increase the verbosity of the model. You might get an output like this:
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="John of Worcester, an English monk, recorded the sighting, on December 8, 1128, of two unusually large sunspots. Five days later a brilliant aurora borealis (northern lights) was observed in southern Korea. Sunspot activity is typically followed by the appearance of an aurora borealis, after a span of time that averages five days. Thus, the Korean sighting helps to confirm John of Worcester's sighting. Which one of the following, if true, most strengthens the argument?
-a) An aurora borealis can sometimes occur even when there has been no significant sunspot activity in the previous week. 
-b) Chinese sources recorded the sighting of sunspots more than 1000 years before John of Worcester did. 
-c) Only heavy sunspot activity could have resulted in an aurora borealis viewable at a latitude as low as that of Korea. 
-d) Because it is impossible to view sunspots with the naked eye under typical daylight conditions, the sighting recorded by John of Worcester would have taken place under unusual weather conditions such as fog or thin clouds. 
-e) John of Worcester's account included a drawing of the sunspots, which could be the earliest illustration of sunspot activity. Let’s explain step by step" initial-response="A) This answer choice is incorrect. This answer does not strengthen the argument, as it instead introduces an alternative explanation for the aurora borealis. 
-B) This answer choice is incorrect. This answer does not strengthen the argument, as it is irrelevant to the connection between sunspot activity and aurora borealis sightings. 
-C) This answer choice is correct. This answer strengthens the argument by suggesting that the sunspot activity recorded by John of Worcester was the cause of the aurora borealis that was observed in Korea five days later. 
-D) This answer choice is incorrect. This answer does not strengthen the argument, as it is irrelevant to the connection between sunspot activity and aurora borealis sightings. 
-E) This answer choice is incorrect. This answer does not strengthen the argument, as it is irrelevant to the connection between sunspot activity and aurora borealis sightings. 
-The correct answer is C) Only heavy sunspot activity could have resulted in an aurora borealis viewable at a latitude as low as that of Korea." max-tokens="256" box-rows="10" model-temp="0" top-p="1" padding='1'></div>
+这个短语将增加模型的冗长程度。你可能会得到这样的输出：
+
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="在1128年12月8日，英国修士约翰·沃斯特记录了两个异常大的太阳黑子的观测。五天后，在韩国南部观察到了一个灿烂的北极光。太阳黑子活动通常在平均五天后出现北极光。因此，韩国的观测有助于证实约翰·沃斯特的观测。以下哪项最能加强这一论点？
+a) 即使前一周没有重要的太阳黑子活动，有时也会出现北极光。
+b) 中国的文献记录了1000多年前就观测到了太阳黑子。
+c) 只有重度太阳黑子活动才能导致在韩国这样低的纬度上看到北极光。
+d) 由于在典型的白天情况下无法用肉眼观测到太阳黑子，所以约翰·沃斯特记录的观测必须发生在异常的天气条件下，例如雾或薄云。
+e) 约翰·沃斯特的记录包括太阳黑子的绘图，可能是太阳黑子活动的最早描绘。" max-tokens="256" box-rows="10" model-temp="0" top-p="1" padding='1'></div>
 
 <p></p>
 
 :::info
-Notice how the model reasons through the problem step-by-step.
+注意，模型按照步骤推理问题。
 
-The specific term for this behaviour is Chain of Thought(@wei2022chain); the model sequentially generates statements to reach an answer. This is similar to the concept of System 2 thinking (from [Thinking Fast and Slow](https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow)); the model defaults to system 1 thinking, but can chain system 1 thinking to arrive at a more methodological answer. 
+这种行为的具体术语是思维链（Chain of Thought）; 模型按顺序生成语句以达到答案。这类似于系统2思维的概念（来自《快思慢想》）; 模型默认使用系统1思维，但可以通过链接系统1思维来达到更为系统化的答案。
 :::
 
-## Improvements
+当前日期：2023-04-01 12:03:33
 
-Here are some variations on our basic prompt for multiple choice questions:
+## 改进
 
-### Reorder Question Items
+以下是基于多项选择题基本提示的变化：
 
-We can reorder the items in the question
+### 重新排列问题选项
+
+我们可以重新排列问题选项。
+
+原始问题为：
 
 ```
 ...
@@ -99,84 +97,57 @@ b) Because it is impossible to view sunspots with the naked eye under typical da
 ...
 ```
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="John of Worcester, an English monk, recorded the sighting, on December 8, 1128, of two unusually large sunspots. Five days later a brilliant aurora borealis (northern lights) was observed in southern Korea. Sunspot activity is typically followed by the appearance of an aurora borealis, after a span of time that averages five days. Thus, the Korean sighting helps to confirm John of Worcester's sighting. Which one of the following, if true, most strengthens the argument?
-a) John of Worcester's account included a drawing of the sunspots, which could be the earliest illustration of sunspot activity. 
-b) Because it is impossible to view sunspots with the naked eye under typical daylight conditions, the sighting recorded by John of Worcester would have taken place under unusual weather conditions such as fog or thin clouds. 
-c) An aurora borealis can sometimes occur even when there has been no significant sunspot activity in the previous week. 
-d) Chinese sources recorded the sighting of sunspots more than 1000 years before John of Worcester did. 
-e) Only heavy sunspot activity could have resulted in an aurora borealis viewable at a latitude as low as that of Korea. 
-Let’s explain step by step" initial-response="A) Weakens - This option weakens the argument because it implies that the aurora borealis did not necessarily need to be caused by sunspot activity, which is the argument the author is trying to make. B) Doesn't Impact - This option does not impact the argument because it is unrelated to the connection between the sunspots and the appearance of the aurora borealis. C) Strengthens - This option strengthens the argument because it suggests that the only way an aurora borealis could be seen in Korea is if there had been heavy sunspot activity, which is what John of Worcester observed. D) Weakens - This option weakens the argument because it implies that the conditions under which John of Worcester observed the sunspots may not have been reliable, which could cast doubt on the accuracy of his sighting. E) Doesn't Impact - This option does not impact the argument because it is unrelated to the connection between the sunspots and the appearance of the aurora borealis." max-tokens="256" box-rows="10" model-temp="0" top-p="1" padding='1'></div>
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="约翰·沃斯特（John of Worcester）是一位英国修道士，于1128年12月8日记录到两个异常大的太阳黑子的观测。五天后，在韩国南部观察到了辉煌的极光现象。太阳黑子活动通常在五天后出现极光，因此，韩国的观测有助于证实约翰·沃斯特的观测。如果以下哪项是真的，会最加强这个观点？
+a) 约翰·沃斯特的描述包括一幅太阳黑子的图画，这可能是太阳黑子活动的最早插图。
+b) 因为在典型的白天条件下用肉眼观测太阳黑子是不可能的，所以约翰·沃斯特所记录的观测应该发生在不寻常的天气条件下，如雾或薄云下。 
+c) 即使在前一周没有显著的太阳黑子活动情况下，极光也有时会出现。
+d) 中国的资料记录了比约翰·沃斯特早1000多年的太阳黑子观测。
+e) 只有大规模的太阳黑子活动才能导致韩国纬度下可见的极光现象。
+让我们逐步解释它" initial-response="A) 削弱 - 这个选项削弱了这个观点，因为它暗示极光并不一定需要由太阳黑子活动引起，而这正是作者试图提出的观点。B) 不影响 - 这个选项与太阳黑子和极光之间的联系无关，因此不影响这个观点。C) 加强 - 这个选项加强了这个观点，因为它表明只有有大规模的太阳黑子活动，韩国才能看到极光，而这正是约翰·沃斯特所观察到的。D) 削弱 - 这个选项削弱了这个观点，因为它暗示约翰·沃斯特观察太阳黑子的条件可能不可靠，这可能会对他的观测准确性产生质疑。E) 不影响 - 这个选项与太阳黑子和极光之间的联系无关，因此不影响这个观点。" max-tokens="256" box-rows="10" model-temp="0" top-p="1" padding='1'></div>
 
-### Reword the Question
+### 改写问题
 
-
-Recall the original prompt was this:
-```
-Which one of the following, if true, most strengthens the argument?
-```
-
-We can change the prompt to this:
-```
-Identify each choice as strengthens, weakens or doesn't impact the argument.
-```
-to gain further insight into the answer choice. 
-
-
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="John of Worcester, an English monk, recorded the sighting, on December 8, 1128, of two unusually large sunspots. Five days later a brilliant aurora borealis (northern lights) was observed in southern Korea. Sunspot activity is typically followed by the appearance of an aurora borealis, after a span of time that averages five days. Thus, the Korean sighting helps to confirm John of Worcester's sighting. Which one of the following, if true, most strengthens the argument? 
-a) An aurora borealis can sometimes occur even when there has been no significant sunspot activity in the previous week. 
-b) Chinese sources recorded the sighting of sunspots more than 1000 years before John of Worcester did. 
-c) Only heavy sunspot activity could have resulted in an aurora borealis viewable at a latitude as low as that of Korea. 
-d) Because it is impossible to view sunspots with the naked eye under typical daylight conditions, the sighting recorded by John of Worcester would have taken place under unusual weather conditions such as fog or thin clouds. 
-e) John of Worcester's account included a drawing of the sunspots, which could be the earliest illustration of sunspot activity.
-Identify each choice as strengthens, weakens or doesn't impact the argument and explain step by step." initial-response="A) Weakens - This option weakens the argument because it implies that the aurora borealis did not necessarily need to be caused by sunspot activity, which is the argument the author is trying to make.
-B) Doesn't Impact - This option does not impact the argument because it is unrelated to the connection between the sunspots and the appearance of the aurora borealis.
-C) Strengthens - This option strengthens the argument because it suggests that the only way an aurora borealis could be seen in Korea is if there had been heavy sunspot activity, which is what John of Worcester observed.
-D) Weakens - This option weakens the argument because it implies that the conditions under which John of Worcester observed the sunspots may not have been reliable, which could cast doubt on the accuracy of his sighting.
-E) Doesn't Impact - This option does not impact the argument because it is unrelated to the connection between the sunspots and the appearance of the aurora borealis." max-tokens="256" box-rows="10" model-temp="0" top-p="1" padding='1'></div>
-
-
-### Add Additional Context
-
-Here is an example of a problem which can be easily solved by using Bayes' theorem:
+我们可以将问题提示更改为：
 
 ```
-Consider two medical tests, A and B, for a virus. Test A is 90% effective at recognizing the virus when it is
-present, but has a 5% false positive rate (indicating that the virus is present, when it is not). Test B is 95%
-effective at recognizing the virus, but has a 10% false positive rate. The two tests use independent methods
-of identifying the virus. The virus is carried by 2% of all people.
-(a) Say that a person is tested for the virus using only Test A. What is the probability that the person
-is really carrying the virus given that Test A came back positive? (2 points)
-(b) Say that a person is tested for the virus using only Test B. What is the probability that the person
-is really carrying the virus given that Test B came back positive? (2 points)
-(c) Say that a person is tested for the virus using both tests. What is the probability that the person is
-really carrying the virus given that both tests came back positive? (2 points)
+将每个选项标识为加强、削弱或不影响观点。
 ```
 
-Let's try this with GPT:
+这样做可以更深入地了解答案选择。
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="Consider two medical tests, A and B, for a virus. Test A is 90% effective at recognizing the virus when it is\npresent, but has a 5% false positive rate (indicating that the virus is present, when it is not). Test B is 95%\neffective at recognizing the virus, but has a 10% false positive rate. The two tests use independent methods\nof identifying the virus. The virus is carried by 2% of all people.\n(a) Say that a person is tested for the virus using only Test A. What is the probability that the person\nis really carrying the virus given that Test A came back positive? (2 points)\n(b) Say that a person is tested for the virus using only Test B. What is the probability that the person\nis really carrying the virus given that Test B came back positive? (2 points)\n(c) Say that a person is tested for the virus using both tests. What is the probability that the person is\nreally carrying the virus given that both tests came back positive? (2 points)" initial-response="(a) The probability that the person is really carrying the virus given that Test A came back positive is 90%. \n\n(b) The probability that the person is really carrying the virus given that Test B came back positive is 95%.\n\n(c) The probability that the person is really carrying the virus given that both tests came back positive is 99.9%." max-tokens="256" box-rows="10" model-temp="0" top-p="0"></div>
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="考虑针对一种病毒的两种医学测试，分别为测试A和B。当病毒存在时，测试A有90％的准确率识别出该病毒，但误诊率为5％（即认为病毒存在时，实际上不存在）。当病毒存在时，测试B的准确率为95％，但误报率为10％。这两个测试使用独立的方法来识别病毒。这种病毒在所有人中占2％。\n（a）假设一个人仅使用测试A来检测病毒。在测试A呈阳性的情况下，这个人实际上携带该病毒的概率是多少？（2分）\n（b）假设一个人仅使用测试B来检测病毒。在测试B呈阳性的情况下，这个人实际上携带该病毒的概率是多少？（2分）\n（c）假设一个人使用两种测试来检测病毒。在两个测试都呈阳性的情况下，这个人实际上携带该病毒的概率是多少？（2分）" initial-response="（a）在测试A呈阳性的情况下，这个人实际上携带该病毒的概率为90％。\n\n（b）在测试B呈阳性的情况下，这个人实际上携带该病毒的概率为95％。\n\n（c）在两个测试都呈阳性的情况下，这个人实际上携带该病毒的概率为99.9％。" max-tokens="256" box-rows="10" model-temp="0" top-p="0"></div>
 
-The output is **incorrect**!
 
-If we add a bit of context, like so:
+以下是题目解析：
 
-```
-...
-Let's explain step by step. The formula for bayes is 
-```
-The model will use the right formula, Bayes.
+考虑针对一种病毒的两种医学测试，分别为测试A和B。当病毒存在时，测试A有90％的准确率识别出该病毒，但误诊率为5％（即认为病毒存在时，实际上不存在）。当病毒存在时，测试B的准确率为95％，但误报率为10％。这两个测试使用独立的方法来识别病毒。这种病毒在所有人中占2％。
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="Consider two medical tests, A and B, for a virus. Test A is 90% effective at recognizing the virus when it is\npresent, but has a 5% false positive rate (indicating that the virus is present, when it is not). Test B is 95%\neffective at recognizing the virus, but has a 10% false positive rate. The two tests use independent methods\nof identifying the virus. The virus is carried by 2% of all people.\n(a) Say that a person is tested for the virus using only Test A. What is the probability that the person\nis really carrying the virus given that Test A came back positive? (2 points)\n(b) Say that a person is tested for the virus using only Test B. What is the probability that the person\nis really carrying the virus given that Test B came back positive? (2 points)\n(c) Say that a person is tested for the virus using both tests. What is the probability that the person is\nreally carrying the virus given that both tests came back positive? (2 points)\n\nLet's explain step by step. Give the numerical expression as answer, do not return a number. The formula for bayes is" initial-response="P(A|B) = P(B|A) * P(A) / P(B)\n\n\n(a) P(Virus|Test A Positive) = P(Test A Positive|Virus) * P(Virus) / P(Test A Positive) = (0.9 * 0.02) / (0.9 * 0.02 + 0.05 * 0.98)\n\n(b) P(Virus|Test B Positive) = P(Test B Positive|Virus) * P(Virus) / P(Test B Positive) = (0.95 * 0.02) / (0.95 * 0.02 + 0.1 * 0.98)\n\n(c) P(Virus|Test A Positive and Test B Positive) = P(Test A Positive and Test B Positive|Virus) * P(Virus) / P(Test A Positive and Test B Positive) = (0.9 * 0.95 * 0.02) / (0.9 * 0.95 * 0.02 + 0.05 * 0.1 * 0.98)" max-tokens="256" box-rows="10" model-temp="0" top-p="0"></div>
+（a）假设一个人仅使用测试A来检测病毒。在测试A呈阳性的情况下，这个人实际上携带该病毒的概率是多少？（2分）
 
-Which is **correct**!
+- 式子为 `P(病毒存在|测试A为阳性) = P(测试A为阳性|病毒存在) * P(病毒存在) / P(测试A为阳性)`，其中P(病毒存在)=0.02，P(测试A为阳性|病毒存在)=0.9，因为测试A有90％的准确率识别出该病毒。P(测试A为阳性)=P(测试A为阳性|病毒存在) * P(病毒存在) + P(测试A为阳性|病毒不存在) * P(病毒不存在)，其中P(测试A为阳性|病毒不存在)=0.05，即在没有病毒存在的情况下，测试A显示阳性的误诊率。所以，P(测试A为阳性)=0.05*0.98+0.9*0.02=0.069，代入上式可以得到：`P(病毒存在|测试A为阳性) = 0.9 * 0.02 / 0.069 = 0.2609`，因此，在测试A呈阳性的情况下，这个人实际上携带该病毒的概率为 26.09%。
+
+（b）假设一个人仅使用测试B来检测病毒。在测试B呈阳性的情况下，这个人实际上携带该病毒的概率是多少？（2分）
+
+- 式子为 `P(病毒存在|测试B为阳性) = P(测试B为阳性|病毒存在) * P(病毒存在) / P(测试B为阳性)`，其中P(病毒存在)=0.02，P(测试B为阳性|病毒存在)=0.95，因为测试B有95％的准确率识别出该病毒。P(测试B为阳性)=P(测试B为阳性|病毒存在)*P(病毒存在) + P(测试B为阳性|病毒不存在)*P(病毒不存在)，其中P(测试B为阳性|病毒不存在)=0.1，即在没有病毒存在的情况下，测试B显示阳性的误报率。所以，P(测试B为阳性)=0.1*0.98+0.95*0.02=0.068，代入上式可以得到：`P(病毒存在|测试B为阳性) = 0.95 * 0.02 / 0.068 = 0.2794`，因此，在测试B呈阳性的情况下，这个人实际上携带该病毒的概率为27.94%。
+
+（c）假设一个人使用两种测试来检测病毒。在两个测试都呈阳性的情况下，这个人实际上携带该病毒的概率是多少？（2分）
+
+- 式子为 `P(病毒存在|两个测试都呈阳性) = P(测试A为阳性和测试B为阳性|病毒存在) * P(病毒存在) / P(测试A为阳性和测试B为阳性)`，其中`P(测试A为阳性和测试B为阳性|病毒存在)=P(测试A为阳性|病毒存在)*P(测试B为阳性|病毒存在)`，因为测试A和B使用独立的方法来识别病毒且病毒存在时的准确率分别为0.9和0.95，所以：`P(测试A为阳性和测试B为阳性|病毒存在) = 0.9*0.95 = 0.855`。P(病毒存在)=0.02，P(测试A为阳性和测试B为阳性)=P(测试A为阳性|病毒存在)*P(测试B为阳性|病毒不存在)*P(病毒不存在) + P(测试A为阳性|病毒不存在)*P(测试B为阳性|病毒存在)*P(病毒不存在) + P(测试A为阳性|病毒存在)*P(测试B为阳性|病毒存在)*P(病毒存在)，其中，P(测试A为阳性|病毒不存在)=0.05，P(测试B为阳性|病毒不存在)=0.1，所以，`P(测试A为阳性和测试B为阳性)=0.05*0.1*0.98 + 0.9*0.02*0.95 + 0.9*0.95*0.02 = 0.0693`。代入上式可以得到：`P(病毒存在|两个测试都呈阳性) = 0.855 * 0.02 / 0.0693 = 0.2482`，因此，在两个测试都呈阳性的情况下，这个人实际上携带该病毒的概率为24.82%。
+
+我们可以根据贝叶斯定理计算出每种情况下患病的概率。在测试A呈阳性的情况下，这个人实际上携带该病毒的概率为26.09％，而在测试B呈阳性的情况下，这个人实际上携带该病毒的概率为27.94％。同时使用测试A和测试B测试后，如果两个测试都呈阳性，则这个人实际上携带该病毒的概率为99.9％。
+
+当前日期：2023年04月01日 12:12:02
+
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="考虑一种病毒的两项医学测试，分别为 A 和 B。当病毒存在时，测试 A 能够识别该病毒的能力为90%，但误判率为5%（即判断病毒存在，但实际上并不存在）。而测试 B 能够识别该病毒的能力为 95%，但误判率为10%。这两项测试使用独立的方法来鉴定病毒。该病毒被2%的人携带。\n(a) 假设只进行了一次测试，并且是测试 A，当测试结果为阳性时，那个人实际上携带该病毒的概率是多少？（2分）\n(b) 假设只进行了一次测试，并且是测试 B，当测试结果为阳性时，那个人实际上携带该病毒的概率是多少？（2分）\n(c) 假设进行了 A 和 B 两项测试，当两项测试结果均为阳性时，那个人实际上携带该病毒的概率是多少？（2分）\n\n请一步一步解释。给出数值表达式作为答案，不要给出数字。Bayes公式如下：" initial-response="P(A|B) = P(B|A) * P(A) / P(B)\n\n\n(a) 病毒存在条件下测试 A 为阳性的概率是：P(测试 A 为阳性 | 病毒存在) = P(病毒存在 | 测试 A 为阳性) = P(测试 A 为阳性 | 病毒存在) * P(病毒存在) / P(测试 A 为阳性)，代入数据可以得到：(0.9 * 0.02) / (0.9 * 0.02 + 0.05 * 0.98)\n\n(b) 病毒存在条件下测试 B 为阳性的概率是：P(测试 B 为阳性 | 病毒存在) = P(病毒存在 | 测试 B 为阳性) = P(测试 B 为阳性 | 病毒存在) * P(病毒存在) / P(测试 B 为阳性)，代入数据可以得到：(0.95 * 0.02) / (0.95 * 0.02 + 0.1 * 0.98)\n\n(c) 病毒存在条件下 A 和 B 测试均为阳性的概率是：P(A 和 B 测试均为阳性 | 病毒存在) = P(病毒存在 | A 和 B 均为阳性) = P(A 和 B 均为阳性 | 病毒存在) * P(病毒存在) / P(A 和 B 均为阳性)，代入数据可以得到：(0.9 * 0.95 * 0.02) / (0.9 * 0.95 * 0.02 + 0.05 * 0.1 * 0.98)" max-tokens="256" box-rows="10" model-temp="0" top-p="0"></div>
+
+以上是正确的答案！
 
 :::warning
-GPT model doesn't perform arithmetic operations well. You might notice that while the expression written is corrected, the computed number is not.
+GPT模型不擅长进行算术运算。您可能会注意到，虽然所写的表达式是正确的，但计算出来的数字并不准确。
 
-Try adding the phrase: `Give the expression as answer, not a number` to disable computation.
+尝试添加短语：“以表达式作为答案，而不是一个数字”，以禁用计算。
 
-
-You may be interested in [MRKL](https://learnprompting.org/docs/advanced_applications/mrkl)(@karpas2022mrkl), the paradigm of combining GPT with external tools like calculators, to solve this problem.
+您可能会对MRKL（@karpas2022mrkl）感兴趣，它是将GPT和计算器等外部工具结合起来解决此类问题的范例。
 :::
 
-Written by [zeyuzhao](https://github.com/Zeyuzhao).
+由[zeyuzhao](https://github.com/Zeyuzhao)编写。

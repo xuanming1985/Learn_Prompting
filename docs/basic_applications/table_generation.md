@@ -2,31 +2,31 @@
 sidebar_position: 0
 ---
 
-# 🟢 Structuring Data
+# 🟢 数据结构化
 
-One simple and exciting use case for LLMs is organizing data into tables. Perhaps you have a bunch of news articles or business reports, and you would like all of the important points to be summarized in a table that you can then put into a spreadsheet or database. Chat bots like ChatGPT can help you do this.
+LLMs的一个简单而令人兴奋的用例是将数据组织成表格。也许您有大量新闻文章或商业报告，您希望所有重要信息都能被总结在一个表格中，然后您可以将其放入电子表格或数据库中。像ChatGPT这样的聊天机器人可以帮助您完成此操作。
 
-We can extract information from the following report by appending `Generate a table containing this information:` to it.
+我们可以通过在以下报告末尾添加“生成包含此信息的表格：”来提取信息。
 
 ```text
-In a recent business report presentation, the CEO of Zana Corp. highlighted their remarkable growth in the past fiscal year. She shared that the company experienced a 15% increase in revenue, reaching $50 million, with a 12% profit margin ($6 million in net profit). The report also showcased a 20% growth in their customer base, now totaling 100,000 customers. Additionally, the company's operating expenses went up by 10%, amounting to $10 million, while the employee headcount increased by 25%, resulting in a current workforce of 500 employees. 
+在最近的一次业务报告演示中，Zana Corp.的CEO强调了他们在过去财政年度中的显着增长。她分享说，公司实现了15%的收入增长，达到5000万美元，并且利润率为12%（净利润600万美元）。该报告还展示了客户群增长了20%，现在总共有10万名客户。此外，公司的运营费用上涨了10%，达到了1000万美元，而员工人数增加了25%，导致目前的员工人数为500人。
 
-Generate a table containing this information:
+生成包含此信息的表格：
 ```
 
-ChatGPT will output a table like the following:
+ChatGPT将会输出如下表格：
 
-| Metric | Value |
+| 指标 | 数值 |
 |-------|------|
-| Revenue | $50 million |
-| Profit Margin | 12% |
-| Net Profit | $6 million |
-| Customer Base | 100,000 |
-| Operating Expenses | $10 million |
-| Employee Headcount | 500 |
-| Revenue Increase | 15% |
-| Customer Increase | 20% |
-| Operating Expenses Increase | 10% |
-| Employee Headcount Increase | 25% |
+| 收入 | $50 million |
+| 利润率 | 12% |
+| 净利润 | $6 million |
+| 客户群 | 100,000 |
+| 运营费用 | $10 million |
+| 员工人数 | 500 |
+| 收入增长 | 15% |
+| 客户增长 | 20% |
+| 运营费用增长 | 10% |
+| 员工人数增长 | 25% |
 
-You can then copy and paste it into a spreadsheet like Excel/Sheets or even documents and powerpoints.
+然后您可以将其复制粘贴到电子表格（如Excel/Sheets）甚至文档和演示文稿中。

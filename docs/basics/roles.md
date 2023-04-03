@@ -2,55 +2,41 @@
 sidebar_position: 3
 ---
 
-# 🟢 Role Prompting
+# 🟢 角色提示
 
-Another prompting technique is to assign a role to the AI. For example, your 
-prompt could start off with "You are a doctor" or "You are a lawyer" and then 
-ask the AI to answer some medical or legal question. Here is an example:
+另一种提示技术是给AI分配一个角色。例如，您的提示可以以“你是一名医生”或“你是一名律师”开头，然后要求AI回答一些医疗或法律问题。下面是一个例子：
 
 ```text
-You are a brilliant mathematician who can solve any problem in the world.
-Attempt to solve the following problem:
+你是一个能解决世界上任何问题的卓越数学家。
+尝试解决以下问题：
 
-What is 100*100/400*56?
+100*100/400*56等于多少？
 
 // highlight-start
-The answer is 1400.
+答案是1400。
 // highlight-end
 ```
 
-The AI's (GPT-3 davinci-003) answer is highlighted in green:
+AI（GPT-3 davinci-003）的答案用绿色突出显示：
 
+这是一个正确的答案，但如果AI只是被提示为`100*100/400*56等于多少？`，它会回答`280`（不正确）。请注意，*ChatGPT*将回答错误的问题，但方式不同。
 
-This is a correct answer, but if the AI had simply been prompted with `What is 100*100/400*56?`,
-it would have answered `280` (incorrect). Please note that *ChatGPT* will answer the question incorrectly, but in a different way.
-
-When assigning a role to the AI, we are giving it some context. This context
-helps the AI understand the question better. With better understanding of the question,
-the AI often gives better answers.
+当向AI分配一个角色时，我们为其提供了一些上下文。这个上下文有助于AI更好地理解问题。通过更好地理解问题，AI通常会给出更好的答案。
 
 :::note
-This technique is no longer as effective with more modern AIs (e.g. GPT-3 davinci-003).
-However, we did use GPT-3 davinci-003 for this example, so it seems that 
-role prompting is still at least a somewhat effective tool to interact with AIs.
+这种技术对于更现代的AI（例如GPT-3 davinci-003）已经不再那么有效了。然而，我们在这个例子中使用了GPT-3 davinci-003，因此看起来角色提示仍然至少是与AI交互的一种相对有效的工具。
 :::
 
-## Examples
+## 例子
 
-You can find some more interesting prompts in the [Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts#prompts)
-repository on GitHub. These were built for *ChatGPT*, but they likely work with other AIs, and you can also
-use them as inspiration to build your own prompts. Let's see two examples:
+您可以在GitHub上的[Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts#prompts)存储库中找到一些更有趣的提示。这些都是为*ChatGPT*构建的，但它们可能适用于其他AI，您也可以使用它们作为灵感构建自己的提示。让我们看两个例子：
 
-> ### Act as an Etymologist
-> I want you to act as an etymologist. I will give you a word and you will research the origin of that word, tracing it
-> back to its ancient roots. You should also provide information on how the meaning of the word has changed over time,
-> if applicable. My first request is "I want to trace the origins of the word 'pizza'".
+> ### 扮演一个词源学家
+> 我想让你扮演一个词源学家。我会给你一个单词，你将研究这个单词的起源，追溯到它的古老根源。如果有必要，你还应该提供关于这个单词意义如何随着时间变化而变化的信息。我的第一个请求是“我想追溯单词‘pizza’的起源”。
 
-> ### Act as an Absurdist
-> I want you to act as an absurdist. The absurdist's sentences are meaningless. The words used by an absurdist are completely
-> ridiculous. The absurdist does not make commonplace sentences in any way. My first suggestion request is "I need help
-> creating absurdist sentences for my new series called Hot Skull, so write 10 sentences for me".
+> ### 扮演荒谬主义者
+> 我想让你扮演一个荒谬主义者。荒谬主义者的句子是毫无意义的。荒谬主义者使用的词语完全荒谬可笑。荒谬主义者不以任何方式表达平凡的句子。我的第一个建议请求是“我需要帮助为我的新系列Hot Skull创建荒谬的句子，所以写10个句子给我”。
 
 ---
 
-🚧 This page needs citations.
+🚧 此页面需要引用。

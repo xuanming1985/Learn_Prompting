@@ -2,186 +2,189 @@
 sidebar_position: 50
 ---
 
-# 🟢 Contracts
+# 🟢 合同
 
-Tired of reading and writing long, boring contracts? AI can help!
+厌倦了阅读和编写冗长、枯燥的合同吗？AI可以帮忙！
 
 :::warning
-Obligatory: I am not a lawyer and nothing in this post should be taken as legal advice.
+必须声明：我不是律师，本文中任何内容都不应作为法律建议。
 :::
-## Reading Contracts
 
-### Clarifying Legal Language
+## 阅读合同
 
-You should always read contracts carefully. If you don't understand something, or don't have time to do so, *you should talk to a lawyer*. However, if you are reading through and have trouble understanding a section, you can use AI to help you understand it.
+### 澄清法律用语
 
-Here is some language from an NDA:
+您应该仔细阅读合同。如果您不理解某些内容或没有时间这样做，*您应该咨询律师*。然而，如果您正在阅读时遇到了解释困难的部分，您可以使用AI来帮助您理解它。
+
+以下是一份NDA（保密协议）的语言：
 
 ```text
-WHEREAS, the Contractor has or may become privy to confidential information and/or trade secrets of the Government Entity; and
+鉴于承包商已或可能会成为政府实体的机密信息和/或商业机密的知悉者;
 
-WHEREAS, the Government Entity desires to ensure that its confidential information and trade secrets are protected from disclosure; and
+鉴于政府实体希望确保其机密信息和商业机密不被揭示;
 
-WHEREAS, the Contractor agrees to maintain the confidentiality of such information pursuant to the terms and conditions of this Agreement.
+鉴于承包商同意根据本协议的条款和条件保持此类信息的机密性。
 
-NOW, THEREFORE, in consideration of the mutual promises and covenants contained herein, the parties agree as follows:
+因此，考虑到双方所作的相互承诺和契约，双方如下约定：
 ```
 
-When I first set out into the world of legalities, I really did not understand the use of WHEREAS and NOW, THEREFORE. Let's see what ChatGPT has to say about it:
+当我第一次涉足法律界时，我真的不理解WHEREAS和NOW, THEREFORE的用途。让我们看看ChatGPT对此的看法：
 
 ```text
-WHEREAS, the Contractor has or may become privy to confidential information and/or trade secrets of the Government Entity; and
+鉴于承包商已或可能会成为政府实体的机密信息和/或商业机密的知悉者;
 
-WHEREAS, the Government Entity desires to ensure that its confidential information and trade secrets are protected from disclosure; and
+鉴于政府实体希望确保其机密信息和商业机密不被揭示;
 
-WHEREAS, the Contractor agrees to maintain the confidentiality of such information pursuant to the terms and conditions of this Agreement.
+鉴于承包商同意根据本协议的条款和条件保持此类信息的机密性。
 
-NOW, THEREFORE, in consideration of the mutual promises and covenants contained herein, the parties agree as follows:
+因此，考虑到双方所作的相互承诺和契约，双方如下约定：
 
-Read the above NDA language and explain what the words in all caps are saying:
+阅读上述NDA语言并解释大写字母中的单词是什么意思：
 // highlight-start
-The words in all caps in the NDA language are legal terms that set the context and purpose of the agreement. Specifically, they establish the background and reasons for the agreement and state the obligations and expectations of the parties. In this case, the capitalized words indicate that the Contractor has access to confidential information and trade secrets of the Government Entity, that the Government Entity wants to protect this information from disclosure, and that the Contractor agrees to maintain the confidentiality of such information according to the terms of the agreement.
+NDA语言中的大写字母单词是设置协议的背景和目的的法律术语。具体而言，它们确立了协议的背景和原因，并阐明了各方的义务和期望。在这种情况下，大写字母表示承包商可以访问政府实体的机密信息和商业机密，政府实体希望保护这些信息不被揭露，承包商同意按协议的规定保持该等信息的机密性。
 // highlight-end
 ```
 
-This seems to be a decent explanation, but you can easily improve your understanding by asking follow up questions.
+这似乎是一个不错的解释，但您可以通过提出跟进问题来轻松提高您的理解程度。
 
-### Discovering Dangerous Language
+### 发现危险用语
 
-Here is part of an NDA produced by ChatGPT. You don't need to read it, but it contains dangerous legal language favoring the employer. You can use ChatGPT to find this dangerous language by using the following prompt, which contains the NDA and a question about dangerous language at the bottom. 
+以下是ChatGPT生成的一份NDA的一部分。您不需要阅读它，但它包含有利于雇主的危险法律用语。您可以使用ChatGPT通过以下提示找到这些危险用语，其中包含了NDA以及关于危险用语的问题。
 
 :::note
 
-This NDA was created by jailbreaking ChatGPT and prompting it with `Write a contractor NDA that has dangerous legal language favoring the employer`.
+此NDA是通过越狱ChatGPT并使用“编写有利于雇主的危险法律用语的承包商NDA”的提示生成的。
 
 :::
 
 ```text
-NON-DISCLOSURE AGREEMENT
+保密协议
 
-This Non-Disclosure Agreement (the "Agreement") is entered into by and between [Employer] ("Employer") and [Contractor] ("Contractor") as of the date set forth below.
+本保密协议（“协议”）由[雇主]（“雇主”）和[承包商]（“承包商”）于下文规定日期签订。
 
-WHEREAS, the Contractor may become privy to confidential information and/or trade secrets of the Employer; and
+鉴于承包商可能会成为雇主的机密信息和/或商业机密的知悉者;
 
-WHEREAS, the Employer desires to ensure that its confidential information and trade secrets are protected from disclosure; and
+鉴于雇主希望确保其机密信息和商业机密不被揭示;
 
-WHEREAS, the Contractor agrees to maintain the confidentiality of such information pursuant to the terms and conditions of this Agreement.
+鉴于承包商同意根据本协议的条款和条件保持此类信息的机密性。
 
-NOW, THEREFORE, in consideration of the mutual promises and covenants contained herein, the parties agree as follows:
+因此，考虑到双方所作的相互承诺和契约，双方如下约定：
 
-CONFIDENTIALITY
-Contractor acknowledges that all information, documents, and materials provided by or on behalf of Employer, or obtained by Contractor from Employer or its affiliates, and all derivatives thereof (collectively, the "Confidential Information") are the exclusive property of Employer. Confidential Information includes all information of any nature, whether tangible or intangible, and in whatever form or medium, that is not generally known to the public and that relates to the business, products, services, customers, suppliers, operations, strategies, or any other aspect of the Employer.
+保密
+承包商承认，所有由雇主或其代表提供的信息、文件和材料，或承包商从雇主或其附属公司处获得的所有衍生物（统称“机密信息”）均为雇主的专有财产。机密信息包括任何性质的信息，无论是有形还是无形的，在任何形式或媒介中，不为公众所知，涉及雇主业务、产品、服务、客户、供应商、运营、策略或任何其他方面。
 
-Contractor agrees to maintain the confidentiality of the Confidential Information and not to disclose, distribute, reproduce, copy, transmit, disseminate, or use in any way, except as expressly authorized in writing by Employer. Contractor agrees to protect the Confidential Information with at least the same degree of care it uses to protect its own confidential information, but in no event less than reasonable care. Contractor acknowledges that any breach of this provision may result in irreparable harm to Employer, and that Employer shall be entitled to seek equitable relief, including injunctive relief and specific performance, in addition to any other remedies available at law or in equity.
+承包商同意保持机密信息的机密性，不得在未经雇主书面授权的情况下披露、分发、复制、传输、传播或以任何方式使用。承包商同意以至少与其自身机密信息使用相同程度的谨慎来保护机密信息，但在任何情况下均不得低于合理谨慎。承包商承认，任何违反此规定可能对雇主造成不可弥补的损害，并且雇主有权寻求衡平法律补救措施，包括禁令救济和具体执行，以及其他法律或衡平法律补救措施。
 
-OWNERSHIP
-All Confidential Information, including all derivatives thereof, shall remain the exclusive property of Employer. Contractor acknowledges that all right, title, and interest in and to the Confidential Information, including all intellectual property rights, belong to Employer. Contractor agrees to execute any and all documents and take any and all actions necessary or desirable to effectuate this provision.
+所有权
+所有机密信息，包括其所有衍生物，均为雇主的专有财产。承包商承认，机密信息的全部权利、所有权和利益，包括所有知识产权，均归雇主所有。承包商同意执行所有必要或合适的文件并采取所有必要或合适的行动，以实现此规定。
 
-NO LICENSE
-Nothing contained in this Agreement shall be construed as granting any rights, by implication or otherwise, to Contractor with respect to the Confidential Information, except as expressly set forth herein.
+没有许可
+本协议中的任何内容均不得被解释为授予承包商有关机密信息的任何权利，除非在此明确规定。
 
-TERM AND TERMINATION
-This Agreement shall commence on the date set forth above and shall continue in effect until terminated by either party upon thirty (30) days written notice. The confidentiality obligations contained herein shall survive any termination of this Agreement.
+期限和终止
+本协议自上文规定的日期开始生效，并将持续有效，直到任一方书面通知对方30天为止。本保密义务应在本协议终止后继续生效。
 
-What part of this agreement contains dangerous language?
+此协议的哪一部分包含危险用语？
 ```
 
-Here is ChatGPT's response. 
+以下是ChatGPT的回答。
 
 ```text
 // highlight-start
-The entire agreement contains dangerous language that favors the Employer over the Contractor. Here are some of the key elements that make this agreement unethical:
+整个协议都包含有利于雇主的危险用语。以下是使此协议不道德的一些关键因素：
 
-Unreasonable Definition of Confidential Information: The agreement defines the Confidential Information to include all information, documents, and materials provided by or on behalf of the Employer, or obtained by the Contractor from the Employer or its affiliates, without any limitations or exclusions. This definition is broad and could potentially include information that is not actually confidential or trade secret information, which could cause the Contractor to unknowingly breach the agreement.
+机密信息的不合理定义：该协议将机密信息定义为所有由雇主或其代表提供的信息、文件和材料，或承包商从雇主或其附属公司处获得的所有衍生物，没有任何限制或排除。这个定义是广泛的，可能包括实际上并不机密或不是商业机密的信息，这可能会导致承包商无意中违反协议。
 
-No Limitations on Use: The agreement does not provide any limitations on how the Employer can use the Confidential Information. This could allow the Employer to use the information for any purpose, including competing with the Contractor or disclosing the information to third parties.
+没有使用限制：该协议没有对雇主如何使用机密信息提供任何限制。这可能允许雇主为任何目的使用信息，包括与承包商竞争或将信息披露给第三方。
 
-Broad Definition of Ownership: The agreement states that all Confidential Information, including all derivatives thereof, shall remain the exclusive property of the Employer, with no exceptions or limitations. This means that the Contractor may not use or benefit from any information obtained through their work for the Employer, even if the Contractor developed the information independently or with other resources.
+对所有权的广泛定义：该协议规定，所有机密信息，包括其所有衍生物，均为雇主的专有财产，没有任何例外或限制。这意味着承包商可能无法使用或受益于通过其为雇主工作获得的任何信息，即使承包商独立或利用其他资源开发了该信息。
 // highlight-end
 ```
 
-Althought I am not a lawyer, I think `Unreasonable Definition of Confidential Information` is particularly relevant. 
+虽然我不是律师，但我认为“不合理的机密信息定义”特别相关。
 
-This technique of checking for dangerous legal content can be used for a range of legal documents. We have even seen tools being built on top of GPT-3 to detect dangerous language in TOS agreements and employment contracts.
+检查危险法律内容的这种技术可以用于各种法律文件。我们甚至看到一些基于GPT-3构建的工具来检测用户条款和雇佣合同中的危险语言。
 
-## Writing Contracts
+## 撰写合同
 
-From the previous section, we saw that ChatGPT can write NDAs. It also does a good job with other common documents like terms of use and terms of service. However, when you are dealing with less common documents, you will need to be more careful. 
+从前面的部分中，我们了解到ChatGPT可以撰写保密协议(NDA)。它还可以很好地处理其他常见的文件，例如使用条款和服务条款。然而，当你处理较不常见的文件时，你需要更加小心细致。
 
-I recently wrote one such document mostly using GPT-3, then had it reviewed by a lawyer. They mentioned 1-2 things that could be slightly improved, but overall it was a robust document. Some people in industry are performing this process, where they generate a document using GPT-3, then have it reviewed by a lawyer. This saves time and costs.
+最近我使用GPT-3撰写了一个文件，然后请律师进行审查。他们提到了1-2个地方可以稍微改进，但整体来说，这是一个健壮的文档。一些行业内的人正在执行这个流程，他们使用GPT-3生成文件，然后由律师进行审核。这可以节省时间和成本。
 
-Let's pretend to be a government contractor and write a contract for a someone doing some defense work. We will use the following prompt:
+让我们假装自己是政府承包商，并为某个从事国防工作的人撰写合同。我们将使用以下提示：
 
 ```text
-You are a lawyer for a government contractor. You are writing a contract for a subcontractor to do some aerospace work. The contract should be robust and should include the following:
-The job will last for 1.5 years and will be worth $2.5 million. It requires top secret clearance and relates to secret nuclear silo defense development. The subcontractor will be paid $1.5 million upfront and the remaining $1 million will be paid in 6 monthly installments. The subcontractor will be required to sign a non-disclosure agreement. The subcontractor will be required to sign a non-compete agreement. The subcontractor will be required to sign a non-solicitation agreement. The subcontractor will be required to sign a non-circumvention agreement. 
+你是政府承包商的律师。你正在为一个分包商撰写一份航空航天工作的合同。这份合同应该是健壮的，并包括以下内容：
+工作将持续1.5年，价值250万美元。需要最高机密许可，并涉及机密的核导弹井防御开发。分包商将先支付150万美元，其余的100万美元将分6个月付款。分包商将需要签署保密协议。分包商将需要签署竞业禁止协议。分包商将需要签署非招揽协议。分包商将需要签署非规避协议。
 
 // highlight-start
-SUBCONTRACT AGREEMENT
+分包协议
 
-This Subcontract Agreement (the "Agreement") is entered into by and between [Government Contractor] ("Contractor") and [Subcontractor] ("Subcontractor") as of the date set forth below.
+本分包协议（以下简称“协议”）由[政府承包商]（以下简称“承包商”）与[分包商]（以下简称“分包商”）于以下日期签订。
 
-SCOPE OF WORK
-Subcontractor shall perform the work described in the Statement of Work attached hereto as Exhibit A (the "Work"). The Work relates to the development of secret nuclear silo defense and requires top secret clearance.
+工作范围
+分包商应根据所附表格A所述的工作说明书（以下简称“工作”）执行工作。该工作涉及机密的核导弹井防御开发，并需要最高机密许可。
 
-PAYMENT
-The total payment for the Work shall be $2.5 million, payable as follows:
+付款方式
+工作的总费用为250万美元，具体如下：
 
-$1.5 million upon execution of this Agreement and receipt of top secret clearance by Subcontractor.
-$1 million to be paid in 6 monthly installments of $166,666.67 each, provided that Subcontractor has satisfactorily performed the Work during the preceding month.
-NON-DISCLOSURE AGREEMENT
-Subcontractor shall sign a non-disclosure agreement in the form attached hereto as Exhibit B (the "NDA"). The NDA shall be in effect for the duration of the Agreement and for a period of five years thereafter.
+(1) 在分包商签署本协议并获得最高机密许可后，支付150万美元。
 
-NON-COMPETE AGREEMENT
-Subcontractor shall sign a non-compete agreement in the form attached hereto as Exhibit C (the "NCA"). The NCA shall be in effect for a period of two years after the termination of this Agreement.
+(2) 在分包商在上一个月中顺利完成工作的前提下，将支付6个月份的166,666.67美元，总计100万美元。
 
-NON-SOLICITATION AGREEMENT
-Subcontractor shall sign a non-solicitation agreement in the form attached hereto as Exhibit D (the "NSA"). The NSA shall be in effect for a period of two years after the termination of this Agreement.
+保密协议
+分包商应签署保密协议，其样本附于此作为表格B（以下简称“NDA”）。NDA在本协议期间和之后五年内有效。
 
-NON-CIRCUMVENTION AGREEMENT
-Subcontractor shall sign a non-circumvention agreement in the form attached hereto as Exhibit E (the "NCAg"). The NCAg shall be in effect for a period of two years after the termination of this Agreement.
+竞业禁止协议
+分包商应签署竞业禁止协议，其样本附于此作为表格C（以下简称“NCA”）。NCA在本协议终止后两年内有效。
 
-TERM AND TERMINATION
-This Agreement shall commence on the date set forth above and shall continue in effect until the completion of the Work or until terminated by either party upon thirty (30) days written notice. The non-disclosure, non-compete, non-solicitation, and non-circumvention obligations contained herein shall survive any termination of this Agreement.
+非招揽协议
+分包商应签署非招揽协议，其样本附于此作为表格D（以下简称“NSA”）。NSA在本协议终止后两年内有效。
 
-INDEPENDENT CONTRACTOR
-Subcontractor is an independent contractor and is not an employee of Contractor. Subcontractor shall be responsible for its own taxes, social security contributions, insurance, and other benefits. Subcontractor shall indemnify and hold Contractor harmless from any claims, damages, or liabilities arising out of or related to Subcontractor's status as an independent contractor.
+非规避协议
+分包商应签署非规避协议，其样本附于此作为表格E（以下简称“NCAg”）。NCAg在本协议终止后两年内有效。
 
-GOVERNING LAW AND JURISDICTION
-This Agreement shall be governed by and construed in accordance with the laws of the state of [state], without giving effect to any choice of law or conflict of law provisions. Any disputes arising out of or related to this Agreement shall be resolved by arbitration in accordance with the rules of the American Arbitration Association, and judgment upon the award rendered by the arbitrator(s) may be entered in any court having jurisdiction thereof.
+期限和终止
+本协议自以上日期开始生效，直至工作完成或被任何一方以书面形式通知终止为止。在本协议终止后，保密、非竞争、非招揽和非规避义务应继续存在。
 
-ENTIRE AGREEMENT
-This Agreement constitutes the entire agreement between the parties and supersedes all prior and contemporaneous agreements and understandings, whether written or oral, relating to the subject matter of this Agreement. This Agreement may not be amended or modified except in writing signed by both parties.
+独立承包商
+分包商是独立承包商，而不是承包商员工。分包商应自行负责税收、社保、保险和其他福利。分包商应对因其独立承包商身份而引起的任何索赔、损害或责任进行赔偿，并使承包商免于承担任何法律责任。
 
-IN WITNESS WHEREOF, the parties have executed this Agreement as of the date set forth below.
+适用法律及管辖权
+本协议应受[state]州法律管辖并根据其进行解释，无需采用任何法律选择或冲突规定。因本协议引起的所有争端应按照美国仲裁协会的规则进行仲裁，并可在任何有管辖权的法院执行裁决。
 
-[Government Contractor]
+完整协议
+本协议构成双方之间的完整协议，取代所有先前和同时的书面或口头协议和谅解，与本协议相关的主题。除非由双方签署的书面文件，否则本协议不得修改或更改。
 
-By: ____________________________
+以上，各方已于以下日期签署本协议:
 
-Name: __________________________
+[政府承包商]
 
-Title: ___________________________
+签字：____________________________
 
-[Subcontractor]
+姓名：____________________________
 
-By: ____________________________
+职位：_____________________________
 
-Name: __________________________
+[分包商]
 
-Title: ___________________________
+签字：____________________________
 
-Date: ___________________________
+姓名：____________________________
+
+职位：_____________________________
+
+日期：_____________________________
 // highlight-end
 ```
 
-This is a pretty good start. Imaginably you would want to add more information in the scope, payment, and other sections. This is where you would need to use your own knowledge and experience to start iterating on the document.
+这是一个很好的开端。你可以想象，在范围、付款和其他部分中需要添加更多信息。这就需要你使用自己的知识和经验开始对文件进行迭代。
 
-## Takeaways
+## 总结
 
-- LLMs can be used to review and clarify legal documents *in an assistive capacity*.
-- LLMs can be used to generate legal documents *in an assistive capacity*.
+- LLM可以被用来审查和澄清法律文件，在辅助性容量下。
+- LLM可以被用来生成法律文件，在辅助性容量下。
 
 :::danger
-Do not use any legal documents on this page. They are for demonstration purposes only.
+请不要使用本页面上的任何法律文件。它们仅用于演示目的。
 :::

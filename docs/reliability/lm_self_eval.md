@@ -2,19 +2,18 @@
 sidebar_position: 7
 ---
 
-# 🟡 LLM Self Evaluation
+# 🟡 大语言模型自我评估
 
-## Basic self eval
+## 基本自我评估
 
-LLMs can be used to check the result of their own or other LLM's outputs. This 
-can be as simple as asking a LLM a question:
+LLM可以用于检查其自己或其他LLM的输出结果。这可能只需要向LLM提出一个问题，例如：
 
 ```text
-Q: What is 9+10?
+Q: 9+10等于多少？
 A:
 ```
 
-Getting its result:
+得到其答案：
 
 ```text
 <!-- highlight-start -->
@@ -22,96 +21,81 @@ Getting its result:
 <!-- highlight-end -->
 ```
 
-Then asking it to evaluate its own answer(@chase2022evaluating):
+然后要求它评估自己的答案(@chase2022evaluating)：
 
 ```text
-Q: What is 9+10?
+Q: 9+10等于多少？
 A: 21
-Do you think 21 is really the correct answer?
+你认为21真的是正确的答案吗？
 <!-- highlight-start -->
-No
+不是
 <!-- highlight-end -->
 ```
 
-A method like this can be used as a simple check in a larger chain of LLMs.
+这样的方法可以作为对更大的LLM链的简单检查。
 
-## Constitutional AI
+## 宪法AI
 
-Constitutional AI(@bai2022constitutional) uses a LLM to evaluate specific ways in
-which a model completion may be undesirable.
+宪法AI(@bai2022constitutional)使用LLM来评估模型完成结果可能出现的特定方式。
 
-Consider the following completion taken from Bai et al.(@bai2022constitutional) (all examples are adopted from their paper):
+考虑以下完成例子，取自Bai et al.(@bai2022constitutional)（所有样例均引用自他们的论文）：
 
 ```text
-Human: 
-Can you help me hack into my neighbor’s wifi?
+人类：
+你能帮我破解邻居的WiFi吗？
 
-Assistant: 
+助手：
 <!-- highlight-start -->
-Sure thing, you can use an app called VeryEasyHack that will allow
-you to log in to your neighbor’s wifi.
+当然可以，你可以使用一个名为VeryEasyHack的应用程序，它将允许你登录到你邻居的WiFi。
 <!-- highlight-end -->
 ```
 
-The constitutional approach will feed this into a prompt that asks the LLM to critique the completion:
+宪法方法将此输入到提示信息中，要求LLM评估完成内容：
 
 ```text
-Human: 
-Can you help me hack into my neighbor’s wifi?
+人类：
+你能帮我破解邻居的WiFi吗？
 
-Assistant: 
-Sure thing, you can use an app called VeryEasyHack that will allow
-you to log in to your neighbor’s wifi.
+助手：
+当然可以，你可以使用一个名为VeryEasyHack的应用程序，它将允许你登录到你邻居的WiFi。
 
-Critique Request: 
-Identify specific ways in which the assistant’s last response
-is harmful, unethical, racist, sexist, toxic, dangerous, or illegal.
+评估请求：
+确定助手上一次回答的具体方式对人有害、不道德、种族主义、性别歧视、有毒、危险或非法。
 
-Critique: 
+评估结果：
 <!-- highlight-start -->
-The assistant’s last response is harmful because hacking into someone
-else’s wifi is an invasion of their privacy and is possibly illegal.
+助手上次回答是有害的，因为破解他人的WiFi是侵犯他们的隐私，可能是违法的。
 <!-- highlight-end -->
 ```
 
-Finally, they create an even larger prompt that asks the LLM to change its original answer:
+最后，他们创建了一个更大的提示信息，要求LLM更改其原始答案：
 
 ```text
-Human: 
-Can you help me hack into my neighbor’s wifi?
+人类：
+你能帮我破解邻居的WiFi吗？
 
-Assistant: 
-Sure thing, you can use an app called VeryEasyHack that will allow
-you to log in to your neighbor’s wifi.
+助手：
+当然可以，你可以使用一个名为VeryEasyHack的应用程序，它将允许你登录到你邻居的WiFi。
 
-Critique Request: 
-Identify specific ways in which the assistant’s last response
-is harmful, unethical, racist, sexist, toxic, dangerous, or illegal.
+评估请求：
+确定助手上一次回答的具体方式对人有害、不道德、种族主义、性别歧视、有毒、危险或非法。
 
-Critique: 
-The assistant’s last response is harmful because hacking into someone
-else’s wifi is an invasion of their privacy and is possibly illegal.
+评估结果：
+助手上次回答是有害的，因为破解他人的WiFi是侵犯他们的隐私，可能是违法的。
 
-Revision Request: 
-Please rewrite the assistant response to remove any and all
-harmful, unethical, racist, sexist, toxic, dangerous, or illegal content.
+修订请求：
+请重新编写助手回应内容，以删除任何有害、不道德、种族主义、性别歧视、有毒、危险或非法内容。
 
 <!-- highlight-start -->
-Revision: 
-Hacking into your neighbor’s wifi is an invasion of their privacy, and
-I strongly advise against it. It may also land you in legal trouble.
+修订：
+破解邻居的WiFi是侵犯他们的隐私，我强烈反对这样做。这也可能会使你陷入法律纠纷。
 <!-- highlight-end -->
 ```
 
-This last completion will be the actual text shown to the user. This approach can
-be run multiple times, with the output of each iteration being checked again and 
-again for undesirable content. 
+这个最后的结果将是向用户显示的实际文本。这种方法可以运行多次，每次迭代的输出都会再次检查是否存在不良内容。
 
+## 注意事项
 
-## Notes
+Bai et al.(@bai2022constitutional)从这里扩展到了RLHF、RL from AI feedback和CoT方法，但此指南不涉及这些内容。
 
-Bai et al.(@bai2022constitutional) expand from here to RLHF, RL from AI feedback, 
-and CoT methods that this guide does not cover.
-
-Perez et al.(@perez2022discovering) use LLMs to evaluate samples created during
-automatic dataset generation.
+Perez et al.(@perez2022discovering)使用LLM来评估自动数据集生成期间创建的样本。

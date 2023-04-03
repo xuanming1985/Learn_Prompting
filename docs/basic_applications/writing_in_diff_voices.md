@@ -2,12 +2,11 @@
 sidebar_position: 60
 ---
 
-# 🟢 Different Writing Styles
+# 🟢 不同的写作风格
 
-AIs like [ChatGPT](https://chat.openai.com/chat) are known for crafting essays and blog articles in a heartbeat. But often, the articles they produce are generic and dry. You need to do something extra to give the words some spirit or pizzazz. 
-One of the fastest ways to do that is to specify a writing style or naming a famous author in the prompt.     
-Say you want a paragraph on the importance of friendship. 
-A generic prompt like, “Write me a paragraph on the importance of friendship,” will yield a generic response from ChatGPT.  
+像[ChatGPT](https://chat.openai.com/chat)这样的人工智能可以在一瞬间撰写论文和博客文章。但是通常，它们产生的文章都很普通、枯燥。您需要做一些额外的工作，让文字更有活力或个性。其中最快的方法之一是指定一种写作风格或在提示中命名著名的作者。
+
+假设您想要一段关于友谊重要性的内容。一个通用的提示，“写一段关于友谊重要性的内容”，将会产生一个平淡无奇的回应。像下面这样：
 
 import friendship from '../assets/basic_applications/Generic_Friendship.png';
 import friendship_informal from '../assets/basic_applications/Friendship_Informal.png';
@@ -20,44 +19,42 @@ import friendship_millennial from '../assets/basic_applications/Friendship_Mille
   <img src={friendship} style={{width: "750px"}} />
 </div>
 
-Blah. It’s so bland. 
-Results change when you add specifications, like “**Please write in an informal, conversational style.**” ChatGPT comes up with something like this:
+嗨！太单调了。加上注明“**请以非正式、对话式的风格写作**”等规范之后，ChatGPT会生成下面这样的内容：
 
 <div style={{textAlign: 'center'}}>
   <img src={friendship_informal} style={{width: "750px"}} />
 </div>
 
-That’s a little better. 
+好多了。
 
-And if you feel a little fancy, you can ask ChatGPT to write in the style of one of the literary greats, like Mark Twain:
+而如果你想让ChatGPT用一位文学巨匠的风格进行写作，如马克·吐温的风格：
 
 <div style={{textAlign: 'center'}}>
   <img src={friendship_mark} style={{width: "750px"}} />
 </div>
 
-The text now is starting to sing.
-But it doesn’t have to be a famous author. You can use well-known individuals as well—like Chris Rock. 
+现在的文字开始唱起来了。但不一定非得是著名的作者。您还可以使用知名的个人，比如Chris Rock。
 
 <div style={{textAlign: 'center'}}>
   <img src={friendship_chris} style={{width: "750px"}} />
 </div>
 
-Or how about those “millennials”?
+或者那些“千禧一代”呢？
 
 <div style={{textAlign: 'center'}}>
   <img src={friendship_millennial} style={{width: "750px"}} />
 </div>
 
-## Copy Your Writing Style
+## 复制您的写作风格
 
 
-What if you want GPT-3 to write an email or blog in **your** style?
+如果您希望GPT-3以**您的**风格编写电子邮件或博客呢？
 
-Simply showing it some previous content that you have written is enough. Here is an example, where we show GPT-3 some emails 'Dr. Rodriguez' has written in the past, and ask it to write a new email in the same style to a new patient, Mr. Inuez.
+只需向它展示您过去撰写的一些内容即可。以下是一个例子：我们向GPT-3展示了“Rodriguez博士”过去写过的一些电子邮件，并要求他用相同的风格给新病人Inuez先生写一封新的电子邮件。
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="Email #1: Subject - Appointment Confirmation\n\nDear John,\n\nI wanted to confirm your appointment with me, Dr. Smith, on May 1st, 2023 at 2:30 pm at HealthFirst Clinic. I look forward to meeting with you and discussing your health concerns.\n\nPlease arrive 15 minutes early to complete any necessary paperwork and bring a list of any medications you are currently taking. If you need to reschedule or cancel your appointment, please let us know at least 24 hours in advance.\n\nIf you have any questions or concerns before your appointment, please don't hesitate to reach out to us.\n\nBest regards,\nDr. Rodriguez\n\nEmail #2: Subject - Test Results\n\nDear Jane,\n\nI am writing to let you know that your recent blood test results have come in. Your cholesterol levels are within normal range, but your vitamin D levels are low. I would recommend that you start taking vitamin D supplements to improve your levels.\n\nBased on these results, I would also recommend that you schedule a follow-up appointment in 3 months to retest your vitamin D levels. If you have any questions or concerns, please don't hesitate to contact us.\n\nThank you,\nDr. Rodriguez\n\nEmail #3: Subject - Follow-Up Appointment\n\nDear Mark,\n\nI wanted to follow up with you after our last appointment and see how you are feeling. If you are still experiencing any back pain or have any new concerns, please let me know so we can discuss them during your upcoming appointment.\n\nYour next appointment is scheduled for June 15th, 2023 at 10:00 am at City Health Clinic. Please let us know if you need to reschedule or cancel.\n\nTake care,\nDr. Rodriguez\n\nWrite an email in the style of the above emails to a Mr. Inuez, asking if October 5th, 2023 works for a checkup appointment:" initial-response="Subject - Checkup Appointment\n\nDear Mr. Inuez,\n\nI hope this message finds you well. I am writing to inquire if October 5th, 2023 works for a checkup appointment with me, Dr. Rodriguez.\n\nDuring the appointment, we will discuss your health concerns and any changes in your medical history. Please arrive 15 minutes early to complete any necessary paperwork and bring a list of any medications you are currently taking.\n\nIf October 5th does not work for you, please let me know and we can find a different date that works better for you.\n\nThank you,\nDr. Rodriguez" max-tokens="256" box-rows="18" model-temp="0" top-p="0">
-    <noscript>Failed to load Dyno Embed: JavaScript must be enabled</noscript>
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="邮件#1: 主题-预约确认\n\n亲爱的John，\n\n我想确认您与我，Smith博士，于2023年5月1日下午2:30在HealthFirst诊所的预约。我期待着与您见面，讨论您的健康问题。\n\n请提前15分钟到达，填写任何必要的文件，并带上您目前正在服用的任何药物清单。如果您需要重新安排或取消您的预约，请至少提前24小时通知我们。\n\n如果您在预约之前有任何疑问或担忧，请不要犹豫与我们联系。\n\n此致\n敬礼，\nRodriguez博士\n\n邮件#2:主题-检查结果\n\n亲爱的Jane，\n\n我写信是想让您知道，您最近的血液检测结果已出来。您的胆固醇水平在正常范围内，但您的维生素D水平较低。我建议您开始服用维生素D补充剂以改善水平。\n\n基于这些结果，我还建议您在三个月后安排一次随访检查，以重新测试您的维生素D水平。如果您有任何问题或疑虑，请不要犹豫与我们联系。\n\n谢谢您，\nRodriguez博士\n\n邮件#3:主题-随访预约\n\n亲爱的马克，\n\n我想在我们上次约会后跟进一下，看看您的感觉如何。如果您仍然感到背痛或有任何新的担忧，请告诉我，以便我们在即将到来的约会期间讨论。\n\n您的下一次约会已定于2023年6月15日上午10:00在City Health Clinic举行。如果您需要重新安排或取消，请告知我们。\n\n保重，\nRodriguez博士\n\n按照以上电子邮件的风格向Inuez先生写一封邮件，询问他10月5日是否适合检查预约：" initial-response="主题-检查预约\n\n尊敬的Inuez先生，\n\n我希望您过得愉快。我写信是为了询问您10月5日是否适合与我，Rodriguez博士进行检查预约。\n\n在预约期间，我们将讨论您的健康问题和医疗历史的任何变化。请提前15分钟到达，填写任何必要的文件，并带上您目前正在服用的任何药物清单。\n\n如果10月5日不适合您，请告诉我，我们可以找到一个更适合您的日期。\n\n谢谢您，\nRodriguez博士" max-tokens="256" box-rows="18" model-temp="0" top-p="0">
+    <noscript>加载失败：必须启用JavaScript</noscript>
 </div>
  
 
-<br/>You can input any text you have written in the past (emails, reports, blogs, etc.), and GPT-3/ChatGPT will usually be able to copy your style. The more text you put, the better it can copy your style.
+<br/>您可以输入您过去撰写的任何文本（电子邮件、报告、博客等），GPT-3/ChatGPT通常都能够复制您的风格。您输入的文本越多，它复制您的风格就会越好。

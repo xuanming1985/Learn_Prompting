@@ -2,25 +2,25 @@
 sidebar_position: 3000
 ---
 
-# 🛸 Additional Resources
+# 🛸 更多资源
 
-## Resources
+## 资源
 
-A fantastic PE intro video: https://youtube.com/watch?v=dOxUroR57xs&feature=shares<br/>
-A very nice, short prompt engineering guide: https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api<br/>
-A great prompt engineering intro: https://humanloop.com/blog/prompt-engineering-101<br/>
-A nice collection of prompt engineering papers: https://github.com/dair-ai/Prompt-Engineering-Guide<br/>
-Many more prompt engineering papers: https://github.com/thunlp/PromptPapers<br/>
-CMU class on prompt engineering: https://youtu.be/5ef83Wljm-M<br/>
-How Copilot works: https://thakkarparth007.github.io/copilot-explorer/posts/copilot-internals.html<br/>
-A Beginners Guide to Prompt Writing by Zapier: https://zapier.com/blog/gpt-3-prompt/<br/>
-Awesome A-Z Prompt-Engineering Resources list: https://github.com/promptslab/Awesome-Prompt-Engineering<br/>
-500 ChatGPT prompt templates: https://www.notion.so/500-ChatGPT-Prompt-Templates-d9541e901b2b4e8f800e819bdc0256da<br/>
-Prompt base: https://promptbase.com/<br/>
-Midjourney community showcase (with prompts): https://www.midjourney.com/showcase/recent/<br/>
-ALL styles and references for midjourney: https://github.com/willwulfken/MidJourney-Styles-and-Keywords-Reference
+一个很棒的私募股权介绍视频：https://youtube.com/watch?v=dOxUroR57xs&feature=shares<br/>
+一个非常好的、简短的提示工程指南：https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api<br/>
+一个很棒的提示工程介绍：https://humanloop.com/blog/prompt-engineering-101<br/>
+一个不错的提示工程论文集合：https://github.com/dair-ai/Prompt-Engineering-Guide<br/>
+更多关于提示工程的论文：https://github.com/thunlp/PromptPapers<br/>
+CMU有关提示工程的课程：https://youtu.be/5ef83Wljm-M<br/>
+Copilot是如何工作的：https://thakkarparth007.github.io/copilot-explorer/posts/copilot-internals.html<br/>
+Zapier的一个初学者提示编写指南：https://zapier.com/blog/gpt-3-prompt/<br/>
+Awesome A-Z Prompt-Engineering资源列表：https://github.com/promptslab/Awesome-Prompt-Engineering<br/>
+500个ChatGPT提示模板：https://www.notion.so/500-ChatGPT-Prompt-Templates-d9541e901b2b4e8f800e819bdc0256da<br/>
+Prompt base：https://promptbase.com/<br/>
+Midjourney社区展示（含提示）：https://www.midjourney.com/showcase/recent/<br/>
+Midjourney的所有风格和参考资料：https://github.com/willwulfken/MidJourney-Styles-and-Keywords-Reference
 
-### GPT-3 Prompt Examples/Ideas
+### GPT-3 提示示例/想法
 
 https://sharegpt.com <br/>
 https://www.learngpt.com <br/>
@@ -28,22 +28,23 @@ https://chatgpt.getlaunchlist.com <br/>
 https://prompts.chat
 
 
-## Facts
+## 事实
 
-GPT-3 is *NOT* deterministic: https://twitter.com/BorisMPower/status/1608522707372740609
+GPT-3 是 *不确定性的*: https://twitter.com/BorisMPower/status/1608522707372740609
 
-## People to follow
+## 推荐关注的人
 
-I source significant content from these people.
+我从这些人那里获得了重要的内容。
 
-[@chillzaza_](https://mobile.twitter.com/chillzaza_) Prompt engineering, tools, toolbot<br/>
-[@mathemagic1an](https://mobile.twitter.com/mathemagic1an) Various prompting, PE, GPT3 info<br/>
-[@goodside](https://twitter.com/goodside/status/1588247865503010816) Prompt Injection, PE tooling<br/>
-[@hwchase17](https://twitter.com/hwchase17) Core dev of langchain<br/>
-[@omarsar0](https://twitter.com/omarsar0) DAIR AI lead
+[@chillzaza_](https://mobile.twitter.com/chillzaza_) 提示工程、工具、toolbot<br/>
+[@mathemagic1an](https://mobile.twitter.com/mathemagic1an) 各种提示、PE、GPT3信息<br/>
+[@goodside](https://twitter.com/goodside/status/1588247865503010816) 提示注入、PE工具<br/>
+[@hwchase17](https://twitter.com/hwchase17) Langchain的核心开发者<br/>
+[@omarsar0](https://twitter.com/omarsar0) DAIR AI 领导
 
-Also check accounts that I follow: https://twitter.com/learnprompting/following 
+还可以查看我关注的账户：https://twitter.com/learnprompting/following 
 
-## Even More
+## 更多资源
 
-Check [open issues](https://github.com/trigaten/Learn_Prompting/issues) and [PRs](https://github.com/trigaten/Learn_Prompting/pulls) :)
+请查看 [open issues](https://github.com/trigaten/Learn_Prompting/issues) 和 [PRs](https://github.com/trigaten/Learn_Prompting/pulls) :)
+

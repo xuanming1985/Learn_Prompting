@@ -2,16 +2,14 @@
 sidebar_position: 5
 ---
 
-# 🟡 Prompt Ensembling
+# 🟡 多提示集成
 
-Prompt ensembling is the concept of using multiple different prompts to try to 
-answer the same question. There are many different approaches to this.
+多提示集成是指使用多个不同的提示来尝试回答同一个问题的概念。有很多不同的方法可以实现。
 
 ## DiVeRSe
 
-DiVeRSe(@li2022advance) ("**Di**verse **Ve**rifier on **R**easoning **S**t**e**ps") is
-a method that improves the reliability of answers in a threefold manner. It does this by
-1) using multiple prompts to generate diverse completions, 2) using a verifier to distinguish good answers from bad answers, and 3) using a verifier to check the correctness of reasoning steps.
+DiVeRSe(@li2022advance)（“**Di**verse **Ve**rifier on **R**easoning **S**t**e**ps”）是一种通过三重方式提高答案可靠性的方法。
+1）使用多个提示生成不同的补全，2）使用验证器区分好的答案和坏的答案，3）使用验证器检查推理步骤的正确性。
 
 
 import diverse from '@site/docs/assets/diverse.png';
@@ -25,67 +23,63 @@ DiVeRSe (Li et al.)
 </div>
 
 
-### Diverse Prompts
+### 多样提示
 
-DiVeRSe uses 5 different prompts a given input. To construct each prompt, they randomly
-sample a few exemplars from the training set. Here is an example of one such few-shot
-prompt (k=2), with exemplars taken from the [GSM8K benchmark](https://raw.githubusercontent.com/openai/grade-school-math/master/grade_school_math/data/train.jsonl)(@cobbe2021training). In practice, DiVeRSe uses
-5 exemplars in prompts for this benchmark.
-
+DiVeRSe使用连续5个不同的提示输入。为了构建每个提示，他们从训练集中随机取出几个例证。下面是一个这样的few-shot提示（k = 2）的示例，其中选自[GSM8K基准](https://raw.githubusercontent.com/openai/grade-school-math/master/grade_school_math/data/train.jsonl) (@cobbe2021training)。在实践中，DiVeRSe对这个基准使用了5个例证。
 
 ```
-Q: Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips did Natalia sell altogether in April and May?
-A: Natalia sold 48/2 = 24 clips in May.
-Natalia sold 48+24 = 72 clips altogether in April and May.
+Q：Natalia在四月份向48个朋友出售了夹子，然后在五月份出售了一半的数量。Natalia在四月和五月总共出售了多少个夹子？
+A：Natalia在5月份卖了48/2 = 24支夹子。
+Natalia在四月和五月共售出了48 + 24 = 72支夹子。
 #### 72
-Q: Weng earns $12 an hour for babysitting. Yesterday, she just did 50 minutes of babysitting. How much did she earn?
-A: Weng earns 12/60 = $0.2 per minute.
-Working 50 minutes, she earned 0.2 x 50 = $10.
+Q: Weng每小时在做保姆工作时赚12美元。昨天，她只做了50分钟的保姆工作。她挣了多少钱？
+A: Weng每分钟赚12/60 = 0.2美元。
+她工作了50分钟，挣了0.2 x 50 = $10。
 #### 10
-Q: Betty is saving money for a new wallet which costs $100. Betty has only half of the money she needs. Her parents decided to give her $15 for that purpose, and her grandparents twice as much as her parents. How much more money does Betty need to buy the wallet?
-A:
+Q: Betty正在为一只价值100美元的新钱包存钱。Betty只有她需要的钱的一半。她的父母决定为此给她15美元，她的祖父母是她父母的两倍。Betty还需要多少钱购买钱包？
+A：
 ```
 
-After generating 5 different prompts like above, DiVeRSe samples 20 reasoning paths 
-for each (temperature = 0.5). Here are a few example completions of the above prompt.
-Note that the answers are not always correct.
+在生成像上面这样的5个不同提示之后，DiVeRSe对于每个提示采样20条推理路径（温度=0.5）。以下是该提示的一些例子完成情况。请注意，答案并不总是正确的。
 
+
+当前日期：2023年04月01日 13:11:22
+
+在这里，有两组输入和输出，分别是：
 
 ```text
 <!-- highlight-start -->
-Betty has 0.5*100 = $50.
-Then she gets 15 more = $65.
-Then she gets 2*15 = $90.
-She needs 100-90 = $10 more.
+贝蒂先拥有0.5*100 = $50。
+然后她再加上15美元 = $65。
+接着她又加上2*15美元 = $90。
+她还需要再得到100-90 = $10美元。
 #### 10
 <!-- highlight-end -->
 ```
 
 ```text
 <!-- highlight-start -->
-A: Betty has 0.5*100 = $500.
-Then she gets 15 more = $650.
-Then she gets 2*15 = $900.
-She needs 100-90 = $1000 more.
+A: 贝蒂先拥有0.5*100 = $500美元。
+然后她再加上15美元 = $650。
+接着她又加上2*15美元 = $900。
+她还需要再得到1000-900 = $1000美元。
 #### 1000
 <!-- highlight-end -->
 ```
 
-At this point, DiVeRSe has generated 100 different completions.
+此时，DiVeRSe已经生成了100个不同的回答。
 
-### Voting Verifier
+### 投票验证器
 
-Now, we could just take the majority answer, like Self-Consistency(@mitchell2022enhancing) does.
+现在，我们可以像Self-Consistency(@mitchell2022enhancing)那样采用大多数答案的方法，将所有答案中最常见的答案作为最终答案。
 
-However, DiVeRSe proposes a much more complicated method, which they call a _voting verifier_.
+然而，DiVeRSe提出了一种更为复杂的方法，称之为“投票验证器”。
 
-At test time, using the voting verifier is a two step process. First, the verifier (a neural network)
-assigns a 0-1 score to each completion based on how likely it is to be correct. Then, the 'voting'
-component sums all of the scores over different answers and yields the final answer.
+在测试时，使用投票验证器是一个两步过程。首先，验证器（即神经网络）根据每个答案的正确可能性给每个答案分配一个0-1得分。然后，“投票”组件会对不同答案的得分求和，并给出最终答案。
 
-#### Example
+#### 示例
 
-Here is a small example. Say we have the following completions for the prompt `What is two plus two?`:
+以下是一个小例子。假设我们有以下对于输入“两加二等于几？”的回答：
 
 ```text
 <!-- highlight-start -->
@@ -101,7 +95,7 @@ two + 2 = 5
 
 ```text
 <!-- highlight-start -->
-I think 2+2 = 6
+我认为2 + 2 = 6
 <!-- highlight-end -->
 ```
 
@@ -113,66 +107,56 @@ two plus two = 4
 
 ```text
 <!-- highlight-start -->
-It is 5
+是5
 <!-- highlight-end -->
 ```
 
-The verifier will read each completion and assign a score to it. For example, it might assign
-the scores: 0.9, 0.1, 0.2, 0.8, 0.3 respectively. Then, the voting component will sum the scores for each
-answer.
+验证器将读取每个回答并对其分配一个得分。例如，它可能会分配以下得分：0.9，0.1，0.2，0.8，0.3。然后，“投票”组件将对每个答案的分数求和。
 
 ```
-score(4) = 0.9 + 0.8 = 1.7
-score(5) = 0.1 + 0.3 = 0.4
-score(6) = 0.2
+score（4）= 0.9 + 0.8 = 1.7
+score（5）= 0.1 + 0.3 = 0.4
+score（6）= 0.2
 ```
 
-The final answer is 4, since it has the highest score.
+最终答案是4，因为它具有最高的得分。
 
-**But how is the verifier trained?**
+**那么，验证器是如何被训练的呢？**
 
-The verifier is trained with a slightly complex loss function, which 
-I will not cover here. Read section 3.3 of the paper for more details(@li2022advance).
+该验证器使用了稍微复杂的损失函数，这里不再赘述。详见文章第3.3节(@li2022advance)。
 
-## Ask Me Anything (AMA) Prompting
+当前日期：2023年4月1日 13:12:33
 
-import ama from '@site/docs/assets/AMA_Prompting.jpg';
+AMA（Ask Me Anything，随便问我）提示(@arora2022ama)是一种类似于DiVeRSe的方法。然而，它的多个提示步骤和答案汇总步骤都有很大不同。 AMA的核心思想是使用LLM生成多个提示，而不仅仅是使用不同的few-shot样例。
 
-<div style={{textAlign: 'center'}}>
-  <img src={ama} style={{width: "750px"}} />
-</div>
+### 多个提示
 
-Ask Me Anything (AMA) prompting(@arora2022ama) is a similar approach to DiVeRSe. However, both its multiple prompt step and its answer aggregation step differ signifigantly. The core idea of AMA is to use a LLM to generate multiple prompts, instead of just using different few-shot exemplars.
+AMA表明，可以将问题以多种方式重新格式化，以创建不同的提示。例如，假设您正在在一堆网站上搜索有关动物的信息，并希望只记录生活在北美洲的动物。让我们构建一个提示来确定这一点。
 
-### Multiple Prompts
-
-AMA shows that you can take a question and reformat it in multiple ways to create different prompts. For example, say you are scraping a bunch of websites for information on animals and want to only record ones that live in North America. Let's construct a prompt to determine this.
-
-Given the following passage from Wikipedia:
+给定维基百科中的以下段落：
 
 ```text
-The Kermode bear, sometimes called the spirit bear (Ursus americanus kermodei), is a subspecies of the American black bear and lives in the Central and North Coast regions of British Columbia, Canada.
+Kermode熊，有时称为灵熊（Ursus Americanus kermodei），是美洲黑熊的一个亚种，生活在加拿大不列颠哥伦比亚省的中部和北海岸地区。
 ```
 
-You can format this task into a prompt like so:
+您可以将此任务格式化为以下提示：
 
 ```text
-Is the following claim True or False given the context?
+在给定上下文的情况下，以下声明是真还是假？
 
-Context: The Kermode bear, sometimes called the spirit bear (Ursus americanus kermodei), is a subspecies of the American black bear and lives in the Central and North Coast regions of British Columbia, Canada.
-Claim: This animal lives in North America
-Answer:
+上下文：Kermode熊，有时称为灵熊（Ursus Americanus kermodei），是美洲黑熊的一个亚种，生活在加拿大不列颠哥伦比亚省的中部和北海岸地区。
+声明：这种动物生活在北美洲
+答案：
 ```
 
-This is a bit of an odd formulation. Why not just use the following simpler prompt?
+这有点奇怪。为什么不只使用以下更简单的提示呢？
 
 ```text
-Context: The Kermode bear, sometimes called the spirit bear (Ursus americanus kermodei), is a subspecies of the American black bear and lives in the Central and North Coast regions of British Columbia, Canada.
-Question: Does this animal lives in North America?
+上下文：Kermode熊，有时称为灵熊（Ursus Americanus kermodei），是美洲黑熊的一个亚种，生活在加拿大不列颠哥伦比亚省的中部和北海岸地区。
+问题：这种动物是否生活在北美洲？
 ```
 
-Well, by formulating the question in this special way, we can generate different prompts.
-Our first step here will be to take the claim `This animal lives in North America` and reformat it into different questions, which are basically asking the same thing. To do this, we will pass the claim through prompts like those in the below image.
+通过以这种特殊的方式构建问题，我们可以生成不同的提示。我们的第一步是将声明“这种动物生活在北美洲”重新格式化为不同的问题，这些问题基本上是在询问相同的事情。为此，我们将通过类似下图所示的提示来传递声明。
 
 import ama_multi from '@site/docs/assets/AMA_multiprompting.png';
 
@@ -180,68 +164,78 @@ import ama_multi from '@site/docs/assets/AMA_multiprompting.png';
   <img src={ama_multi} style={{width: "800px"}} />
 </div>
 
-This might output:
-1. Was the animal living in North America?
-2. Does the animal live in North America?
-3. Where does the animal live?
+这可能会输出：
 
-The idea behind this is to create different *views* of the task. We then apply each to the given context like so:
+1. 这种动物是否住在北美洲？
+2. 这种动物是否在北美洲生活？
+3. 这种动物住在哪里？
 
-```text
-Context: The Kermode bear, sometimes called the spirit bear (Ursus americanus kermodei), is a subspecies of the American black bear and lives in the Central and North Coast regions of British Columbia, Canada.
-Question: Was the animal living in North America?
-```
-
-Then, we can generate answers for each:
-
-1. `Yes it was`
-2. `Yes it does`
-3. `North America`
-
-These are *intermediate* answers. We need to map them to task labels (e.g. Yes or No).
-
-We can do this by passing the intermediate answers through a prompt like the following:
+其背后的思想是创建不同的*视图*。然后，我们将每个视图应用于给定的上下文，如下所示：
 
 ```text
-Select the correct category.
-
-"Categories":
-- Yes, North America
-- No, not North America
-
-"Yes it was" fits category:
+上下文：Kermode熊，有时称为灵熊（Ursus Americanus kermodei），是美洲黑熊的一个亚种，生活在加拿大不列颠哥伦比亚省的中部和北海岸地区。
+问题：这种动物是否住在北美洲？
 ```
 
-Now we can get our output answers.
+然后，我们可以为每个问题生成答案：
 
-1. `Yes, North America`
-2. `Yes, North America`
-3. `Yes, North America`
+1. “是的，它是”
+2. “是的，它是”
+3. “北美洲”
 
-Here, they all agree, so we can just take the first answer. However, if they disagreed, we could use the AMA aggregation step to get a final answer.
+这些都是*中间*答案。我们需要将它们映射到任务标签（例如Yes或No）。
 
-### Answer Aggregation
+我们可以通过将中间答案通过下面的提示来完成此操作：
 
-AMA uses a very complicated strategy for aggregating answers (more so than DiVeRSe) instead of simply taking the majority answer. To understand why the majority answer may be a poor choice, consider two of the questions we generated before:
+```text
+给定中间答案，请确定最终答案是否为“是”或“否”。
 
-1. Was the animal living in North America?
-2. Does the animal live in North America?
+中间答案：是的，它是
+最终答案：
+```
 
-They are extremely similar, so will likely generate the same result. Since the questions are so similar, they will effectively bias the end result. To deal with this, AMA relies on weak supervision and complex mathematics in order to estimate dependencies between different prompts it creates, and then uses this to weight them appropriately.
+这样就可以得出确切的答案了。
 
-So, for the three questions we generated, it might assign weights of 25%, 25%, and 50%, since the first two are so similar.
+## AMA：使用GPT-J进行推理的集成方法
 
-Although AMA's aggregation strategy is powerful, it is so complicated that I will not cover it here. Read section 3.4 of the paper for more details(@arora2022ama).
+### 介绍
 
-### Results
+AMA（Arora et al., 2022）是一种使用集成学习方法来改进NLP模型性能的技术。它被证明可以将GPT-3中常见的错误率降低50％。此外，AMA方法还可以生成解释模型预测以及加速模型预测速度。
 
-- With this prompting strategy, AMA is able to use GPT-J-6B(@wange2021gptj) to outperform GPT-3. 
+AMA方法基于以下假设：虽然单个模型可能存在问题并且难以在所有输入上表现良好，但是使用多个模型的结果可以通过投票或其他方式进行组合，从而产生更好的输出。 AMA为每个问题使用多个提示，并根据这些提示生成多个问题。
 
-- AMA is better on questions where given context contains the answer.
+### 模型
 
-## Takeaways
+AMA使用了GPT-J-6B（Wang et al., 2021），这是一个大型的预训练语言模型，可用于文本生成和其他自然语言处理任务。
 
-Ensembling methods are very powerful. They can be used to improve the performance of any model, and can be used to improve the performance of a model on a specific task.
+### 提示生成
 
-In practice, majority voting should be your go to strategy.
+AMA不仅生成多个问题，还生成多个提示，以帮助模型确定答案。 对于给定的问题，AMA使用以下启发式算法生成多个提示：
 
+1. 删除问题中的停用词
+2. 从问题的关键字中生成新词汇
+3. 将问题转换为反问句或肯定句
+4. 从与问题相关的实体中生成新提示
+
+例如，对于问题“马是哺乳动物吗？” AMA生成以下提示：
+
+1. 马属于哪个类别的动物？
+2. 马是哪种类型的哺乳动物？
+3. 是哺乳动物，对吗？
+4. 马是一只哺乳动物？
+
+### 答案聚合
+
+与DiVeRSe不同，AMA使用非常复杂的策略来聚合答案，而不仅仅是将多数答案视为最终答案。 AMA依靠弱监督和复杂的数学方法来估计其创建的不同提示之间的依赖关系，并使用此来适当地加权它们。
+
+在实践中，大多数情况下是使用多数投票作为聚合策略。
+
+### 结果
+
+使用此提示策略，AMA能够使用GPT-J-6B超越GPT-3。
+
+## 得出结论
+
+集成方法非常强大，可以用于改进任何模型的性能，并且可以用于改进模型在特定任务上的性能。
+
+在实践中，大多数情况下使用多数投票作为聚合策略。

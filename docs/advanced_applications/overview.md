@@ -2,9 +2,6 @@
 sidebar_position: 1
 ---
 
-# Overview
+# 概述
 
-We have seen a number of prompting/prompt engineering methods thus far. 
-Now we will cover some advanced applications of prompting that can solve
-complex reasoning tasks by performing searches for information via the internet,
-or other external sources.
+到目前为止，我们已经看到了许多提示/提示工程方法。现在我们将涵盖一些高级的提示应用，通过搜索互联网或其他外部来源获取信息来解决复杂的推理任务。

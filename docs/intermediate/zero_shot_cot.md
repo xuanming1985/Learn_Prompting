@@ -1,16 +1,9 @@
 ---
 sidebar_position: 4
 ---
+# 🟢 零样本思维链
 
-# 🟢 Zero Shot Chain of Thought
-
-
-Zero Shot Chain of Thought (Zero-shot-CoT) prompting (@kojima2022large) is a 
-follow up to %%CoT prompting|CoT prompting%% (@wei2022chain), which introduces an incredibly 
-simple zero shot prompt. They find that by appending the words "**Let's think step
-by step.**" to the end of a question, LLMs are able to generate a chain of
-thought that answers the question. From this chain of thought, they are able to
-extract more accurate answers.
+零样本思维链（Zero Shot Chain of Thought，简称Zero-shot-CoT）是一种基于 %%CoT prompting|CoT prompting%% (@wei2022chain) 的跟进研究，它引入了一种极其简单的零样本提示。他们发现，通过在问题末尾附加“**让我们一步一步地思考**”这个词语，LLM能够生成一个回答问题的思维链。从这个思维链中，他们可以提取出更精确的答案。
 
 import ZSImage from '@site/docs/assets/zero_shot.png';
 
@@ -19,13 +12,10 @@ import ZSImage from '@site/docs/assets/zero_shot.png';
 </div>
 
 <div style={{textAlign: 'center'}}>
-Zero Shot CoT (Kojima et al.)
+零样本思维链 (Kojima et al.)
 </div>
 
-Technically, the full Zero-shot-CoT process involves two separate prompts/completions. 
-In the below image, the top bubble on the left generates a chain of thought, while the top bubble on
-the right takes in the output from the first prompt (including the first prompt itself),
-and extracts the answer from the chain of thought. This second prompt is a _self augmented_ prompt.
+从技术上讲，完整的零样本思维链过程涉及两个独立的提示/完成操作。在下图中，左侧的顶部气泡生成一个思维链，而右侧的顶部气泡从第一个提示（包括第一个提示本身）中获取输出，并从思维链中提取答案。这个第二个提示是一个自我增强提示。
 
 import ZSProcessImage from '@site/docs/assets/zero_shot_example.png';
 
@@ -34,48 +24,33 @@ import ZSProcessImage from '@site/docs/assets/zero_shot_example.png';
 </div>
 
 <div style={{textAlign: 'center'}}>
-Full Zero Shot CoT Process (Kojima et al.)
+完整的零样本思维链过程 (Kojima et al.)
 </div>
 
-## Example
+## 示例
 
-Here are a few demos (which only perform reasoning extraction). This first
-demo shows GPT-3 (davinci-003) failing a simple math question, while the second demo uses a 
-Zero-shot-CoT prompt and successfully solves the problem. Feel free to enter your
-OpenAI API key (Click Generate) and play around with the examples. Note how much simpler
-the Zero-shot-CoT prompt is compared to the CoT prompt.
+下面是一些演示（仅进行推理提取）。第一个演示展示了GPT-3(davinci-003)在一个简单的数学问题上失败，而第二个演示则使用了零样本思维链提示并成功解决了这个问题。请随意输入您的OpenAI API密钥（点击生成）并尝试这些示例。请注意，与CoT提示相比，零样本思维链提示要简单得多。
 
-#### Incorrect
+#### 错误
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="If John has 5 pears, then eats 2, and buys 5 more, then gives 3 to his friend, how many pears does he have?" initial-response="John has 8 pears." max-tokens="256" box-rows="3" model-temp="0.7" top-p="1"></div>
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="如果约翰有5个梨，吃了2个，又买了5个，然后送了3个给他的朋友，他还剩下多少个梨?" initial-response="约翰有8个梨。" max-tokens="256" box-rows="3" model-temp="0.7" top-p="1"></div>
 
 
-#### Correct
+#### 正确
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="If John has 5 pears, then eats 2, and buys 5 more, then gives 3 to his friend, how many pears does he have?\n\nLet's think step by step." initial-response="John starts with 5 pears. He eats 2 pears, leaving him with 3 pears. He buys 5 more pears, giving him a total of 8 pears. He gives 3 pears to his friend, leaving him with only 5 pears." max-tokens="256" box-rows="5" model-temp="0.7" top-p="1"></div>
-
-## Results
-Zero-shot-CoT was also effective in improving results on arithmetic, commonsense, 
-and symbolic reasoning tasks. However, unsurprisingly, it was usually not as 
-effective as CoT prompting. An important use case for Zero-shot-CoT is when obtaining
-few shot examples for CoT prompting is difficult. 
-
-## Ablations of Interest
-
-Kojima et al. experiment with a number of different Zero-shot-CoT prompts 
-(e.g. "Let’s solve this problem by splitting it into steps." or "Let’s think about this logically."), but they find that "Let's think step by step" is most effective for their
-chosen tasks.
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="如果约翰有5个梨，吃了2个，又买了5个，然后送了3个给他的朋友，他还剩下多少个梨？\n\n让我们一步一步地思考。" initial-response="约翰起初有5个梨。他吃了2个梨，还剩下3个梨。他又买了5个梨，总共有8个梨。他把3个梨送给他的朋友，只剩下5个梨了。" max-tokens="256" box-rows="5" model-temp="0.7" top-p="1"></div>
 
 
+## 结果
+零样本思维链在算术、常识和符号推理任务中也能提高结果。但毫不奇怪的是，它通常不如CoT提示有效。使用零样本思维链的一个重要用例是当难以获得CoT提示的少样本示例时。
 
-## Notes
+## 感兴趣的消融
 
-The extraction step often must be task specific, making Zero-Shot-CoT less
-generalizable than it appears at first.
+Kojima等人尝试了许多不同的零样本思维链提示（例如“让我们通过将其分成步骤来解决这个问题”或“让我们从逻辑上思考这个问题”），但他们发现，“让我们一步一步地思考”最适合他们选择的任务。
 
-Anecdotally, I've found that Zero-shot-CoT style prompts are sometimes effective 
-in improving the length of completions for generative tasks. For example, consider
-the standard prompt `Write a story about a frog and a mushroom who become friends.`
-Appending the words `Let's think step by step.` to the end of this prompt leads to
-a much longer completion.
 
+## 注意事项
+
+提取步骤通常必须是特定于任务的，使得零样本思维链不像乍一看那么通用。
+
+凭经验，我发现类似零样本思维链的提示有时对改善生成性任务的完成长度有效。例如，考虑标准提示“写一个关于一只青蛙和一个蘑菇成为朋友的故事”。将“让我们一步一步地思考”这句话附加到这个提示的末尾会导致更长的完成。

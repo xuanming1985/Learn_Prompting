@@ -2,7 +2,6 @@
 sidebar_position: 1
 ---
 
-# Introduction
+# 简介
 
-Now we will discuss the end-to-end prompt engineering process via articles written
-by community members.
+现在我们将通过社区成员撰写的文章讨论端到端提示工程流程。

@@ -1,58 +1,50 @@
 ---
 sidebar_position: 1
 ---
-# 🟢 Prompting
+# 🟢 提示
 
-In the previous chapter, we discussed AI and how humans can instruct AIs to perform tasks.
-The process of instructing an AI to do a task is called prompting(@shin2020autoprompt). We tell the AI
-a set of instructions (the prompt) and it performs the task. Prompts can be as simple as a question, or
-as complex as huge chunks of text. 
+在上一章中，我们讨论了人工智能以及如何让人类指示AI执行任务。指示AI执行任务的过程被称为提示（prompting）(@shin2020autoprompt)。我们向AI提供一组指令（提示），它会执行任务。提示可以是一个简单的问题，也可以是大段文本。
 
-Here are two examples of prompts:
+以下是两个提示的示例：
 
-#### 1) Summarizing an Article
+#### 1）文章摘要
 
-Say you are reading an article about snowfall in Florida. You want to quickly get the main ideas of the article, so you show the AI what you are reading, and ask for a summary[^2]:
+假设你正在阅读一篇关于佛罗里达州降雪的文章。您想快速地了解文章的主要观点，因此您向AI展示您正在阅读的内容，并要求对其进行摘要[^2]：
 
 ```
-It is very rare for snow to fall in the U.S. state of Florida, especially in the central and southern portions of the state. With the exception of the far northern areas of the state, most of the major cities in Florida have never recorded measurable snowfall, though trace amounts have been recorded, or flurries in the air observed few times each century. According to the National Weather Service, in the Florida Keys and Key West there is no known occurrence of snow flurries since the European colonization of the region more than 300 years ago. In Miami, Fort Lauderdale, and Palm Beach there has been only one known report of snow flurries observed in the air in more than 200 years; this occurred in January 1977. In any event, Miami, Fort Lauderdale, and Palm Beach have not seen snow flurries before or since this 1977 event.
+美国佛罗里达州下雪非常少见，特别是在该州的中部和南部地区。除了该州最北部地区，大多数佛罗里达州的主要城市都没有记录到可测量的降雪，尽管有时会记录到微量的降雪或几次世纪的空气中飘落的雪花。根据美国国家气象局的数据，自欧洲殖民地300多年来，佛罗里达群岛和基韦斯特岛没有出现过雪花飘落的情况。迈阿密、劳德代尔堡和棕榈海滩只有一次在200多年中观察到的雪花飘落的记录；这发生在1977年1月。不管怎样，自这次1977年的事件以来，迈阿密、劳德代尔堡和棕榈海滩都没有再次出现过雪花飘落。
 
-Summarize this paragraph in a single sentence:
+用一句话概括这段文字：
 ```
 
-Here is the AI's response. It is a much shorter read!
+以下是AI的回答。它是一个更简短的阅读！
 
 <pre>
 <div className="bluegreen-highlight">
-Snowfall is extremely rare in Florida, with the exception of the far northern areas, <br/>and only one instance of snow flurries in the air has been recorded in the major cities <br/>of Miami, Fort Lauderdale, and Palm Beach in the last 200 years.
+佛罗里达州非常少见降雪，除最北部地区外，<br/>主要城市迈阿密、劳德代尔堡和棕榈海滩在过去的200年内仅记录到一次雪花飘落。
 </div>
 </pre>
 
-#### 2) Math Word Problem Solving
+#### 2）数学题解
 
-If you have a dataset of mathematical equations that you would like a language model to solve,
-you can create a prompt by posing the question "What is EQUATION".
+如果您有一个数学方程组数据集，并希望语言模型进行解决，您可以通过提出问题“What is EQUATION”来创建提示。
 
-For a given question, your full prompt could look like this:
+对于给定的问题，你的完整提示可能是这样的:
 
 ```
-What is 965*590?
+965*590等于多少？
 ```
 
-For this prompt, GPT-3 (text-davinci-003) (an AI) sometimes answers 569,050 (incorrect). This is where prompt engineering comes in.
+对于这个提示，GPT-3（text-davinci-003）（一种AI）有时会回答569,050（不正确）。这就是提示工程的作用。
 
-# Prompt Engineering
+＃ 提示工程
 
-If, instead of asking `What is 965*590?`, we ask 
-`Make sure your answer is exactly correct. What is 965*590? Make sure your answer is exactly correct:`, GPT-3 will
-answer `569350` (correct). Why is this the case? Why is telling the AI twice to give a correct answer helpful? How can we create
-prompts that yield optimal results on our task? This last question, in particular,
-is the focus of the field of Prompt Engineering, as well as this course.
+如果我们不是问“965*590等于多少？”而是问 “确保您的答案完全正确。965*590等于多少？确保您的答案完全正确：”，GPT-3将回答“569350”（正确）。为什么会这样？为什么两次告诉AI给出正确的答案会有帮助？我们如何创建能够在我们的任务中产生最佳结果的提示？这个问题，特别是提示工程领域以及本课程的重点。
 
-:::caution
-One more thing, if you are running the above prompt in GPT-3, you should set temperature to 0 to remove randomness. 
+:::警告
+还有一件事，如果你在GPT-3中运行上述提示，你应该将温度设置为0以消除随机性。 
 :::
 
-Read on to learn how to engineer good prompts!
+继续阅读以了解如何设计好的提示！ 
 
-[^2]: This paragraph is from https://en.wikipedia.org/wiki/Snow_in_Florida
+[^2]：此段文字摘自https://en.wikipedia.org/wiki/Snow_in_Florida

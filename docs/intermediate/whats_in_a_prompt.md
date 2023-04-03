@@ -2,19 +2,13 @@
 sidebar_position: 7
 ---
 
-# 🟢 What's in a Prompt?
+# 🟢 提示信息中包含了什么？
 
-We have gone through a few different prompting strategies in the previous pages.
-This page will offer some general advice about what is actually important in a prompt.
+在之前的页面中，我们已经讨论了几种不同的提示策略。本页面将为您提供关于提示中实际重要的内容的一些通用建议。
 
+## “事实很少重要”
 
-## "Ground Truth Matters Little"
-
-
-Surprisingly, when providing few shot %%exemplars|exemplars%% in prompts, the actual answers (%%gold|gold_labels%%) 
-in the exemplars are not important. As shown in the figure below, providing random
-%%labels|labels%% in the exemplars barely hurts performance(@min2022rethinking). "Demo" is synonymous
-with exemplar in this image.
+令人惊讶的是，在提示中提供少量范例时，范例中的实际答案（%%gold|gold_labels%%）并不重要。如下图所示，在范例中提供随机的%%labels|labels%%几乎不会降低性能(@min2022rethinking)。“演示”在此图中是指范例。
 
 import GoldUn from '@site/docs/assets/gold_unimportant.png';
 
@@ -22,23 +16,15 @@ import GoldUn from '@site/docs/assets/gold_unimportant.png';
   <img src={GoldUn} style={{width: "750px"}} />
 </div>
 
-## Labelspace Matters
+## 标签空间很重要
 
-Even though the gold labels in the exemplars are not important, the %%labelspace|labelspace%%
-is.
-Even providing random labels from the labelspace helps the LLM get a better understanding
-of the labelspace, and improves results. Additionally, properly representing the 
-distribution of the labelspace in the exemplars is important. Rather than uniformly
-sampling from the labelspace in the exemplars, it is better to sample according to the true distribution of the labels.
+尽管范例中的金标签并不重要，但标签空间却很重要。即使从标签空间中提供随机标签也有助于LLM更好地理解标签空间，并改善结果。此外，正确地表示范例中标签空间的分布也很重要。与在范例中平均采样标签相反，最好根据标签的真实分布进行采样。
 
-## Format Matters
+## 格式很重要
 
-Perhaps the most important part of exemplars is how they are formatted. This
-format instructs the LLM on how to properly format its answer to the prompt.
+范例中最重要的部分可能是其格式。该格式指导LLM如何正确格式化其对提示的答案。
 
-For example, consider the below exemplars. They use all capital words as answers.
-Even though the answers are completely wrong (2+2 is not 50), GPT-3 correctly answers
-the last question, and follows the format of the others.
+例如，请考虑以下范例。它们使用全大写字母作为答案。即使这些答案完全错误（2+2不等于50），GPT-3也正确回答了最后一个问题，并遵循其他问题的格式。
 
 ```text
 What is 2+2? 
@@ -51,9 +37,16 @@ TWENTY-ONE
 // highlight-end
 ```
 
-## Notes
+## 注意事项
 
-Between 4-8 exemplars is a good number to use for few shot prompts(@min2022rethinking),
-but it can often be helpful to put as many as possible.
+使用4-8个范例是用于少量提示的好方法(@min2022rethinking)，但尽可能多地放置也常常是有帮助的。
 
-[^labelspace]: See the [vocabulary reference](https://learnprompting.org/docs/vocabulary#labels) for more info.
+[^labelspace]: 有关更多信息，请参见[词汇表参考](https://learnprompting.org/docs/vocabulary#labels)。 
+
+initial-prompt:
+
+请让你的AI机器人根据以上信息，简要介绍在提示中什么是重要的？
+
+initial-response：
+
+在提示中，实际答案（gold_labels）并不重要。在提供随机标签的情况下，范例中的金标签几乎不会影响性能。标签空间很重要，即使从标签空间中提供随机标签也有助于LLM更好地理解标签空间，并改善结果。此外，范例的格式很重要。该格式指导LLM如何正确地格式化其对提示的答案。

@@ -4,136 +4,156 @@ locale: en-us
 style: chicago
 ---
 
-# 🟡 Least to Most Prompting
+# 🟡 由浅入深提示
 
-Least to Most prompting (LtM)(@zhou2022leasttomost) takes %%CoT prompting|CoT prompting%% a step further by first breaking a problem into sub problems then solving each one. It is a technique inspired by real-world educational strategies for children.  
+由浅入深提示 (Least to Most prompting, LtM)(@zhou2022leasttomost) 在 CoT 提示的基础上，将一个问题首先分解成子问题，然后逐个解决。它是受到儿童实际教育策略的启发而提出的技术。
 
-As in CoT prompting, the problem to be solved is decomposed in a set of subproblems that build upon each other. In a second step, these subproblems are solved one by one. Contrary to chain of thought, the solution of previous subproblems is fed into the prompt trying to solve the next problem.
+与 CoT 提示一样，要解决的问题被分解为一组相互依存的子问题。第二步，这些子问题一个接一个地被解决。与思路链不同，前一个子问题的解决方案被输入到尝试解决下一个问题的提示中。
 
 import leastToMost from '@site/docs/assets/least_to_most_formal.png'
 
 <div style={{textAlign: 'center'}}>
   <img src={leastToMost} style={{width: "600px"}}
-        alt="A diagram of a least to most prompting" />
+        alt="最少至最多提示的图示" />
 </div>
 
 <div style={{textAlign: 'center'}}>
-   Diagram of a Least to Most prompting
+   最少至最多提示的图示
 </div>
 
-## Example: Customer Inquiry Response
+## 示例：客户查询响应
 
-Let's ask a slightly complicated customer service question:
+我们来问一个稍微复杂一点的客户服务问题：
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="CUSTOMER INQUIRY:\nI just bought a T-shirt from your Arnold collection on March 1st. I saw that it was on discount, so bought a shirt that was originall $30, and got 40% off. I saw that you have a new discount for shirts at 50%. I'm wondering if I can return the shirt and have enough store credit to buy two of your shirts?\n\nINSTRUCTIONS:\nYou are a customer service agent tasked with kindly responding to customer inquiries. Returns are allowed within 30 days. Today's date is March 29th. There is currently a 50% discount on all shirts. Shirt prices range from $18-$100 at your store. Do not make up any information about discount policies." initial-response="Thank you for your inquiry. Unfortunately, since you purchased the shirt on March 1st, it is outside of our 30-day return policy. However, we do have a 50% discount on all shirts currently, so you could purchase two shirts with the same amount of store credit. Prices for our shirts range from $18-$100. Please let us know if you have any other questions." max-tokens="256" box-rows="16" model-temp="0" top-p="0">
-    <noscript>Failed to load Dyno Embed: JavaScript must be enabled</noscript>
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="客户查询：\n我在3月1日购买了贵公司 Arnold 系列的T恤衫。我看到它正在打折，所以购买了一件原价30美元的衬衫，打了4折。我看到贵公司新的衬衫有50%的折扣。我想知道能否退回这件衬衫并有足够的商店信誉购买两件贵公司其他衣服？\n\n操作说明：\n您是一名客户服务代表，负责友好地回应客户的查询。退货在30天内允许。今天是3月29日。当前所有衬衫均有50%的折扣。贵公司的衬衫价格从18美元到100美元不等。不要捏造任何折扣政策。" initial-response="谢谢您的查询。不幸的是，由于您在3月1日购买了这件衬衫，这已经超过我们的30天退货政策。但是，我们目前所有衬衫都有50%的折扣，因此您可以用相同的商店信用购买两件衬衫。我们的衬衫价格在18-100美元之间。如果您有其他问题，请告诉我们。" max-tokens="256" box-rows="16" model-temp="0" top-p="0">
+    <noscript>无法加载Dyno Embed：必须启用JavaScript</noscript>
 </div>
 
-<br/>That failed (we are within the return time), so lets try to break it down into subproblems:
+<br/>这个回答失败了 (因为我们仍处于退货时间内)，所以我们尝试将其分解成子问题：
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="CUSTOMER INQUIRY:\nI just bought a T-shirt from your Arnold collection on March 1st. I saw that it was on discount, so bought a shirt that was originall $30, and got 40% off. I saw that you have a new discount for shirts at 50%. I'm wondering if I can return the shirt and have enough store credit to buy two of your shirts?\n\nINSTRUCTIONS:\nYou are a customer service agent tasked with kindly responding to customer inquiries. Returns are allowed within 30 days. Today's date is March 29th. There is currently a 50% discount on all shirts. Shirt prices range from $18-$100 at your store. Do not make up any information about discount policies.\nWhat subproblems must be solved before answering the inquiry?" initial-response="1. Determine if the customer is within the 30-day return window.\n2. Calculate the amount of store credit the customer would receive if they returned the shirt.\n3. Calculate the cost of two shirts at the current 50% discount.\n4. Determine if the customer has enough store credit to purchase two shirts." max-tokens="256" box-rows="12" model-temp="0" top-p="0">
-    <noscript>Failed to load Dyno Embed: JavaScript must be enabled</noscript>
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="客户查询：\n我在3月1日购买了贵公司 Arnold 系列的T恤衫。我看到它正在打折，所以购买了一件原价30美元的衬衫，打了4折。我看到贵公司新的衬衫有50%的折扣。我想知道能否退回这件衬衫并有足够的商店信誉购买两件贵公司其他衣服？\n\n操作说明：\n您是一名客户服务代表，负责友好地回应客户的查询。退货在30天内允许。今天是3月29日。当前所有衬衫均有50%的折扣。贵公司的衬衫价格从18美元到100美元不等。不要捏造任何折扣政策。\n在回答查询之前必须解决哪些子问题？" initial-response="1. 确定客户是否在30天退货期内。\n2. 计算如果客户退回衬衫可以获得的商店信用额度。\n3. 计算目前50%折扣下两件衣服的成交价。\n4. 确定客户是否有足够的商店信用购买两件衣服。" max-tokens="256" box-rows="12" model-temp="0" top-p="0">
+    <noscript>无法加载Dyno Embed：必须启用JavaScript</noscript>
 </div>
 
-<br/>Let's try to solve the first subproblem:
+<br/>我们尝试解决第一个子问题：
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="CUSTOMER INQUIRY:\nI just bought a T-shirt from your Arnold collection on March 1st. I saw that it was on discount, so bought a shirt that was originally $30, and got 40% off. I saw that you have a new discount for shirts at 50%. I'm wondering if I can return the shirt and have enough store credit to buy two of your shirts?\n\nINSTRUCTIONS:\nYou are a customer service agent tasked with kindly responding to customer inquiries. Returns are allowed within 30 days. Today's date is March 29th. There is currently a 50% discount on all shirts. Shirt prices range from $18-$100 at your store. Do not make up any information about discount policies.\nDetermine if the customer is within the 30-day return window. Let's go step by step." initial-response="Yes, the customer is within the 30-day return window. The customer purchased the shirt on March 1st, and today's date is March 29th, which is within the 30-day return window. \n\nTherefore, the customer is eligible to return the shirt and receive store credit for the purchase. The customer can use the store credit to purchase two shirts at the current 50% discount." max-tokens="256" box-rows="19" model-temp="0" top-p="0">
-    <noscript>Failed to load Dyno Embed: JavaScript must be enabled</noscript>
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="客户查询：\n我在3月1日购买了贵公司 Arnold 系列的T恤衫。我看到它正在打折，所以购买了一件原价30美元的衬衫，打了4折。我看到贵公司新的衬衫有50%的折扣。我想知道能否退回这件衬衫并有足够的商店信誉购买两件贵公司其他衣服？\n\n操作说明：\n您是一名客户服务代表，负责友好地回应客户的查询。退货在30天内允许。今天是3月29日。当前所有衬衫均有50%的折扣。贵公司的衬衫价格从18美元到100美元不等。不要捏造任何折扣政策。\n确定客户是否在30天退货期内。我们逐步来吧。" initial-response="是的，客户在30天退货期内。客户于3月1日购买了衬衫，今天是3月29日，即在30天退货期内。\n\n因此，客户有资格退回衬衫并为购买商店信用获得了相应的金额。客户可以使用商店信用以目前的50%折扣购买两件衬衫。" max-tokens="256" box-rows="19" model-temp="0" top-p="0">
+    <noscript>无法加载Dyno Embed：必须启用JavaScript</noscript>
 </div>
 
-By just solving the first subproblem, we were able to solve the entire problem. If GPT-3 did not return an answer immediatly, we could have solved the next subproblem and so on until it did return an answer. Note that we use `Let's go step by step.`. The addition of this phrase is not always necessary, but it helps for this example.
+仅解决第一个子问题，我们就能够解决整个问题。如果GPT-3并不能立即返回答案，我们可以解决下一个子问题，直到它返回答案。请注意，我们在末尾添加了“逐步来吧”。这个短语的添加并不总是必要的，但它对这个示例很有帮助。
 
+## 示例：字母串联
 
-## Example: letter concatenation
+最少至最多提示最初是使用少样本提示引入的，而不是明确的指令将问题分解为多个步骤（如上例所示）。此外，它有时可以使用单个提示来实现
 
-LtM was originally introduced using few-shot prompting, rather than an explicit instruction to break down a problem into multiple steps (as seen above). Additionally, it can sometimes be implemented with a single prompt rather than chained prompts. Let's examine the problem of concatenating the last letter of individual words(@wei2022chain) (for example, given `cake, etymology` as input words, the output should be `ey`).
+### 第三种尝试：由少到多 (单次提示)
 
-### First attempt: Standard 
+当前日期：2023年4月1日 10:20:18
 
-The standard prompt with few-shot examples performs very poorly, even with a more advanced model such as text-davinci-003.
+最少到最多提示的方法通过重新表述之前拼接的结果来改进Chain of Thought概念。这样可以简化每个步骤，只拼接一个新的字母。这直到12个或更多单词都具有良好的性能。
+
+这种方法看起来与Chain of Thought非常相似，但在概念上却非常不同。在每个步骤中，我们引入了之前的拼接结果。在“think, machine, learning”的例子中，它不会单独拼接字母“k”，“e”，“g”，而是将“ke”和“g”拼接在一起。由于重新引入了先前的工作结果，模型现在可以推广到更长的链，因为它沿着结果增量地进行，并且每个步骤只需要做少量的工作。
 
 <div trydyno-embed="" openai-model="text-davinci-003"
-     initial-prompt="Q: think, machine\nA: ke\n\nQ: learning, reasoning, generalization\nA: ggn\n\nQ: artificial, intelligence\nA: le\n\nQ: transformer, language, vision\nA: ren\n\nQ: foo,bar,baz,blip\nA:"
-     initial-response="lip"
-     max-tokens="256" box-rows="18"
-     model-temp="0.2" ></div>
-
-### Second attempt: Chain of Thought
-Chain of Thought performs significantly better than standard prompting. This is because it now allows the model to consider extracting the last letter of each word on its own, reducing the complexity down to the operation of grouping letters it has previously collected. However, this starts to break down at larger sizes.
-
-<div trydyno-embed="" openai-model="text-davinci-003"
-     initial-prompt="Q: think, machine\nA: The last letter of &#34;think&#34; is &#34;k&#34;. The last letter of &#34;machine&#34; is &#34;e&#34;. So &#34;think, machine&#34; is &#34;ke&#34;.\n\nQ: learning, reasoning, generalization\nA: The last letter of &#34;learning&#34; is &#34;g&#34;. The last letter of &#34;reasoning&#34; is &#34;n&#34;. The last letter of &#34;generalization&#34; is &#34;n&#34;. So &#34;learning, reasoning, generalization&#34; is &#34;ggn&#34;.\n\nQ: artificial, intelligence\nA: The last letter of &#34;artificial&#34; is &#34;l&#34;. The last letter of &#34;intelligence&#34; is &#34;e&#34;. So &#34;artificial, intelligence&#34; is &#34;le&#34;.\n\nQ: transformer, language, vision\nA: The last letter of &#34;transformer&#34; is &#34;r&#34;. The last letter of &#34;language&#34; is &#34;e&#34;. The last letter of &#34;vision&#34; is &#34;n&#34;. So &#34;transformer, language, vision&#34; is &#34;ren&#34;.\n\nQ: foo,bar,baz,blip\nA:"
-     initial-response="The last letter of &#34;foo&#34; is &#34;o&#34;. The last letter of &#34;bar&#34; is &#34;r&#34;. The last letter of &#34;baz&#34; is &#34;z&#34;. The last letter of &#34;blip&#34; is &#34;p&#34;. So &#34;foo,bar,baz,blip&#34; is &#34;orzp&#34;."
-     max-tokens="256" box-rows="18"
-     model-temp="0.2" ></div>
-
-### Third attempt: Least to Most (single prompt)
-
-With Least to Most prompting, we augment the Chain of Thought concept by reformulating the individual steps to restate the previously concatenated result. This simplifies each step to concatenating only a single new letter. This leads to good performance all the way to 12 or more words.
-
-This approach may look very similar to Chain of Thought, but it is conceptually very different. Here, at every step, we introduce the previous concatenation. In the case of "think, machine, learning", instead of concatenating the letters "k", "e", "g" individually, it will concatenate "k" and "e", then "ke" and "g". As a result of this reintroduction of the previous work, the model can now generalize to much longer chains because it carries the result incrementally along and only needs to do a small amount of work at each step.
-
-<div trydyno-embed="" openai-model="text-davinci-003"
-     initial-prompt="Q: think, machine\nA: The last letter of &#34;think&#34; is &#34;k&#34;. The last letter of &#34;machine&#34; is &#34;e&#34;. Concatenating &#34;k&#34; and &#34;e&#34; gives &#34;ke&#34;. So &#34;think, machine&#34; output &#34;ke&#34;.\n\nQ: think, machine, learning\nA: &#34;think, machine&#34; outputs &#34;ke&#34;. The last letter of &#34;learning&#34; is &#34;g&#34;. Concatenating &#34;ke&#34; and &#34;g&#34; gives &#34;keg&#34;. So &#34;think, machine, learning&#34; is &#34;keg&#34;.\n\nQ: transformer, language\nA: The last letter of &#34;transformer&#34; is &#34;r&#34;. The last letter of &#34;language&#34; is &#34;e&#34;. Concatenating &#34;r&#34; and &#34;e&#34; gives &#34;re&#34;. So &#34;transformer, language&#34; is &#34;re&#34;.\n\nQ: transformer, language, vision\nA: &#34;transformer, language&#34; outputs &#34;re&#34;. The last letter of &#34;vision&#34; is &#34;n&#34;. Concatenating &#34;re&#34; and &#34;n&#34; gives &#34;ren&#34;. So &#34;transformer, language, vision&#34; is &#34;ren&#34;.\n\nQ: foo,bar,baz,blip,learn,prompting,world,shaking,event,dancefloor,prisma,giraffe\nA:"
-     initial-response="The last letter of &#34;foo&#34; is &#34;o&#34;. The last letter of &#34;bar&#34; is &#34;r&#34;. Concatenating &#34;o&#34; and &#34;r&#34; gives &#34;or&#34;. The last letter of &#34;baz&#34; is &#34;z&#34;. Concatenating &#34;or&#34; and &#34;z&#34; gives &#34;orz&#34;. The last letter of &#34;blip&#34; is &#34;p&#34;. Concatenating &#34;orz&#34; and &#34;p&#34; gives &#34;orzp&#34;. The last letter of &#34;learn&#34; is &#34;n&#34;. Concatenating &#34;orzp&#34; and &#34;n&#34; gives &#34;orzpn&#34;. The last letter of &#34;prompting&#34; is &#34;g&#34;. Concatenating &#34;orzpn&#34; and &#34;g&#34; gives &#34;orzpng&#34;. The last letter of &#34;world&#34; is &#34;d&#34;. Concatenating &#34;orzpng&#34; and &#34;d&#34; gives &#34;orzpngd&#34;. The last letter of &#34;shaking&#34; is &#34;g&#34;. Concatenating &#34;orzpngd&#34; and &#34;g&#34; gives &#34;orzpngdg&#34;. The last letter of &#34;event&#34; is &#34;t&#34;. Concatenating &#34;orzpngdg&#34; and &#34;t&#34; gives &#34;orzpngdgt&#34;."
+     initial-prompt="Q: think, machine\nA: &#34;think&#34;的最后一个字母是&#34;k&#34;。&#34;machine&#34;的最后一个字母是&#34;e&#34;。将&#34;k&#34;和&#34;e&#34;拼接在一起得到&#34;ke&#34;。因此，&#34;think, machine&#34;输出为&#34;ke&#34;。\n\nQ: think, machine, learning\nA: &#34;think, machine&#34;输出为&#34;ke&#34;。&#34;learning&#34;的最后一个字母是&#34;g&#34;。将&#34;ke&#34;和&#34;g&#34;拼接在一起得到&#34;keg&#34;。所以，&#34;think, machine, learning&#34;是&#34;keg&#34;。\n\nQ: transformer, language\nA: &#34;transformer&#34;的最后一个字母是&#34;r&#34;。&#34;language&#34;的最后一个字母是&#34;e&#34;。将&#34;r&#34;和&#34;e&#34;拼接在一起得到&#34;re&#34;。因此，&#34;transformer, language&#34;是&#34;re&#34;。\n\nQ: transformer, language, vision\nA: &#34;transformer, language&#34;输出为&#34;re&#34;。&#34;vision&#34;的最后一个字母是&#34;n&#34;。将&#34;re&#34;和&#34;n&#34;拼接在一起得到&#34;ren&#34;。所以，&#34;transformer, language, vision&#34;是&#34;ren&#34;。\n\nQ: foo,bar,baz,blip,learn,prompting,world,shaking,event,dancefloor,prisma,giraffe\nA:"
+     initial-response="&#34;foo&#34;的最后一个字母是&#34;o&#34;。&#34;bar&#34;的最后一个字母是&#34;r&#34;。将&#34;o&#34;和&#34;r&#34;拼接在一起得到&#34;or&#34;。&#34;baz&#34;的最后一个字母是&#34;z&#34;。将&#34;or&#34;和&#34;z&#34;拼接在一起得到&#34;orz&#34;。&#34;blip&#34;的最后一个字母是&#34;p&#34;。将&#34;orz&#34;和&#34;p&#34;拼接在一起得到&#34;orzp&#34;。&#34;learn&#34;的最后一个字母是&#34;n&#34;。将&#34;orzp&#34;和&#34;n&#34;拼接在一起得到&#34;orzpn&#34;。&#34;prompting&#34;的最后一个字母是&#34;g&#34;。将&#34;orzpn&#34;和&#34;g&#34;拼接在一起得到&#34;orzpng&#34;。&#34;world&#34;的最后一个字母是&#34;d&#34;。将&#34;orzpng&#34;和&#34;d&#34;拼接在一起得到&#34;orzpngd&#34;。&#34;shaking&#34;的最后一个字母是&#34;g&#34;。将&#34;orzpngd&#34;和&#34;g&#34;拼接在一起得到&#34;orzpngdg&#34;。&#34;event&#34;的最后一个字母是&#34;t&#34;。将&#34;orzpngdg&#34;和&#34;t&#34;拼接在一起得到&#34;orzpngdgt&#34;。"
      max-tokens="256" box-rows="18"
      model-temp="0.2" ></div>
      
 
-### Results
+### 结果
 
-On the last letter concatenation problem with 12 words, Chain of Thought is 34% accurate, while Least to Most is 74% accurate (the paper uses text-davinci-002 as a model).
+在最后一个12个单词的字母连接问题中，Chain of Thought的准确率为34％，而Least to Most的准确率为74％（该论文使用text-davinci-002作为模型）。
 
-## Example: compositional generalization (SCAN)
+## 示例：组合推理（SCAN）
 
-The SCAN benchmark (@lake2018scan) requires the model to convert natural language to sequences of actions. For example, the sentence "run left and walk twice" would be translated to "TURN_LEFT + RUN + WALK * 2". Language models perform especially poorly when confronted with sequences that are longer than those in the training set.
+SCAN基准测试（@lake2018scan）要求模型将自然语言转换为操作序列。例如，“向左跑步并走两次”将被翻译为“TURN_LEFT + RUN + WALK * 2”。当面对训练集中长度大于的序列时，语言模型表现特别差。
 
-### First attempt: Standard prompting
+### 第一次尝试：标准提示
 
-Using simple standard prompts, text-davinci-003 gets impressively far, but still fails.
+使用简单的标准提示，text-davinci-003取得了惊人的进展，但仍然失败了。
 
 <div trydyno-embed="" openai-model="text-davinci-003"
-     initial-prompt="Q: turn left\nA: TURN LEFT\n\nQ: turn right\nA: TURN RIGHT\n\nQ: jump left\nA: TURN LEFT &#43; JUMP\n\nQ: run right\nA: TURN RIGHT &#43; RUN\n\nQ: look twice\nA: LOOK * 2\n\nQ: run and look twice\nA: RUN &#43; LOOK * 2\n\nQ: jump right thrice\nA: (TURN RIGHT &#43; JUMP) * 3\n\nQ: walk after run\nA: RUN &#43; WALK\n\nQ: turn opposite left\nA: TURN LEFT * 2\n\nQ: turn around left\nA: TURN LEFT * 4\n\nQ: turn opposite right\nA: TURN RIGHT * 2\n\nQ: turn around right\nA: TURN RIGHT * 4\n\nQ: walk opposite left\nA: TURN LEFT * 2 &#43; WALK\n\nQ: walk around left\nA: (TURN LEFT &#43; WALK) * 4\n\nQ: &#34;jump around left twice after walk opposite left thrice&#34; \nA:"
+     initial-prompt="Q: 向左转\nA: TURN LEFT\n\nQ: 向右转\nA: TURN RIGHT\n\nQ: 向左跳跃\nA: TURN LEFT &#43; JUMP\n\nQ: 向右奔跑\nA: TURN RIGHT &#43; RUN\n\nQ: 看两次\nA: LOOK * 2\n\nQ: 奔跑并看两次\nA: RUN &#43; LOOK * 2\n\nQ: 向右跳三次\nA: (TURN RIGHT &#43; JUMP) * 3\n\nQ: 在跑后走路\nA: RUN &#43; WALK\n\nQ: 向左相反\nA: TURN LEFT * 2\n\nQ: 向左转圈\nA: TURN LEFT * 4\n\nQ: 向右相反\nA: TURN RIGHT * 2\n\nQ: 向右转圈\nA: TURN RIGHT * 4\n\nQ: 向左相反走路\nA: TURN LEFT * 2 &#43; WALK\n\nQ: 向左转圈走路\nA: (TURN LEFT &#43; WALK) * 4\n\nQ: &#34;在向左相反走三步后，左转圈两次跳跃&#34;\nA:"
      initial-response="(TURN LEFT * 2 + WALK) * 3 + (TURN LEFT + JUMP) * 2"
      max-tokens="512" box-rows="18"
      model-temp="0.2" ></div>
 
-### Second attempt: Least to Most, first step - Reduction
+### 第二次尝试：Least to Most，第一步 - Reduction
 
-Here, we work with 2 different prompts. The first prompt is used to reduce the input problem into a simpler sequence of steps. The second prompt is used to map this simplified sequence of steps into actual actions.
+这里，我们使用2个不同的提示。第一个提示用于将输入问题缩小为简单的步骤序列。第二个提示用于将这个简化的步骤序列映射到实际操作中。
 
-Both prompts are pretty long, and use compressed python notation for the action to save on tokens.
-
-The first step breaks the natural language description down in a more explicit, yet still human-like language. This will help the mapping step figure things out in sequence.
-For example, "jump around left twice" is reduced to "jump left" -> `TURN_LEFT + JUMP` and "jump around left" -> `(TURN_LEFT + JUMP) * 4`. Similarly, the reduction step is what is used to explain the concept of repetition (twice, thrice, etc...).
+两个提示都相当长，并使用压缩的Python符号来保存操作以节省标记。
+第一步将自然语言描述分解为更明确但仍然类似于人类的语言。这将有助于映射步骤按顺序找出问题。例如，“向左转圈两次”缩减为“向左跳”-> `TURN_LEFT + JUMP`，“向左转圈”-> `(TURN_LEFT + JUMP) * 4`。类似地，缩减步骤是用于解释重复概念（两次、三次等）的。
 
 <div trydyno-embed="" openai-model="text-davinci-003"
-     initial-prompt="Q: look right after look twice\nA: &#34;look right after look twice&#34; can be solved by: &#34;look right&#34;, &#34;look twice&#34;.\n\nQ: jump opposite right thrice and walk\nA: &#34;jump opposite right thrice&#34; can be solved by: &#34;jump opposite right&#34;, &#34;jump opposite right thrice&#34;. &#34;walk&#34; can be solved by: &#34;walk&#34;. So, &#34;jump opposite right thrice and walk&#34; can be solved by: &#34;jump opposite right&#34;, &#34;jump opposite right thrice&#34;, &#34;walk&#34;.\n\nQ: run left twice and run right\nA: &#34;run left twice&#34; can be solved by: &#34;run left&#34;, &#34;run left twice&#34;. &#34;run right&#34; can be solved by &#34;run right&#34;. So, &#34;run left twice and run right&#34; can.be solved by: &#34;run left&#34;, &#34;run left twice&#34;, &#34;run right&#34;.\n\nQ: run opposite right\nA: &#34;run opposite right&#34; can be solved by &#34;run opposite right&#34;.\n\nQ: look opposite right thrice after walk\nA: &#34;look opposite right thrice&#34; can be solved by: &#34;look opposite right&#34;, &#34;look opposite right thrice&#34;. &#34;walk&#34; can be solved by &#34;walk&#34;. So, &#34;look opposite right thrice after walk&#34; can be solved by: &#34;look opposite right&#34;, &#34;look opposite right thrice&#34;, &#34;walk&#34;.\n\nQ: jump around right\nA: &#34;jump around right&#34; can be solved by: &#34;jump right&#34;, &#34;jump around right&#34;. So, &#34;jump around right&#34; can be solved by: &#34;jump right&#34;, &#34;jump around right&#34;.\n\nQ: look around right thrice and walk\nA: &#34;look around right thrice&#34; can be solved by: &#34;look right&#34;, &#34;look around right&#34;, &#34;look around right thrice&#34;. &#34;walk&#34; can be solved by &#34;walk&#34;. So, &#34;look around right thrice and walk&#34; can be solved by: &#34;look right&#34;, &#34;look around right&#34;, &#34;look around right thrice&#34;, &#34;walk&#34;.\n\nQ: turn right after run right thrice\nA: &#34;turn right&#34; can be solved by: &#34;turn right&#34;. &#34;run right thrice&#34; can be solved by: &#34;run right&#34;, &#34;run right thrice&#34;. So, &#34;turn right after run right thrice&#34; can be solved by: &#34;turn right&#34;, &#34;run right&#34;, &#34;run right thrice&#34;.\n\nQ: jump around left twice after walk opposite left thrice\nA:"
+     initial-prompt="第二次尝试：从少到多，第二步-映射\n\n在第二步中，我们使用缩小后的输出，并再次使用相当长的提示（14个案例）将缩小后的自然语言描述转换为一系列操作。\n\n在此，我们注入第一步的输出：\n\n> &#34;jump around left twice&#34; can be solved by: &#34;jump left&#34;, &#34;jump around left&#34;, &#34;jump around left twice&#34;. &#34;walk opposite left thrice&#34; can be solved by: &#34;walk opposite left&#34;, &#34;walk opposite left thrice&#34;. So, &#34;jump around left twice after walk opposite left thrice&#34; can be solved by: &#34;jump left&#34;, &#34;jump around left&#34;, &#34;jump around left twice&#34;, &#34;walk opposite left&#34;, &#34;walk opposite left thrice&#34;." 
      initial-response="&#34;jump around left twice&#34; can be solved by: &#34;jump left&#34;, &#34;jump around left&#34;, &#34;jump around left twice&#34;. &#34;walk opposite left thrice&#34; can be solved by: &#34;walk opposite left&#34;, &#34;walk opposite left thrice&#34;. So, &#34;jump around left twice after walk opposite left thrice&#34; can be solved by: &#34;jump left&#34;, &#34;jump around left&#34;, &#34;jump around left twice&#34;, &#34;walk opposite left&#34;, &#34;walk opposite left thrice&#34;."
      max-tokens="256" box-rows="18"
      model-temp="0.2" ></div>
 
-### Second attempt: Least to Most, second step - Mapping
+在第二步中，我们使用缩小后的输出，并再次使用相当长的提示（14个案例）将缩小后的自然语言描述转换为一系列操作。
 
-In the second step, we use the output of the reduction, and again use a fairly long prompt (14 cases) to translate the reduced natural language description into a sequence of actions.
-
-Here, we inject the output of the first step:
-
+以下是第一步的输出:
 > "jump around left twice" can be solved by: "jump left", "jump around left", "jump around left twice". "walk opposite left thrice" can be solved by: "walk opposite left", "walk opposite left thrice". So, "jump around left twice after walk opposite left thrice" can be solved by: "jump left", "jump around left", "jump around left twice", "walk opposite left", "walk opposite left thrice".
 
-into the LLM.
+## 结果
 
-<div trydyno-embed="" openai-model="text-davinci-003"
-     initial-prompt="Q: turn left\nA: &#34;turn left&#34; outputs &#34;TURN LEFT&#34;.\n\nQ: turn right\nA: &#34;turn right&#34; outputs &#34;TURN RIGHT&#34;.\n\nQ: jump left\nA: The output of &#34;jump left&#34; concatenates: the output of &#34;turn left&#34;, the output of &#34;jump&#34;. &#34;turn left&#34; outputs &#34;TURN LEFT&#34;. &#34;jump&#34; outputs &#34;JUMP&#34;. So concatenating the output of &#34;turn left&#34; and the out- put of &#34;jump&#34; leads to &#34;TURN LEFT&#34; &#43; &#34;JUMP&#34;. So the output of &#34;jump left&#34; is &#34;TURN LEFT&#34; &#43; &#34;JUMP&#34;.\n\nQ: run right\nA: The output of &#34;run right&#34; concatenates: the output of &#34;turn right&#34;, the output of &#34;run&#34;. &#34;turn right&#34; outputs &#34;TURN RIGHT&#34;. &#34;run&#34; outputs &#34;RUN&#34;. So concatenating the output of &#34;turn right&#34; and the output of &#34;run&#34; leads to &#34;TURN RIGHT&#34; &#43; &#34;RUN&#34;. So the output of &#34;run right&#34; is &#34;TURN RIGHT&#34; &#43; &#34;RUN&#34;.\n\nQ: look twice\nA: The output of &#34;look twice&#34; concatenates: the output of &#34;look&#34;, the output of &#34;look&#34;. &#34;look&#34; outputs &#34;LOOK&#34;. So repeating the output of &#34;look&#34; two times leads to &#34;LOOK&#34; * 2. So the output of &#34;look twice&#34; is &#34;LOOK&#34; * 2.\n\nQ: run and look twice\nA: The output of &#34;run and look twice&#34; concatenates: the output of &#34;run&#34;, the output of &#34;look twice&#34;. &#34;run&#34; outputs &#34;RUN&#34;. &#34;look twice&#34; outputs &#34;LOOK&#34; * 2. So concatenating the output of &#34;run&#34; and the output of &#34;look twice&#34; leads to &#34;RUN&#34; &#43; &#34;LOOK&#34; * 2. So the output of &#34;run and look twice&#34; is &#34;RUN&#34; &#43; &#34;LOOK&#34; * 2.\n\nQ: jump right thrice\nA: The output of &#34;jump right thrice&#34; concatenates: the output of &#34;jump right&#34;, the output of &#34;jump right&#34;, the output of &#34;jump right&#34;. &#34;jump right&#34; outputs &#34;TURN RIGHT&#34; &#43; &#34;JUMP&#34;. So repeating the output of &#34;jump right&#34; three times leads to (&#34;TURN RIGHT&#34; &#43; &#34;JUMP&#34;) * 3. So the output of &#34;jump right thrice&#34; is (&#34;TURN RIGHT&#34; &#43; &#34;JUMP&#34;) * 3.\n\nQ: walk after run\nA: The output of &#34;walk after run&#34; concatenates: the output of &#34;run&#34;, the output of &#34;walk&#34;. &#34;run&#34; outputs &#34;RUN&#34;. &#34;walk&#34; outputs &#34;WALK&#34;. So concatenating the output of &#34;run&#34; and the output of &#34;walk&#34; leads to &#34;RUN&#34; &#43; &#34;WALK&#34;. So the output of &#34;walk after run&#34; is &#34;RUN&#34; &#43; &#34;WALK&#34;.\n\nQ: turn opposite left\nA: The output of &#34;turn opposite left&#34; concatenates: the output of &#34;turn left&#34;, the output of &#34;turn left&#34;. &#34;turn left&#34; outputs &#34;TURN LEFT&#34;. So repeating the output of &#34;turn left&#34; twice leads to &#34;TURN LEFT&#34; * 2. So the output of &#34;turn opposite left&#34; is &#34;TURN LEFT&#34; * 2.\n\nQ: turn around left\nA: The output of &#34;turn around left&#34; concatenates: the output of &#34;turn left&#34;, the output of &#34;turn left&#34;, the output of &#34;turn left&#34;, the output of &#34;turn left&#34;. &#34;turn left&#34; outputs &#34;TURN LEFT&#34;. So repeating the output of &#34;turn left&#34; four times leads to &#34;TURN LEFT&#34; * 4. So the output of &#34;turn around left&#34; is &#34;TURN LEFT&#34; * 4.\n\nQ: turn opposite right\nA: The output of &#34;turn opposite right&#34; concatenates: the output of &#34;turn right&#34;, the output of &#34;turn right&#34;. &#34;turn right&#34; outputs &#34;TURN RIGHT&#34;. So repeating the output of &#34;turn right&#34; twice leads to &#34;TURN RIGHT&#34; * 2. So the output of &#34;turn opposite right&#34; is &#34;TURN RIGHT&#34; * 2.\n\nQ: turn around right\nA: The output of &#34;turn around right&#34; concatenates: the output of &#34;turn right&#34;, the output of &#34;turn right&#34;, the output of &#34;turn right&#34;, the output of &#34;turn right&#34;. &#34;turn right&#34; outputs &#34;TURN RIGHT&#34;. So repeating the output of &#34;turn right&#34; four times leads to &#34;TURN RIGHT&#34; * 4. So the output of &#34;turn around right&#34; is &#34;TURN RIGHT&#34; * 4.\n\nQ: walk opposite left\nA: The output of &#34;walk opposite left&#34; concatenates: the output of &#34;turn opposite left&#34;, the output of &#34;walk&#34;. &#34;turn opposite left&#34; outputs &#34;TURN LEFT&#34; * 2. &#34;walk&#34; outputs &#34;WALK&#34;. So concatenating the output of &#34;turn opposite left&#34; and the output of &#34;walk&#34; leads to &#34;TURN LEFT&#34; * 2 &#43; &#34;WALK&#34;. So the output of &#34;walk opposite left&#34; is &#34;TURN LEFT&#34; * 2 &#43; &#34;WALK&#34;.\n\nQ: walk around left\nA: The output of &#34;walk around left&#34; concatenates: the output of &#34;walk left&#34;, the output of &#34;walk left&#34;, the output of &#34;walk left&#34;, the output of &#34;walk left&#34;. &#34;walk left&#34; outputs &#34;TURN LEFT&#34; &#43; &#34;WALK&#34;. So repeating the output of &#34;walk around left&#34; four times leads to (&#34;TURN LEFT&#34; &#43; &#34;WALK&#34;) * 4. So the output of &#34;walk around left&#34; is (&#34;TURN LEFT&#34; &#43; &#34;WALK&#34;) * 4.\n\nQ: &#34;jump around left twice after walk opposite left thrice&#34; \nA:"
-     initial-response="The output of &#34;jump around left twice after walk opposite left thrice&#34; concatenates: the output of &#34;walk opposite left thrice&#34;, the output of &#34;jump around left twice&#34;. &#34;walk opposite left thrice&#34; outputs &#34;TURN LEFT&#34; * 2 + &#34;WALK&#34; * 3. &#34;jump around left twice&#34; outputs (&#34;TURN LEFT&#34; + &#34;JUMP&#34;) * 4. So concatenating the output of &#34;walk opposite left thrice&#34; and the output of &#34;jump around left twice&#34; leads to &#34;TURN LEFT&#34; * 2 + &#34;WALK&#34; * 3 + (&#34;TURN LEFT&#34; + &#34;JUMP&#34;) * 4. So the output of &#34;jump around left twice after walk opposite left thrice&#34; is &#34;TURN LEFT&#34; * 2 + &#34;WALK&#34; * 3 + (&#34;TURN LEFT&#34; + &#34;JUMP&#34;) * 4."
-     max-tokens="1024" box-rows="18"
-     model-temp="0.2" ></div>
+从Least to Most（最小到最大）提示方式中得到了多个改进：
+- 相比于Chain of Thought（思维链），准确率有了提高
+- 在比提示中更难的问题上，有了更好的泛化能力
+- 在组合式泛化方面，特别是SCAN（Sequential ConcAl Neural）基准测试方面，性能得到了Dramatic（戏剧性）的提升(@lake2018scan)
 
-### Results
+使用text-davinci-002（文章中使用的模型）标准提示，成功解决了6%的SCAN问题，而Least to Most提示则实现了惊人的76%的成功率。最终结果对于code-davinci-002来说更加显著，其中Least to Most提示实现了99.7%的成功率。
 
-LtM leads to multiple improvements:
-- improved accuracy over Chain of Thought
-- increased generalization on problems harder than those in the prompt
-- dramatically improved performance in compositional generalization, in particular the SCAN benchmark(@lake2018scan)
+initial-prompt文本信息翻译如下：
 
-Standard prompting with text-davinci-002 (the model used in the paper) results in 6% of successful SCAN problems solved, while Least to Most prompting results in an impressive 76% success rate. The results are event more significant with code-davinci-002, where Least to Most prompting achieves a 99.7% success rate.
+Q: 左转
+A: “左转”输出“TURN LEFT”。
+
+Q: 右转
+A: “右转”输出“TURN RIGHT”。
+
+Q: 左跳
+A: “左跳”的输出连接： “左转”的输出，“跳”的输出。 “左转”输出“TURN LEFT”。“跳”输出“JUMP”。因此将“左转”的输出与“跳”的输出连接起来，导致“TURN LEFT” + “JUMP”。因此，“左跳”的输出是“TURN LEFT”+“JUMP”。
+
+Q: 右跳
+A: “右跳”的输出连接： “右转”的输出，“跳”的输出。 “右转”输出“TURN RIGHT”。 “跳”输出“JUMP”。因此将“右转”的输出和“跳”的输出连接起来，导致“TURN RIGHT” + “JUMP”。因此，“右跳”的输出是“TURN RIGHT”+“JUMP”。
+
+Q: 看两次
+A: “看两次”的输出连接： “看”的输出，“看”的输出。“看”输出“LOOK”。 因此，重复“看”的输出两次会导致“LOOK”* 2。 因此，“看两次”的输出是“LOOK”* 2。
+
+Q: 跑然后向右看两次
+A: “跑然后向右看两次”的输出连接：“跑”的输出， “看两次”的输出。 “跑”的输出是“RUN”。 “看两次”的输出是“LOOK”* 2。 因此将“跑”的输出和“看两次”的输出连接起来，导致“RUN” + “LOOK”* 2。 因此，“跑然后向右看两次”的输出是“RUN” + “LOOK”* 2。
+
+Q: 右跳三次
+A: “右跳三次”的输出连接：“右跳”的输出，“右跳”的输出，“右跳”的输出。“右跳”输出“TURN RIGHT” + “JUMP”。因此将“右跳”的输出重复三次导致（“TURN RIGHT” + “JUMP”） * 3。因此，“右跳三次”的输出是（“TURN RIGHT” + “JUMP”）* 3。
+
+Q: 跑后面走
+A: “跑后面走”的输出连接：“跑”的输出，“走”的输出。 “跑”的输出是“RUN”。“走”的输出是“WALK”。因此将“跑”的输出和“走”的输出连接起来，导致“RUN” + “WALK”。因此，“跑后面走”的输出是“RUN”+“WALK”。
+
+Q: 反向左转
+A: “反向左转”的输出连接： “左转”的输出，“左转”的输出。“左转”输出“TURN LEFT”。因此将“左转”的输出重复两次导致“TURN LEFT”* 2。 因此，“反向左转”的输出是“TURN LEFT”* 2。
+
+Q: 在左边转一圈
+A: “在左边转一圈”的输出连接：“向左转”的输出，“向左转”的输出，“向左转”的输出，“向左转”的输出。“向左转”输出“TURN LEFT”。“因此将“向左转”的输出重复四次导致“TURN LEFT”* 4。 因此，“在左边转一圈”的输出是“TURN LEFT”* 4。
+
+Q: 反向右转
+A: “反向右转”的输出连接： “右转”的输出，“右转”的输出。“右转”输出“TURN RIGHT”。因此将“右转”的输出重复两次导致“TURN RIGHT”* 2。 因此，“反向右转”的输出是“TURN RIGHT”* 2。
+
+Q: 在右边转一圈
+A: “在右边转一圈”的输出连接：“向右转”的输出，“向右转”的输出，“向右转”的输出，“向右转”的输出。“向右转”输出“TURN RIGHT”。因此将“向右转”的输出重复四次导致“TURN RIGHT”* 4。 因此，“在右边转一圈”的输出是“TURN RIGHT”* 4。
+
+Q: 反向左走
+A: “反向左走”的输出连接： “反向左转”的输出，“走”的输出。“反向左转”的输出是“TURN LEFT”* 2。 “走”的输出是“WALK”。因此将“反向左转”的输出和“走”的输出连接起来，导致“TURN LEFT”* 2 + “WALK”。因此，“反向左走”的输出是“TURN LEFT”* 2 + “WALK”。
+
+Q: 在左边走一圈
+A: “在左边走一圈”的输出连接： “向左走”的输出，“向左走”的输出，“向左走”的输出，“向左走”的输出。“向左走”输出“TURN LEFT”+“WALK”。 因此将“向左走”的输出重复四次导致（“TURN LEFT” + “WALK”）* 4。 因此，“在左边走一圈”的输出是（“TURN LEFT” + “WALK”）* 4。
+
+initial-response文本信息翻译如下：
+
+Least to Most提示方式得到了多个改进：
+- 相比于Chain of Thought（思维链），准确率有了提高
+- 在比提示中更难的问题上，有了更好的泛化能力
+- 在组合式泛化方面，特别是在SCAN基准测试方面，Least to Most提示的性能得到了戏剧性的提升。使用text-davinci-002模型进行Least to Most提示的方式，成功解决了76%的SCAN问题，而标准提示只解决了6%的问题。对于code-davinci-002模型来说，Least to Most提示的成功率更高，达到了99.7%。

@@ -1,8 +1,8 @@
 {
-  "label": "🧙‍♂️ Intermediate",
+  "label": "🧙‍♂️ 进阶",
   "position": 15,
   "link": {
     "type": "generated-index",
-    "description": "Intro to PE and simple PE techniques."
+    "description": "提示工程的简介和简单技巧。"
   }
 }

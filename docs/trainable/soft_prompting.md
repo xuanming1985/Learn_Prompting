@@ -2,9 +2,9 @@
 sidebar_position: 1
 ---
 
-# 🔴 Soft Prompts
+# 🔴 柔性提示
 
-Prompt tuning(@lester2021power), an alternative to model fine tuning(@khashabi2021prompt), freezes the model weights, and updates the parameters of a prompt. The resultant prompt is a 'soft prompt'.
+Prompt调整（@lester2021power）是模型微调（@khashabi2021prompt）的一种替代方法，它冻结模型权重并更新提示的参数。由此产生的提示是“柔性提示”。
 
 
 import Image from '../assets/prompt_tuning.png';
@@ -17,32 +17,23 @@ import Image from '../assets/prompt_tuning.png';
 Model Tuning vs Prompt Tuning (Lester et al.)
 </div>
 
-The above image contrasts model tuning with prompt tuning. 
-In model tuning, you finetune the same model on different tasks. This gives you
-a few different models, with which you can't necessarily batch inputs easily.
+上图对比了模型微调和Prompt调整。在模型微调中，您微调相同的模型以完成不同的任务。这会给您提供几个不同的模型，但这些模型未必能方便地批量处理输入。
 
-On the other hand, prompt tuning lets you use the same model for all tasks. You 
-just need to append the proper prompts at inference time, which makes batching across
-different tasks easier. This is pretty much the same advantage that regular prompting
-has. Additionally, soft prompts trained for a single model across
-multiple tasks will often be of the same token length.
+另一方面，Prompt调整允许您在所有任务中使用相同的模型。您只需在推理时添加适当的提示即可，从而更容易地在不同的任务之间进行批次处理。这基本上与常规提示具有相同的优点。此外，针对单个模型跨多个任务训练的柔性提示通常具有相同的标记长度。
 
-## How it works
+## 工作原理
 
-To understand the basic logic behind soft prompting, let's think about how **model inference** works
-on a given prompt: `What's 2+2?`.
+为了理解柔性提示背后的基本逻辑，让我们思考关于如何在给定提示上进行**模型推理**的基本过程：“2+2等于多少？”。
 
-1) It might be tokenized as `What, 's, 2, +, 2, ?`. 
+1）它可能被标记为`What, 's, 2, +, 2, ?`。
 
-2) Then, each token will be converted to a vector of values.
+2）然后，每个标记将转换为一组值的向量。
 
-3) This vectors of values can be considered as model parameters. The model can be further
-trained, only adjusting the weights of these prompts.
+3）这些向量可以被认为是模型参数。模型可以进一步训练，仅调整这些提示的权重。
 
-Note that as soon as we start updating these weights, the vectors of the tokens no
-longer correspond to actual embeddings from the vocabulary.
+请注意，一旦我们开始更新这些权重，标记的向量就不再对应于词汇表中实际的嵌入。
 
-# Results 
+# 结果
 
-Prompt tuning performs better with larger models. Larger models also require less
-soft prompt tokens. Regardless, more than 20 tokens does not yield significant performance gains.
+Prompt调整在较大的模型中表现更好。较大的模型也需要更少的柔性提示标记。无论如何，多于20个标记并不会带来显著的性能提升。
+

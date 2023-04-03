@@ -2,200 +2,194 @@
 sidebar_position: 40
 ---
 
-# 🟢 Chatbot + Knowledge Base
-
+# 🟢 聊天机器人 + 知识库
 import ImageIntents from '@site/docs/assets/chatbot_from_kb_intents.png'
 import ImageGPT3 from '@site/docs/assets/chatbot_from_kb_gpt3.png'
 import ImageGPT3Organized from '@site/docs/assets/chatbot_from_kb_gpt3_organized.png'
 import ImagePrompt from '@site/docs/assets/chatbot_from_kb_prompt.png'
 import ImageLogin from '@site/docs/assets/chatbot_from_kb_login.png'
 
-Recent advancements in large language models (LLMs) such as [GPT-3](https://arxiv.org/abs/2005.14165) and [ChatGPT](https://chat.openai.com/chat) have created a lot of buzz in the tech industry. These models are incredibly powerful for content generation, but they also have some downsides such as bias(@nadeem-etal-2021-stereoset) and hallucinations(@Ji_2022). One area in which these LLMs can be particularly useful is chatbot development.
+最近大型语言模型（LLM）如 GPT-3 和 ChatGPT 的发展在科技行业引起了很多关注。这些模型在生成内容方面非常强大，但它们也有一些缺点，如偏见、幻觉等问题。这些 LLM 在聊天机器人开发方面尤其有用。
 
-## Intent-Based Chatbots
+## 基于意图的聊天机器人
 
-Traditional chatbots are typically intent-based, meaning they are designed to respond to specific user intents. Each intent is made up of a set of sample questions and an associated response. For example, the intent “Weather” might include sample questions like “What’s the weather today?” or “Will it rain today?” and a response like “Today will be sunny.” When a user asks a question, the chatbot matches it to the intent with the most similar sample questions and returns the associated response.
+传统的聊天机器人通常基于意图，这意味着它们旨在响应特定的用户意图。每个意图由一组示例问题和一个相关联的响应组成。例如，“天气”意图可能包括“今天天气怎么样？”或“今天会下雨吗？”等示例问题，以及像“今天将是晴天”这样的响应。当用户提出问题时，聊天机器人将其与具有最相似示例问题的意图进行匹配，并返回相关联的响应。
 
 <div style={{textAlign: 'left'}}>
   <img src={ImageIntents} style={{width: "700px"}} />
-  <p style={{color: "gray", fontSize: "12px", fontStyle: "italic"}}>How a traditional intent-based chatbot works. Image by the author.</p>
+  <p style={{color: "gray", fontSize: "12px", fontStyle: "italic"}}>传统基于意图的聊天机器人的工作原理。作者制作的图片。</p>
 </div>
 
-However, intent-based chatbots have their own set of problems. One issue is that they require a large number of specific intents to give specific answers. For example, user utterances like “I can’t login”, “I forgot my password”, or “Login error” may need three different answers and therefore three different intents, even though they are all quite similar.
+但基于意图的聊天机器人也存在问题。问题之一是它们需要大量特定的意图才能给出特定的答案。例如，“我无法登录”、“我忘记了密码”或“登录错误”这样的用户话语可能需要三个不同的答案和因此需要三个不同的意图，即使它们都非常相似。
 
-## How GPT-3 Can Help
+## GPT-3 如何帮助
 
-This is where GPT-3 can be particularly useful. Instead of having many very specific intents, each intent can be broader and leverage a document from your [Knowledge Base](https://en.wikipedia.org/wiki/Knowledge_base). A Knowledge Base (KB) is information stored as structured and unstructured data, ready to be used for analysis or inference. Your KB may be composed of a series of documents explaining how to use your products.
+这就是 GPT-3 特别有用的地方。与其拥有许多非常特定的意图，每个意图可以更广泛并利用您的[知识库](https://en.wikipedia.org/wiki/Knowledge_base)中的文档。知识库（KB）是以结构化和非结构化数据存储的信息，准备用于分析或推断。您的 KB 可能由一系列说明如何使用您的产品的文档组成。
 
-This way, each intent is associated with a document instead of a list of questions and a specific answer, e.g. one intent for “login problems,” one intent for “how to subscribe,” etc. When a user asks a question about login, we can pass the “login problems” document to GPT-3 as context information and generate a specific response to the user’s question.
-
+这样，每个意图与文档相关联，而不是一组问题和一个特定答案，例如一个“登录问题”的意图，一个“如何订阅”的意图等。当用户问有关登录的问题时，我们可以将“登录问题”文档传递给 GPT-3 作为上下文信息，并为用户的问题生成特定的响应。
 
 <div style={{textAlign: 'left'}}>
   <img src={ImageGPT3} style={{width: "700px"}} />
-  <p style={{color: "gray", fontSize: "12px", fontStyle: "italic"}}>How a chatbot leveraging GPT-3 could work. Image by the author.</p>
+  <p style={{color: "gray", fontSize: "12px", fontStyle: "italic"}}>利用 GPT-3 的聊天机器人工作方式。作者制作的图片。</p>
 </div>
 
-This approach reduces the number of intents that need to be managed and allows for answers that are better adapted to each question. Additionally, if the document associated with the intent describes different processes (e.g. a process for “login on the website” and another for “login on the mobile app”), GPT-3 can automatically ask the user for clarification before giving the final answer.
+这种方法减少了需要管理的意图数量，并允许更好地适应每个问题的答案。此外，如果与意图相关联的文档描述了不同的流程（例如“网站登录”和“移动应用程序登录”过程），GPT-3 可以在给出最终答案之前自动要求用户澄清。
 
-## Why Can’t We Pass the Whole KB to GPT-3?
+## 为什么不能将整个 KB 传递给 GPT-3？
 
-Today, LLMs like GPT-3 have a maximum prompt size of about 4k tokens (for the [`text-davinci-003`](https://beta.openai.com/docs/models/gpt-3) model), which is a lot but not enough for feeding a whole knowledge base into a single prompt. The LLMs have a maximum prompt size for computational reasons, as generating text with them involves a number of computations which quickly increases as the prompt size increases.
+今天，像 GPT-3 这样的 LLM 具有最大的提示大小约为 4k 个标记（对于 [`text-davinci-003`](https://beta.openai.com/docs/models/gpt-3) 模型），这很多，但无法将整个知识库放入一个提示中。对于计算原因，LLM 具有最大提示大小，因为通过它们生成文本涉及多个计算，而随着提示大小的增加，计算量会迅速增加。
 
-Future LLMs may not have this limitation while retaining the text generation capabilities. However, for now, we need to design a solution around it.
+将来的 LLM 可能不会具有此限制，同时保留文本生成功能。但是，现在，我们需要设计一个围绕它的解决方案。
 
-## How a Chatbot With GPT-3 Could Work
+## 利用 GPT-3 的聊天机器人如何工作
 
-So, the chatbot pipeline could be made of two steps:
+因此，聊天机器人管道可以分为两个步骤：
 
-1. First, we need to select the appropriate intent for the user question, i.e. we need to retrieve the right document from our knowledge base.
-2. Then, once we have the right document, we can leverage GPT-3 to generate an appropriate answer for the user. In doing so, we’ll need to craft a good prompt.
+1. 首先，我们需要选择适合用户问题的意图，即我们需要从知识库中检索正确的文档。
+2. 然后，一旦我们有了正确的文档，我们可以利用 GPT-3 为用户生成适当的答案。这样做，我们需要设计一个良好的提示。
 
-The first step is essentially solved by [semantic search](https://en.wikipedia.org/wiki/Semantic_search). We can use pre-trained models from the [`sentence-transformers`](https://www.sbert.net/examples/applications/semantic-search/README.html) library and easily assign a score to each document. The document with the highest score is the one that will be used to generate the chatbot answer.
+第一步本质上已通过[语义搜索](https://en.wikipedia.org/wiki/Semantic_search)解决。我们可以使用 [`sentence-transformers`](https://www.sbert.net/examples/applications/semantic-search/README.html) 库中的预训练模型，并轻松为每个文档分配分数。具有最高得分的文档将用于生成聊天机器人的答案。
 
 <div style={{textAlign: 'left'}}>
   <img src={ImageGPT3Organized} style={{width: "700px"}} />
-  <p style={{color: "gray", fontSize: "12px", fontStyle: "italic"}}>How a chatbot leveraging GPT-3 could work. GPT-3 could be used to generate an appropriate answer leveraging the information from knowledge base documents. Image by the author.</p>
+  <p style={{color: "gray", fontSize: "12px", fontStyle: "italic"}}>利用 GPT-3 的聊天机器人如何工作。GPT-3 可以利用知识库文档的信息生成适当的答案。作者制作的图片。</p>
 </div>
 
-## Generating Answers with GPT-3
+## 利用 GPT-3 生成答案
 
-Once we have the right document, we’ll need to create a good prompt to be used with GPT-3 to generate the answer. In the following experiments, we’ll always use the `text-davinci-003` model with a temperature of `0.7`.
+一旦我们有了正确的文档，我们就需要创建一个良好的提示，以便在与 GPT-3 一起生成答案时使用。在下面的实验中，我们始终使用温度为 `0.7` 的 `text-davinci-003` 模型。
 
-To craft the prompt, we’ll experiment using:
+为了制作提示，我们将尝试使用：
 
-- [**Role-prompting**](https://learnprompting.org/docs/basics/roles): a heuristic technique that assigns a specific role to the AI.
-- **Relevant KB information**, i.e. the document retrieved in the semantic search step.
-- **The last messages exchanged between the user and the chatbot**. These are useful for messages sent by the user where the whole context is not specified. We’ll see an example of it later. Have a look at [this example](https://learnprompting.org/docs/applied_prompting/build_chatgpt) to see how to manage conversations with GPT-3.
-- Last, **the user question**.
+- [**角色提示**](https://learnprompting.org/docs/basics/roles)：一种启发式技术，将特定的角色分配给 AI。
+- **相关 KB 信息**，即在语义搜索步骤中提取的文档。
+- **用户和聊天机器人之间最后交换的消息**。这些对于用户发送的在上下文中未指定整个上下文的消息很有用。我们将看到一个例子。请查看[此示例](https://learnprompting.org/docs/applied_prompting/build_chatgpt)，以了解如何管理与 GPT-3 的对话。
+- 最后，**用户问题**。
 
 <div style={{textAlign: 'left'}}>
   <img src={ImagePrompt} style={{width: "700px"}} />
-  <p style={{color: "gray", fontSize: "12px", fontStyle: "italic"}}>Information used to craft our GPT-3 prompt. Image by the author.</p>
+  <p style={{color: "gray", fontSize: "12px", fontStyle: "italic"}}>用于制作 GPT-3 提示的信息。作者制作的图片。</p>
 </div>
 
-Let’s start our prompt using the <span className="yellow-highlight">role-prompting</span> technique.
+让我们从使用<span className="yellow-highlight">角色提示</span>技术开始我们的提示：
 
 <pre>
-    <span className="yellow-highlight">As an advanced chatbot named Skippy, your primary goal is to assist users to the best of your ability.</span><br/>
+    <span className="yellow-highlight">作为名为 Skippy 的高级聊天机器人，您的主要目标是尽力帮助用户。</span><br/>
 </pre>
 
-Then, suppose the semantic search step extracts the following document from our knowledge base. All the documents describe how the VideoGram product works, which is an imaginary product similar to Instagram, but only for videos.
+接下来，假设语义搜索步骤从我们的知识库中提取了以下文档。所有文档都描述了 VideoGram 产品的工作方式，这是类似于 Instagram 但仅用于视频的虚构产品。
 
 <div style={{textAlign: 'left'}}>
   <img src={ImageLogin} style={{width: "700px"}} />
-  <p style={{color: "gray", fontSize: "12px", fontStyle: "italic"}}>A document explaining how login to VideoGram works. Image by the author.</p>
+  <p style={{color: "gray", fontSize: "12px", fontStyle: "italic"}}>解释如何登录到 VideoGram 的文档。作者制作的图片。</p>
 </div>
 
-We can add <span className="yellow-highlight">its content</span> inside the prompt in this way.
+当前日期：2023年4月1日 12:33:48
+
+我们可以按照下面的方式在提示框中添加<span className="yellow-highlight">其内容</span>。
 
 <pre>
-    As an advanced chatbot named Skippy, your primary goal is to assist users to the best of your ability.<br/><br/>
+    作为一款名为 Skippy 的高级聊天机器人，您的主要目标是尽力帮助用户。<br/><br/>
 
     <span className="yellow-highlight">
-    START CONTEXT<br/>
-    Login to VideoGram from Website<br/>
-    1. Open your web browser and go to the VideoGram website.<br/>
-    2. Click on the “Login” button located in the top right corner of the page.<br/>
-    3. On the login page, enter your VideoGram username and password.<br/>
-    4. Once you have entered your credentials, click on the “Login” button.<br/>
-    5. You should now be logged in to your VideoGram account.<br/>
+    开始上下文<br/>
+    从网站登录 VideoGram<br/>
+    1. 打开您的浏览器并转到VideoGram网站。<br/>
+    2. 点击位于页面右上角的“登录”按钮。<br/>
+    3. 在登录页面上，输入您的VideoGram用户名和密码。<br/>
+    4. 输入完您的凭据后，点击“登录”按钮。<br/>
+    5. 您现在应该已经成功登录了 VideoGram 帐户。<br/>
     <br/>
-    Login to VideoGram from Mobile App<br/>
-    1. Open the VideoGram app on your mobile device.<br/>
-    2. On the main page, tap the “Login” button located in the bottom right corner. 3. On the login page, enter your VideoGram username and password.<br/>
-    4. Once you have entered your credentials, tap the “Login” button.<br/>
-    5. You should now be logged in to your VideoGram account.<br/>
-    END CONTEXT<br/>
+    从移动应用程序登录 VideoGram<br/>
+    1. 在您的移动设备上打开 VideoGram 应用程序。<br/>
+    2. 在主页面上，点击位于页面右下角的“登录”按钮。3. 在登录页面上，输入您的 VideoGram 用户名和密码。<br/>
+    4. 输入完您的凭据后，点击 “登录”按钮。<br/>
+    5. 您现在应该已经成功登录了 VideoGram 帐户。<br/>
+    结束上下文<br/>
     </span>
 </pre>
 
-Last, we need to add <span className="yellow-highlight">the conversation and the user question</span> to the end of the prompt, like in the following example.
+最后，我们需要将<span className="yellow-highlight">对话和用户问题</span>添加到提示框的末尾，就像下面的示例一样。
 
 <pre>
-    As an advanced chatbot named Skippy, your primary goal is to assist users to the best of your ability.<br/>
+    作为一款名为 Skippy 的高级聊天机器人，您的主要目标是尽力帮助用户。<br/>
     <br/>
-    START CONTEXT<br/>
-    Login to VideoGram from Website<br/>
-    1. Open your web browser and go to the VideoGram website.<br/>
-    2. Click on the “Login” button located in the top right corner of the page.<br/>
-    3. On the login page, enter your VideoGram username and password.<br/>
-    4. Once you have entered your credentials, click on the “Login” button.<br/>
-    5. You should now be logged in to your VideoGram account.<br/>
+    开始上下文<br/>
+    从网站登录 VideoGram<br/>
+    1. 打开您的浏览器并转到VideoGram网站。<br/>
+    2. 点击位于页面右上角的“登录”按钮。<br/>
+    3. 在登录页面上，输入您的VideoGram用户名和密码。<br/>
+    4. 输入完您的凭据后，点击“登录”按钮。<br/>
+    5. 您现在应该已经成功登录了 VideoGram 帐户。<br/>
     <br/>
-    Login to VideoGram from Mobile App<br/>
-    1. Open the VideoGram app on your mobile device.<br/>
-    2. On the main page, tap the “Login” button located in the bottom right corner. 3. On the login page, enter your VideoGram username and password.<br/>
-    4. Once you have entered your credentials, tap the “Login” button.<br/>
-    5. You should now be logged in to your VideoGram account.<br/>
-    END CONTEXT<br/>
+    从移动应用程序登录 VideoGram<br/>
+    1. 在您的移动设备上打开 VideoGram 应用程序。<br/>
+    2. 在主页面上，点击位于页面右下角的“登录”按钮。3. 在登录页面上，输入您的 VideoGram 用户名和密码。<br/>
+    4. 输入完您的凭据后，点击 “登录”按钮。<br/>
+    5. 您现在应该已经成功登录了 VideoGram 帐户。<br/>
+    结束上下文<br/>
     <br/>
-    <span className="yellow-highlight">SKIPPY: Hello, I’m Skippy! How can I help you?<br/>
-    USER: I can’t find the login button.<br/>
+    <span className="yellow-highlight">SKIPPY: 你好，我是Skippy！我能为您做什么？<br/>
+    USER: 我找不到登录按钮。<br/>
     SKIPPY:</span><br/>
 </pre>
 
-Passing this prompt to GPT-3, I got the following generated answer.
+将这个提示传递给GPT-3，我们得到以下生成的答案。
 
 <pre>
-    <span className="bluegreen-highlight">No problem! On the website, the login button is located in the top right corner of the page. On the mobile app, the login button is located in the bottom right corner. Let me know if you need any further assistance!</span>
+    <span className="bluegreen-highlight">没问题！在网站上，登录按钮位于页面右上角。在移动应用程序上，登录按钮位于页面右下角。如果您需要进一步的帮助，请告诉我！</span>
 </pre>
 
-Notice how the information in the generated answer comes from the knowledge base document.
+请注意，生成的答案中的信息来自知识库文档。
 
-## Disambiguating Questions with GPT-3
+## 使用GPT-3消除歧义
 
-Let’s try with a more vague user utterance, like <span className="yellow-highlight">“can’t login”</span>. Here’s the complete prompt.
+让我们尝试用一个更模糊的用户发言，比如<span className="yellow-highlight">“无法登录”</span>。下面是完整的提示框。
 
 <pre>
-    As an advanced chatbot named Skippy, your primary goal is to assist users to the best of your ability.<br/>
+    作为一款名为 Skippy 的高级聊天机器人，您的主要目标是尽力帮助用户。<br/>
     <br/>
-    START CONTEXT<br/>
-    Login to VideoGram from Website<br/>
-    1. Open your web browser and go to the VideoGram website.<br/>
-    2. Click on the “Login” button located in the top right corner of the page.<br/>
-    3. On the login page, enter your VideoGram username and password.<br/>
-    4. Once you have entered your credentials, click on the “Login” button.<br/>
-    5. You should now be logged in to your VideoGram account.<br/>
+    开始上下文<br/>
+    从网站登录 VideoGram<br/>
+    1. 打开您的浏览器并转到VideoGram网站。<br/>
+    2. 点击位于页面右上角的“登录”按钮。<br/>
+    3. 在登录页面上，输入您的VideoGram用户名和密码。<br/>
+    4. 输入完您的凭据后，点击“登录”按钮。<br/>
+    5. 您现在应该已经成功登录了 VideoGram 帐户。<br/>
     <br/>
-    Login to VideoGram from Mobile App<br/>
-    1. Open the VideoGram app on your mobile device.<br/>
-    2. On the main page, tap the “Login” button located in the bottom right corner. 3. On the login page, enter your VideoGram username and password.<br/>
-    4. Once you have entered your credentials, tap the “Login” button.<br/>
-    5. You should now be logged in to your VideoGram account.<br/>
-    END CONTEXT<br/>
+    从移动应用程序登录 VideoGram<br/>
+    1. 在您的移动设备上打开 VideoGram 应用程序。<br/>
+    2. 在主页面上，点击位于页面右下角的“登录”按钮。3. 在登录页面上，输入您的 VideoGram 用户名和密码。<br/>
+    4. 输入完您的凭据后，点击 “登录”按钮。<br/>
+    5. 您现在应该已经成功登录了 VideoGram 帐户。<br/>
+    结束上下文<br/>
     <br/>
-    SKIPPY: Hello, I’m Skippy! How can I help you?<br/>
-    USER: <span className="yellow-highlight">Can’t login</span><br/>
+   SKIPPY: 你好，我是Skippy！我能为您做什么？<br/>
+    USER: <span className="yellow-highlight">无法登录</span><br/>
     SKIPPY:<br/>
 </pre>
 
-GPT-3 answers trying to understand better what’s the problem of the user.
+GPT-3会尝试更好地理解用户的问题。
 
 <pre>
-    <span className="bluegreen-highlight">I’m sorry to hear that. Can you tell me if you are trying to login via the VideoGram website or mobile app?</span>
+    <span className="bluegreen-highlight">很抱歉听到这个消息。您能告诉我您是尝试通过 VideoGram 网站还是移动应用程序进行登录吗？</span>
 </pre>
 
-Next, here’s how the complete conversation goes. The whole prompt is hidden for better visibility.
+接下来，这里是整个对话的流程。为了更好的可视化，整个提示框均被隐藏。
 
 <pre>
-    USER: Can’t login<br/>
-    SKIPPY: I’m sorry to hear that. Can you tell me if you are trying to login via the VideoGram website or mobile app?<br/>
-    USER: Mobile app<br/>
-    <span className="bluegreen-highlight">SKIPPY: OK, no problem. To login via the mobile app, open the VideoGram app on your mobile device. On the main page, tap the “Login” button located in the bottom right corner. On the login page, enter your VideoGram username and password. Once you have entered your credentials, tap the “Login” button. You should now be logged in to your VideoGram account. Please let me know if you need any further assistance.</span><br/>
+    USER: 无法登录<br/>
+    SKIPPY: 很抱歉听到这个消息。您能告诉我您是尝试通过 VideoGram 网站还是移动应用程序进行登录吗？<br/>
+    USER: 移动应用<br/>
+    <span className="bluegreen-highlight">SKIPPY: 好的，没问题。要通过移动应用程序进行登录，请在您的移动设备上打开 VideoGram 应用程序。在主页面上，点击位于页面右下角的“登录”按钮。在登录页面上，输入您的 VideoGram 用户名和密码。输入完您的凭据后，点击“登录”按钮。您现在应该已经成功登录了 VideoGram 帐户。请告诉我您是否需要进一步的帮助。</span><br/>
 </pre>
 
-GPT-3 can manage disambiguation, provided that it has the right contextual information.
+如果GPT-3无法在上下文中找到答案，它通常会生成类似于“是的，VideoGram移动应用程序可以免费下载和使用”的回答，即使此类信息在上下文信息中不存在。生成虚假信息对客户服务聊天机器人是非常不利的！
 
-## Problems With Generating Answers with GPT-3
+当问题可以在上下文中找到答案时，GPT-3很少会生成错误的信息。由于用户问题通常是简短和模糊的文本，我们不能依靠语义搜索步骤始终检索正确的文档，因此我们始终容易受到错误信息生成的影响。
 
-The previous examples worked well. However, there are several ways in which this chatbot could fail.
+## 结论
 
-If we ask “Is the mobile app free?” to GPT-3 passing the login document as context, you’d often get an answer like “Yes, the VideoGram mobile app is free to download and use”, even if such information is not contained in the context information. Generating false information is very bad for customer service chatbots!
+GPT-3非常适用于创建会话型聊天机器人，并且能够根据提示框中插入的上下文信息回答一系列特定的问题。但是，如果仅使用上下文信息来生成答案，则很难使模型生成答案，因为模型往往会产生幻觉（即生成新信息，可能是虚假的）生成虚假信息是不同严重程度的问题，具体取决于使用情况。
 
-GPT-3 rarely generates false information when the answer to the user question can be found in the context. As user questions are often short and ambiguous texts, we can’t rely on the semantic search step to always retrieve a correct document, and so we are always vulnerable to false information generation.
-
-## Conclusion
-
-GPT-3 is very useful for creating conversational chatbots and is able to answer a series of specific questions on the basis of contextual information inserted in the prompt. However, it’s hard to make the model produce answers leveraging only the information in the context, as the model tends to hallucinate (i.e. generating new information, potentially false). Generating false information is a problem of different severity depending on the use case.
-
-Written by [Fabio Chiusano](https://www.linkedin.com/in/fabio-chiusano-b6a3b311b/).
+文本由[Fabio Chiusano](https://www.linkedin.com/in/fabio-chiusano-b6a3b311b/)撰写，并且由binjie09进行AI机器人回答翻译。

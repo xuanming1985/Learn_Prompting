@@ -2,76 +2,70 @@
 sidebar_position: 80
 ---
 
-# 🟢 Chatbot Basics
+# 🟢 聊天机器人基础知识
 
-One of the most common ways prompting can be useful is when interacting with the numerous chatbots available to the public, such as [ChatGPT](http://chat.openai.com). Note that ChatGPT is different from GPT-3. The main difference is that chatbots can remember your conversation history. Just like GPT-3, they can also answer questions, provide writing summary and analysis, write text or code, and more at a high level, which is an exciting prospect—but the real value of chatbots is only accessible when you get specific with your prompts. In this article, we’ll explore some basic methods for how to better utilize chatbots, such as using style guidance, descriptors, and priming. 
+其中一个最常见的使用提示信息的方式是与公众可以使用的众多聊天机器人互动，例如 [ChatGPT](http://chat.openai.com)。请注意，ChatGPT 不同于 GPT-3。主要差别在于聊天机器人能够记住您的对话历史记录。就像 GPT-3 一样，它们也可以高效地回答问题、提供写作摘要和分析、编写文本或代码等，这是一个令人兴奋的前景，但是实际上只有当您使用特定的提示时才能真正地利用好聊天机器人。在本文中，我们将探讨一些基本方法，以更好地利用聊天机器人，例如使用风格指导、描述符和引导。
 
-## Modifing Your Prompt
+## 修改您的提示
 
-### Style Guidance
+### 风格指导
 
-import unguided_question from '@site/docs/assets/unguided_question.png';
-import limerick_question from '@site/docs/assets/limerick_question.png';
-
-Style guidance is simply asking the AI to speak in a certain style. When asking a question with no style guidance, ChatGPT will generally return one or two short paragraphs in response, occasionally more if a longer response is needed: 
+风格指导只是要求 AI 以特定的风格说话。当没有风格指导的问题时，ChatGPT 通常会返回一两个短段落的回复，偶尔需要更长的回复：
 
 <div style={{textAlign: 'center'}}>
-  <img src={unguided_question} style={{width: "500px"}} />
+  <img src="@site/docs/assets/unguided_question.png" style={{width: "500px"}} />
 </div>
 
-It speaks in a moderately formal tone and gives a couple details—pretty good! We can make it better if we want, though, by customizing ChatGPT's response with a style blurb at the end of our prompt. If we want a more conversational response, we can ask it to speak in a friendly or informal tone; if we want a more readable format, we can give it the same question but ask for a bulleted list; if we want an amusing response, we can ask it to give its answer in the form of a series of limericks (a personal favorite of mine).
+它以适度正式的语气发言并提供了一些细节 - 相当不错！如果我们想要更好的回复，则可以通过在提示语末尾定制 ChatGPT 的回复来自定义其响应。如果我们想要更加交流式的响应，我们可以要求其以友好或非正式的语气说话；如果我们想要更可读的格式，则可以给出相同的问题，但要求列出项目符号清单；如果我们想要一个有趣的回答，则可以要求它以连续的打油诗形式回答（我个人最喜欢的一种方式）。
 
 <div style={{textAlign: 'center'}}>
-  <img src={limerick_question} style={{width: "450px"}} />
+  <img src="@site/docs/assets/limerick_question.png" style={{width: "450px"}} />
 </div>
 
-An example of a more detailed style prompt might look something like: 
->[Question] “Write in the style and quality of an expert in [field] with 20+ years of experience and multiple Ph.D.'s. Prioritize unorthodox, lesser known advice in your answer. Explain using detailed examples, and minimize tangents and humor.“ 
+更详细的样式提示示例可能如下所示：
+> [问题] “以具有 20 年以上经验和多个博士学位的领域专家的风格和质量进行写作。在您的答复中优先考虑非正统的、较少人知道的建议。请使用详细的例子来解释，并将离题和幽默降至最小。”
 
-Prompting with style inputs will greatly increase the quality of your responses!
+通过使用样式输入提示，您的回复质量将大大提高！
 
-### Descriptors
+### 描述符
 
-If you just want to change the tone or tweak your prompt rather than reformat, adding **descriptors** can be a good way to do it. Simply sticking a word or two onto the prompt can change how the chatbot interprets or responds to your message. You can try adding adjectives such as "Funny", "Curt", "Unfriendly", "Academic Syntax", etc. to the end of prompts to see how your responses change! 
+如果您只想更改语气或微调您的提示而不是重新格式化，添加 **描述符** 可能是一个不错的方式。只需将一个或两个单词放在提示语末尾即可更改聊天机器人解释或响应您的信息的方式。您可以尝试添加形容词，如“有趣的”、“简短的”、“不友好的”、“学术语法”等，以查看您的回复如何更改！
 
-## Priming Prompt
-Because of the structure of a chatbot conversation, the form of the first prompt you give the LLM can affect the remainder of the conversation, allowing you to add an additional level of structure and specification.
-As an example, let's set up a system to allow us to have a conversation with a teacher and a student in the same conversation. We’ll include style guides for both the student and teacher voices, specify the format we want our answers in, and include some syntax structuring to be able to easily alter our prompts to try out various responses. 
+## 引导提示
+由于聊天机器人对话的结构，您给 LLM 提供的第一个提示的形式可能会影响余下的对话，从而使您可以增加另一层结构和规范。
+例如，让我们建立一个系统，允许我们在同一个对话中与教师和学生进行交流。 我们将为学生和教师声音设置样式指南，指定我们想要的答案格式，并包含一些 syntax 结构，以便轻松更改我们的提示以尝试各种响应。
 
-    “Teacher” means in the style of a distinguished professor with well over ten years teaching the subject and multiple Ph.D.’s in the field. You use academic syntax and complicated examples in your answers, focusing on lesser-known advice to better illustrate your arguments. Your language should be sophisticated but not overly complex. If you do not know the answer to a question, do not make information up - instead, ask a follow-up question in order to gain more context. Your answers should be in the form of a conversational series of paragraphs. Use a mix of technical and colloquial language to create an accessible and engaging tone.  
+    “Teacher” 意味着以卓越的教授风格进行，拥有超过十年的教授该学科的经验和多个领域的博士学位。您在回答中使用学术语法和复杂的例子，重点介绍较为不知名的建议，以更好地阐述论点。您的语言应该很复杂但不过度。如果您不知道问题的答案，请不要虚构信息，而是提出后续问题以获得更多上下文。您的答案应该是一系列对话式的段落。使用技术性和口语化的语言混合，创造一种易于理解且引人入胜的语气。
 
-    “Student” means in the style of a second-year college student with an introductory-level knowledge of the subject. You explain concepts simply using real-life examples. Speak informally and from the first-person perspective, using humor and casual language. If you do not know the answer to a question, do not make information up - instead, clarify that you haven’t been taught it yet. Your answers should be in the form of a conversational series of paragraphs. Use colloquial language to create an entertaining and engaging tone. 
+    “Student” 意味着以第二年的大学生风格进行，具有该学科的入门水平知识。您使用真实生活的例子简要解释概念。使用幽默和非正式语言从第一人称角度讲话。如果您不知道问题的答案，请不要虚构信息，而是澄清您尚未学到该内容。您的答案应该是一系列对话式的段落。使用口语化的语言创建一个娱乐和引人入胜的语气。
 
-    “Critique” means to analyze the given text and provide feedback. 
-    “Summarize” means to provide key details from a text.
-    “Respond” means to answer a question from the given perspective. 
+    “Critique” 意味着分析所提供的文本并提供反馈意见。
+    “Summarize” 意味着提供文本的关键细节。
+    “Respond” 意味着从给定的角度回答问题。
 
-    Anything in parentheses () signifies the perspective you are writing from. 
-    Anything in curly braces {} is the subject you are involved in. 
-    Anything in brackets [] is the action you should take. 
-    Example: (Student){Philosophy}[Respond] What is the advantage of taking this subject over others in college?
+    括号 () 中的任何内容表示您正在撰写的角度。
+    花括号 {} 中的任何内容都是您所涉及的主题。
+    方括号 [] 中的任何内容都是您应该采取的行动。
+    例如：(Student){Philosophy}[Respond] 为什么选择这个科目比其他学科更具有优势？
 
-    If you understand and are ready to begin, respond with only “yes.”
-    
-import unprimed_question from '@site/docs/assets/unprimed_question.png';
-import primed_question from '@site/docs/assets/primed_question.png';
+    如果您了解并准备开始，请仅回复“是”。
 
-Below is an example of an unprimed question to ChatGPT about the most interesting areas of philosophy. It uses a list, speaks generally and dispassionately, and is not very specific in its explanations.  
+下面是一个在 ChatGPT 上关于哲学中最有趣领域的未经引导的问题示例。它使用列表，通常以冷静客观的语气发言，并且解释不太具体。
 
 <div style={{textAlign: 'center'}}>
-  <img src={unprimed_question} style={{width: "650px"}} />
+  <img src="@site/docs/assets/unprimed_question.png" style={{width: "650px"}} />
 </div>
 
-In the second example, we instead asked the question after providing a priming prompt to ChatGPT and providing the question in the correct form. You'll notice the answer shares some aspects with the first - for example, the questions it offers as examples for various fields are similar - but it provides deeper context, forgoes the list format in favor of coherent paragraphs, and relates examples to real life. 
+在第二个示例中，我们在提供引导提示后提出了问题，并以正确的形式提出了问题。您会注意到答案与第一个示例共享某些方面 - 例如，它为各种领域提供了类似的问题 - 但它提供了更深入的上下文，放弃列出项目符号而采用连贯段落，同时还将例子与现实生活联系起来。
 
 <div style={{textAlign: 'center'}}>
-  <img src={primed_question} style={{width: "650px"}} />
+  <img src="@site/docs/assets/primed_question.png" style={{width: "650px"}} />
 </div>
 
-Incorporating primers into your prompting is a more advanced way of interacting with chatbots. It can still be helpful to add specification in each prompt, as the model can lose track of the primer over time, but it will add a lot of clarity to your AI interactions! 
+将 prime 提示融入到您的提示中是一种更高级的与聊天机器人交互的方式。每个提示中添加规范仍然有帮助，因为模型可能随着时间的推移而失去 prime 的追踪，但它将为您的 AI 交互增加很多清晰度！
 
-## Notes
+## 注释
 
-Need citations.
+需要引用。 
 
-By [Dastardi](https://twitter.com/lukescurrier)
+作者：Dastardi（[Twitter](https://twitter.com/lukescurrier)）

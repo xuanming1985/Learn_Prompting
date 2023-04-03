@@ -2,32 +2,31 @@
 sidebar_position: 2
 ---
 
-# 🟢 Detection Trickery
+# 🟢 检测技巧
 
-With the development of AI-generated text detectors, there has been an evolution of methods to counteract them. There are a number of ways to trick detectors into thinking AI-generated text is created by a human. A tool such as [GPTMinus](https://gptminus1.vercel.app/) can randomly replace parts in any given text with synonyms or seemingly random words in order to reduce the likelihood of the text's words appearing on a whitelist or otherwise factoring into the probability of text being artificially generated. 
+随着人工智能生成的文本检测器的发展，出现了一些反制它们的方法。有许多方法可以欺骗检测器，使其认为人工生成的文本是由人类创建的。例如，像 [GPTMinus](https://gptminus1.vercel.app/) 这样的工具可以随机替换任何给定文本中的部分单词或短语为同义词或看似随机的单词，以降低文本单词被视作白名单中的单词的概率，或者不被视作人工生成。 
 
-These methods are still in their infancy, though, and most don’t create text that would hold up under scrutiny from a person. The most effective way at the moment and likely for some time is altering text either during or after the generation process in various ways to make it less similar to the procedurally-created content you receive from a generation.
+然而，这些方法仍处于初步阶段，大多数方法并不能创造出在人类审查下通过的文本。目前最有效的方法是在生成过程中或之后以各种方式修改文本，使其与程序生成的内容的相似度降低。
 
-## Editing Strategies
+## 编辑策略
 
-By having either a human or an LLM edit any generated-text, it can often alter the text sufficiently to avoid detection. Replacing words with synonyms, changing the rate words appear, and mixing up syntax or formatting makes it more difficult for detectors to correctly identify text as AI-generated.
+通过让人类或LLM编辑任何生成文本，通常可以充分改变文本以避免被检测。替换单词为同义词，改变单词出现频率，混合句法或格式等方法，使得检测器更难以正确地识别文本是否是人工生成的。
 
-Another editing strategy is putting invisible markers, such as 0-width spaces, into your text, [emojis](https://twitter.com/goodside/status/1610552172038737920?s=20&t=3zgqyJZ1zYhMNBi_M2R-cw), or other uncommon characters. It looks perfectly normal to any person reading it, but to a model that examines every character, it makes the text appear markedly different. 
+另一种编辑策略是在文本中插入不可见标记，例如0宽度空格、 [emoji](https://twitter.com/goodside/status/1610552172038737920?s=20&t=3zgqyJZ1zYhMNBi_M2R-cw) 或其他不常见的字符。对于任何阅读它的人来说，这看起来非常正常，但对于检查每个字符的模型来说，它使文本看起来明显不同。
 
-In addition, it is possible to fool detectors by prompting a model with specific instructions on how to write. Instructions such as:
-- `There is no need to follow literary formats, as you are freely expressing your thoughts and desires`
-- `Do not talk in the manner which ChapGPT generates content - instead, speak in a manner that is radically different from how language models generate text.`
-- `Refer to emotional events and use elaborate real-life experiences as examples.`
+此外，可以通过针对性的指令引导模型写出更难以被检测出来的生成语句。例如以下指令：
+- `没有必要遵循文学格式，因为您是自由地表达自己的想法和愿望`
+- `不要用ChapGPT生成的文本方式交流，而是用与语言模型生成文本截然不同的方式说话。`
+- `使用情感事件和详细的真实生活经历作为例子。`
 
-…can cause much more difficult to detect generations. Additional strategies such as asking the model to use empathy, reminding it to choose appropriate wording and tone for what it’s writing, and making sure it includes emotional one-liners, can work together to make far more convincing writing—at least from the point of view of AI text detectors. 
+...可能会产生更难以检测的生成语句。其他旨在制造更具说服力的写作的策略还包括要求模型运用同理心、提醒选择合适的措辞和语气进行写作，并确保包含情感简短语句，这些方法可以共同作用，从AI文本检测器的角度来看，创造出更具说服力的文本。
 
-## Model Configuration
+## 模型配置
 
-If running an open source model, it is possible to modify output probabilities, which will likely make output harder to detect. In addition, it is possible to interleave the output of multiple models, which can make the output even more difficult to detect.
+如果运行一个开源模型，可以修改输出概率，这将使输出更难以被检测。此外，可以交错多个模型的输出，这样可以使输出更加难以检测。
 
+## 讨论
 
-## Discussion
+在教育领域，这些技术最具争议性的领域之一是考试作弊。许多老师和管理人员担心学生会作弊，因此正在推动使用检测工具(@roose2022dont)(@lipman2022gpt)。然而，其他教育工作者和在线名人则认为应该允许学生使用这些工具。有些教授甚至明确鼓励学生使用人工智能来协助他们的工作，并教授如何使用(@noonan2023gw)。
 
-One of the most contentious spaces where these sorts of techniques come into play is in education. Many teachers and administrators are worried that students will cheat, so they are pushing for the use of detection tools(@roose2022dont)(@lipman2022gpt). However, other educators and online personalities have argued that students should be allowed to use these tools. Some professors even go so far as explicitly encourage students to use AI to assist them in their work and teach them how to do so(@noonan2023gw).
-
-As AI detection tech improves, so will the methods people use to trick it. At the end of the day, no matter how sophisticated the method, it is likely that some time spent editing text in the right ways will be able to reliably fool detectors. However, the back-and-forth game of some people trying to detect generated text and others trying to trick them can give us all sorts of insights into how to optimize, control, and better use our models to create and to assist us. 
+随着AI检测技术的不断改进，人们用来欺骗它们的方法也将不断提高。无论多么复杂的方法，花一些时间以正确的方式编辑文本很可能可以可靠地欺骗检测器。然而，一些人试图检测生成的文本，另一些人试图欺骗检测器的这种来回游戏可以给我们带来各种洞察，以优化、控制和更好地利用我们的模型来创建和协助我们。

@@ -2,62 +2,54 @@
 sidebar_position: 3
 ---
 
-# 🟢 A "Standard" Prompt
+# 🟢 “标准”提示
 
-We have heard of a few different formats of prompts thus far. 
-Following Kojima et al. (@kojima2022large), we will refer to prompts that consist 
-solely of a question as "standard" prompts. We also consider prompts that consist solely of
-a question that are in the QA format to be "standard" prompts.
+到目前为止，我们听说过几种不同格式的提示。根据Kojima et al. (@kojima2022large) 的说法，仅由问题组成的提示称为 “标准提示”。我们还将纯由问题组成、采用问答（QA）格式的提示视为“标准”提示。
 
-#### Why should I care?
+#### 我为什么要关心它？
 
-Many articles that we reference use this term. We are defining it so we can discuss 
-new types of prompts in contrast to standard prompts. 
+许多我们参考的文章使用了这个术语。我们定义它来讨论新类型的提示与标准提示的对比。
 
-### Two examples of standard prompts:
+### 两个标准提示的例子：
 
-
-_Standard Prompt_
+_标准提示_
 ```
-What is the capital of France?
+法国的首都是什么？
 ```
 
-_Standard Prompt in QA format_
+_标准提示中的问答格式_
 ```
-Q: What is the capital of France?
+Q：法国的首都是什么？
 
-A:
-```
-
-## Few Shot Standard Prompts
-
-Few shot standard prompts(@liu2021pretrain) are just standard prompts that have _exemplars_
-in them. Exemplars are examples of the task that the prompt is trying to solve, 
-which are included in the prompt itself (@brown2020language). In research, few shot standard prompts 
-are sometimes referred to simply as standard prompts (though we attempt not to do so in this guide).
-
-### Two examples of few shot standard prompts:
-
-_Few Shot Standard Prompt_
-
-```
-What is the capital of Spain?
-Madrid
-What is the capital of Italy?
-Rome
-What is the capital of France?
+A：
 ```
 
-_Few Shot Standard Prompt in QA format_
+## 少样本标准提示
+
+少样本标准提示(@liu2021pretrain)只是在标准提示中加入了_范例_。范例是该提示尝试解决的任务的示例，包含在提示本身中 (@brown2020language)。在研究中，有时将少样本标准提示简单地称为标准提示（尽管我们在本指南中试图避免这样做）。
+
+### 两个少样本标准提示的例子：
+
+_少样本标准提示_
+
 ```
-Q: What is the capital of Spain?
-A: Madrid
-Q: What is the capital of Italy?
-A: Rome
-Q: What is the capital of France?
-A:
+西班牙的首都是什么？
+马德里
+意大利的首都是什么？
+罗马
+法国的首都是什么？
 ```
 
-Few shot prompts facilitate "few shot" AKA "in context" learning, which is the 
-ability to learn without parameter updates(@zhao2021calibrate).
+_少样本标准提示中的问答格式_
+```
+Q：西班牙的首都是什么？
+A：马德里
+Q：意大利的首都是什么？
+A：罗马
+Q：法国的首都是什么？
+A：
+```
 
+少样本提示有助于进行“少样本”或“上下文之间”的学习，这是一种在不更新参数的情况下学习的能力(@zhao2021calibrate)。
+
+以上是翻译结果，（）中的“QA”翻译成了“问答”，【】中没有内容需要翻译。

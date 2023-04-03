@@ -3,11 +3,11 @@ sidebar_position: 99
 ---
 # 🟢 Midjourney
 
-[Midjourney](https://www.midjourney.com) is an AI image generator that operates through a Discord bot interface as well as a web app (an API version of Midjourney is planned). The process for generating images with Midjourney follows the same fundamental principles as other AI image generators, including the use of prompts to guide the generation process. 
+[Midjourney](https://www.midjourney.com) 是一个基于 AI 技术的图像生成器，用户可以通过 Discord 机器人接口和 Web 应用程序进行操作（Midjourney 还计划推出 API 版本）。与其他 AI 图像生成器相比，使用 Midjourney 生成图像的过程遵循相同的基本原则，包括使用提示来指导生成过程。
 
-One of the unique features of Midjourney compared to other AI image generators is its ability to create visually striking and artisticly composed images. This is attributed to the model's specialized training, which enables it to produce high-quality images with specific artistic parameters (more about this in "Advanced Prompts" > "Parameters").
+与其他 AI 图像生成器相比，Midjourney 的一个独特特点是其能够创建具有视觉冲击力和艺术性构图的图像。这归因于该模型的专业训练，使其能够以特定的艺术参数产生高质量的图像（更多信息请参见“高级提示”>“参数”）。
 
-You can experiment with the Midjourney Bot in the [Learn Prompting Discord](http://learnprompting.org/discord) or in the [official Midjourney Discord server](https://discord.gg/midjourney).
+您可以在 [Learn Prompting Discord](http://learnprompting.org/discord) 或 [官方 Midjourney Discord 服务器](https://discord.gg/midjourney) 中尝试 Midjourney Bot。
 
 import midjourney_astronaut from '@site/docs/assets/midjourney_astronaut.png';
 import midjourney_astronaut_params from '@site/docs/assets/midjourney_astronaut_params.png';
@@ -40,44 +40,39 @@ import midjourney_astronaut_params_v3 from '@site/docs/assets/midjourney_astrona
 
 
 
-# Basic Usage
+# 基本用法
 
-The basic prompt anatomy with Midjourney is `/imagine prompt: [IMAGE PROMPT] [--OPTIONAL PARAMETERS]`. 
+在Midjourney中，基本的提示结构是`/imagine prompt: [IMAGE PROMPT] [--OPTIONAL PARAMETERS]`。
 
-For example: `/imagine prompt: astronaut on a horse`
-
+例如：`/imagine prompt: astronaut on a horse`
 
 <div style={{textAlign: 'center'}}>
   <img src={midjourney_astronaut} style={{width: "350px"}} />
 </div>
 
-
-Example with parameters: `/imagine prompt: astronaut on a horse --ar 3:2 --c 70 --q 2 --seed 1000 `
+带参数的示例：`/imagine prompt: astronaut on a horse --ar 3:2 --c 70 --q 2 --seed 1000`
 
 <div style={{textAlign: 'center'}}>
   <img src={midjourney_astronaut_params} style={{width: "350px"}} />
 </div>
 
-In this basic example the following parameters have been used:
+在这个基本的示例中，使用了以下参数：
 
+`--ar 3:2`设置图像的长宽比为3:2。
 
-`--ar 3:2` sets the aspect ratio of the image to 3:2
+`--c 70`加入一个混沌值70来让Midjourney更加自由地解释下达的提示（混沌值范围：0-100）。
 
-`--c 70` adds a chaos value of 70 to allow Midjourney to interpret the prompt more freely(chaos value range: 0 - 100)
+`--seed 100`设置一个任意的种子值，可以用于稍后重新渲染或重新处理一张图片。
 
-`--seed 100` sets an arbitrary seed value which can be used to re-render or re-work an image later
+（了解有关Midjourney参数的更多信息，请参见“高级提示”>“参数”）
 
+# 高级提示
+在Midjourney中，高级提示利用了参数和Midjourney算法支持的特殊提示技术。
 
-(learn more about Midjourney parameters in "Advanced Prompts" > "Parameters")
+## 多提示
+默认情况下，Midjourney会整体解释你的提示。使用双冒号`::`可以告诉Midjourney分别解释提示的每个部分。
 
-
-# Advanced Prompts
-Advanced prompts in Midjourney make use of parameters and special prompting techniques supported by the Midjourney algorithm.
-
-## Multi Prompts
-Midjourney interprets your prompt holistically by default. Using a double colon `::` tells Midjourney to interpret each part of a prompt separately.
-
-Example:
+示例：
 
 ```text
 /imagine prompt: astronaut and horse
@@ -89,32 +84,36 @@ Example:
 ```text
 /imagine prompt: astronaut:: and horse
 ```
+
 <div style={{textAlign: 'center'}}>
   <img src={midjourney_astronaut_multi2} style={{width: "350px"}} />
 </div>
 
 
-## Image Prompts
-By uploading an image to Discord and using its URL in a prompt, you can instruct Midjourney to use that image to influence the content, style and composition of your results. 
-Example:
-[Astronaut (Source: Wikipedia)](https://en.wikipedia.org/wiki/Astronaut#/media/File:STS41B-35-1613_-_Bruce_McCandless_II_during_EVA_(Retouched).jpg)
+## 图像提示
+通过将图像上传到Discord并在提示中使用其URL，您可以指示Midjourney使用该图像影响结果的内容、风格和构图。
+
+示例：
+
+[太空人（来源：维基百科）](https://en.wikipedia.org/wiki/Astronaut#/media/File:STS41B-35-1613_-_Bruce_McCandless_II_during_EVA_(Retouched).jpg)
 
 ```text
 /imagine prompt: [image URL], impressionist painting
 ```
+
 <div style={{textAlign: 'center'}}>
   <img src={midjourney_astronaut_ip2} style={{width: "350px"}} />
 </div>
 
-## Parameters (v4)
+## 参数（v4）
 
-The following parameters are supported by Midjourney's latest model (v4).
+Midjourney的最新模型（v4）支持以下参数。
 
-### Aspect Ratio:
+### 纵横比：
 
-`--ar [ratio]` changes the default ratio (1:1) to a new ratio (currently the max. supported ratio is 2:1)
+`--ar [比率]` 将默认比率（1:1）改为新比率（当前支持的最大比率为2:1）
 
-Example: `astronaut on a horse --ar 16:9` and `astronaut on a horse --ar 1:2`
+示例：`astronaut on a horse --ar 16:9` 和 `astronaut on a horse --ar 1:2`
 
 <div style={{textAlign: 'center'}}>
   <img src={midjourney_astronaut_params_a169} style={{width: "350px"}} />
@@ -123,11 +122,11 @@ Example: `astronaut on a horse --ar 16:9` and `astronaut on a horse --ar 1:2`
 </div>
 
 
-### Chaos:
+### 混沌：
 
-`--c [value]` sets a chaos value that determines how much Midjourney varies the prompt; the higher the chaos value the more unusual and unexpected the results and compositions (range: 0 - 100)
+`--c [值]` 设置混沌值，确定Midjourney在提示中变化的程度；混沌值越高，结果和组合就越不寻常和意外（范围：0-100）
 
-Example: `astronaut on a horse --c20` and `astronaut on a horse --c 80`
+示例：`astronaut on a horse --c20` 和 `astronaut on a horse --c 80`
 
 <div style={{textAlign: 'center'}}>
   <img src={midjourney_astronaut_params_c20} style={{width: "350px"}} />
@@ -135,12 +134,11 @@ Example: `astronaut on a horse --c20` and `astronaut on a horse --c 80`
    <img src={midjourney_astronaut_params_c80} style={{width: "350px"}} />
 </div>
 
+### 质量：
 
-### Quality:
+`--q [值]` 定义生成图像所需的时间，从而增加质量。默认设置为“1”。较高的值使用更多的订阅GPU时间（接受值“.25”、“ .5”、“ 1”和“ 2”）
 
-`--q [value]` defines how much time will be spend generating the image, thus increasing the quality. The default setting is "1". Higher values use more of your subscription's GPU minutes (accepts values ".25", ".5" , "1" and "2")
-
-Example: `astronaut on a horse --q .5` and `astronaut on a horse --q 2`
+示例：`astronaut on a horse --q .5` 和 `astronaut on a horse --q 2`
 
 <div style={{textAlign: 'center'}}>
   <img src={midjourney_astronaut_params_q05} style={{width: "350px"}} />
@@ -149,11 +147,11 @@ Example: `astronaut on a horse --q .5` and `astronaut on a horse --q 2`
 </div>
 
 
-### Seed:
+### 种子：
 
-`--seed [value]` sets a seed number which defines the starting point (noise field) for the image generation. The seeds for each image are generated randomly when not specidfied with the seed parameter. Using the same seed number and prompt will produce similar images.
+`--seed [值]` 设置种子号，为图像生成的起点（噪声场）。未指定种子参数时，每个图像的种子数是随机生成的。使用相同的种子编号和提示将产生类似的图像。
 
-Example: `astronaut on a horse --seed 123`
+示例：`astronaut on a horse --seed 123`
 
 <div style={{textAlign: 'center'}}>
   <img src={midjourney_astronaut_params_seed123} style={{width: "350px"}} />
@@ -161,13 +159,11 @@ Example: `astronaut on a horse --seed 123`
    <img src={midjourney_astronaut_params_seed123} style={{width: "350px"}} />
 </div>
 
+### 风格化：
 
-### Stylize:
+`--stylize [值]` 或 `--s [值]` 影响Midjourney应用其艺术算法的强度。较低的值会产生与提示密切匹配的图像，较高的值会创建与提示不太相关的非常艺术化的图像。默认值为100，值范围为0-1000。（注：您可以使用“/settings”命令将默认的风格化值从“🖌️ Style Med”（=`--s 100`）更改为“🖌️ Style Low”（=`--s 50`）， “🖌️ Style High”（=`--s 250`）或“🖌️ Style Very High”（=`--s 750`））
 
-`--stylize [value]` or `--s [value]` influences how strongly Midjourney applies its artistic algorithm.  Low values produce images that closely match the prompt, high values create very artistic images that are less connected to the prompt. The default is 100, value range is 0 - 1000.
-(Note: you can use the `/settings`command to change the default stylize value from "🖌️ Style Med" (=`--s 100`) to "🖌️ Style Low" (=`--s 50`), "🖌️ Style High"(=`--s 250`) or "🖌️ Style Very High" (=`--s 750`))
-
-Example: `astronaut on a horse --s 50` and `astronaut on a horse --s 900`
+示例：`astronaut on a horse --s 50` 和 `astronaut on a horse --s 900`
 
 <div style={{textAlign: 'center'}}>
   <img src={midjourney_astronaut_params_s50} style={{width: "350px"}} />
@@ -175,11 +171,11 @@ Example: `astronaut on a horse --s 50` and `astronaut on a horse --s 900`
    <img src={midjourney_astronaut_params_s900} style={{width: "350px"}} />
 </div>
 
+### 版本：
 
-### Version:
-`--v [version number]`or `--version [version number]` let you access earlier Midjourney models (1-3)
+`--v [版本号]` 或 `--version [版本号]` 让您访问早期的Midjourney模型（1-3）
 
-Example: `--v 1`, `--v 2`, and `--v 3`
+示例： `--v 1`，`--v 2` 和 `--v 3`
 
 <div style={{textAlign: 'center'}}>
   <img src={midjourney_astronaut_params_v1} style={{width: "220px"}} />
@@ -189,25 +185,24 @@ Example: `--v 1`, `--v 2`, and `--v 3`
       <img src={midjourney_astronaut_params_v3} style={{width: "220px"}} />
 </div>
 
+## 参数（上一个模型）
 
-## Parameters (previous models)
+### 相同的种子
 
-### Same Seed
+`--sameseed`：`--seed`参数在初始网格中应用单个噪声场，而sameseed参数将相同的起始噪声应用于初始网格中的所有图像，因此会生成非常相似的图像。
 
-`--sameseed`: while the `--seed` parameter produces a single noise field applied across all images in the initial grid, the sameseed parameter applies the same starting noise to all images in the initial grid so it will produce very similar images.
-
-Example: `astronaut on a horse --sameseed --v 3`
+例子：`astronaut on a horse --sameseed --v 3`
 
 <div style={{textAlign: 'center'}}>
   <img src={midjourney_astronaut_params_sameseed} style={{width: "350px"}} />
 </div>
 
 
-### Tile
+### 瓷砖
 
-`--tile` generates images that can be used as repeating tiles to create seamless patterns for fabrics, wallpapers and textures (only works with models 1 - 3)
+`--tile` 生成可用作重复瓷砖以创建面料、壁纸和纹理无缝图案的图像（仅适用于模型1-3）。
 
-Example: `astronaut on a horse --tile --v 3`
+例子：`astronaut on a horse --tile --v 3`
 
 <div style={{textAlign: 'center'}}>
   <img src={midjourney_astronaut_params_tilegrid} style={{width: "220px"}} />
@@ -218,11 +213,11 @@ Example: `astronaut on a horse --tile --v 3`
 </div>
 
 
-### Video
+### 视频
 
-`--video` creates a short movie of the image grid being generated. Reacting with the ✉️ emoji lets the Midjourney Bot send you a DM with the link to the video.
+`--video` 创建一个简短的影片，展示生成的图像网格。使用 ✉️ 表情符号，让Midjourney机器人向你发送具有视频链接的DM。
 
-Example: `astronaut on a horse --video --v 3`
+例子：`astronaut on a horse --video --v 3`
 
 <div style={{textAlign: 'center'}}>
  <video width="320" height="240" autoplay muted>
@@ -233,6 +228,6 @@ Example: `astronaut on a horse --video --v 3`
 
 
 
-## Links
+## 链接
 
-[Official Midjourney Documentation](https://docs.midjourney.com/)
+[Midjourney官方文档](https://docs.midjourney.com/)

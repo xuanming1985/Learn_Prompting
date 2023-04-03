@@ -2,16 +2,13 @@
 sidebar_position: 70
 ---
 
-# 🟢 Summarizing Text
+# 🟢 文本摘要
 
-ChatGPT is notorious for producing content in the blink of an eye, and has proven to be a huge time saver.
-For content already written, ChatGPT can also save us time by helping us digest long torturous texts.  
-It can summarize books, movies, plays, articles and many more. With ChatGPT, it’s like having a Cliff’s Notes…ON EVERYTHING!
+ChatGPT因其能够在眨眼之间产生内容而臭名昭著，并已被证明是一个巨大的时间节省者。对于已经撰写好的内容，ChatGPT也可以通过帮助我们消化冗长的文字来节省时间。它可以概括书籍、电影、戏剧、文章等等。有了ChatGPT，就像拥有一份“万事通”！
 
-## Summarizing from Scratch
+## 从头概括
 
-Sometimes, you can ask ChatGPT to summarize famous works without pasting in any additional text, since ChatGPT knows the works so well. For example, you can ask it to summarize “Romeo & Juliet” by act. So, instead of slogging through the 24,000 words of the play, you can get the gist in 300 or less. 
-
+有时，你可以让ChatGPT概括一些著名的作品，而无需粘贴任何其他文本，因为ChatGPT非常了解这些作品。例如，你可以要求它按行为概括“罗密欧与朱丽叶”。因此，你可以在300字或更少的时间内得到该剧情节的要点，而不必费劲阅读24000个单词。
 
 import outline1 from '../assets/basic_applications/summarizing/Romeo_and_Juliet_Act_by_Act_1.png';
 import quantum from '../assets/basic_applications/summarizing/Quantum_Entanglement.png';
@@ -23,22 +20,19 @@ import rope2 from '../assets/basic_applications/summarizing/Outline_2.png';
   <img src={outline1} style={{width: "750px"}} />
 </div>
 
-Although you could instead look up a summary, ChatGPT can tailor the content to your needs. Maybe you really like Football, so you could as ChatGPT to
-“Give me a 100 word summary of ‘Romeo and Juliet’ in American football terms.”
+虽然你可以查阅摘要，但ChatGPT可以根据你的需求定制内容。也许你非常喜欢足球，因此你可以要求ChatGPT“以美式橄榄球术语为我提供《罗密欧与朱丽叶》的100字摘要。”
 
-## Working With Long Blocks of Texts: Copy & Paste!
+## 处理较长的文本：复制和粘贴！
 
-You can ask ChatGPT to summarize or create an outline of the text and TL;DR the whole thing. All you all you have to do is copy and paste the specific text into the prompt. (You can include up to 2,500 words. If the work is longer than that, you will have to break it into chunks.)
-Ask for a simplified summary of chosen text by writing, “Summarize this for me like I'm 5 years old: [PASTE TEXT HERE]” 
-This one is a summary “for a 5-year old” from a section of Wikipedia’s entry on “[quantum entanglement](https://en.wikipedia.org/wiki/Quantum_entanglement#:~:text=vte-,Quantum%20entanglement,-is%20the%20phenomenon)”. 
+你可以要求ChatGPT概括或创建文本大纲，并在总结中给出简短概述。你所需要做的就是将特定的文本复制并粘贴到提示框中（最多可以包含2500字。如果文本长度超过2500字，则必须将其分成几部分）。给定文本的简化摘要可以通过写“像我这样的5岁孩子给我概括这个：[粘贴文本]”来进行。
+
+下面是ChatGPT对维基百科关于“量子纠缠”的条目的一个面向儿童的简化文本摘要。
 
 <div style={{textAlign: 'left'}}>
   <img src={quantum} style={{width: "750px"}} />
 </div>
 
-In addition to summaries, you can also ask ChatGPT to write outlines for blocks of text. Sometimes it’s better to have an outline so that you can see the thread or framework of the whole article. 
-You also just need to copy and paste the text you want outlined into your prompt.   
-The following is ChatGPT’s outline on the Wikipedia page on “rope,” specifically on the history of [rope](https://en.wikipedia.org/wiki/Rope#:~:text=to%20pull%20ropes.-,History,-Ancient%20Egyptians%20were).
+除了摘要外，您还可以要求ChatGPT为长文本编写大纲。有时候，有一个大纲会更好，因为你可以看到整篇文章的主线或框架。你只需要将想要概括的文本复制并粘贴到提示中即可。下面是ChatGPT对“绳子”维基百科页面的大纲，特别是关于[绳子历史](https://en.wikipedia.org/wiki/Rope#:~:text=to%20pull%20ropes.-,History,-Ancient%20Egyptians%20were)的部分。
 
 <div style={{textAlign: 'left'}}>
   <img src={rope} style={{width: "750px"}} />
@@ -48,6 +42,6 @@ The following is ChatGPT’s outline on the Wikipedia page on “rope,” specif
   <img src={rope2} style={{width: "750px"}} />
 </div>
 
-We’ve just covered some of the very basics of using ChatGPT to handle long texts. There are many more ways to use ChatGPT to summarize and outline texts!
+我们刚刚介绍了一些使用ChatGPT处理长文本的基础知识。还有许多其他的方法可以使用ChatGPT来对文本进行总结和概述！
 
 By [languagenoodle](https://twitter.com/languagenoodle).

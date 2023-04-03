@@ -1,43 +1,40 @@
 ---
 sidebar_position: 10
-locale: en-us
+locale: zh-CN
 style: chicago
 ---
 
-# 🟢 More on Prompting
+# 🟢 更多提示信息
 
-As we have seen in the previous pages, prompts can have varying formats and complexity. They can include context, instructions, multiple questions-answer examples, and even other prompts (what!?).
+正如我们在前面所看到的，提示信息可以有不同的格式和复杂程度。它们可以包括上下文、说明、多个问题-答案示例，甚至是其他提示信息（什么！？）。
 
-Here is an example of a prompt that includes context, instructions, and multiple examples:
+这是一个包含上下文、说明和多个示例的提示信息示例：
 
 ```text
-Twitter is a social media platform where users can post short messages called "tweets".
-Tweets can be positive or negative, and we would like to be able to classify tweets as
-positive or negative. Here are some examples of positive and negative tweets. Make sure 
-to classify the last tweet correctly.
+Twitter 是一个社交媒体平台，用户可以发布称为“推文”的短消息。
+推文可以是积极或消极的，我们希望能够对推文进行分类，
+将其归为积极或消极内容。这里有一些积极和消极推文的例子，请确保
+正确地将最后一个推文分类。
 
-Q: Tweet: "What a beautiful day!"
-Is this tweet positive or negative?
+Q：推文：“多美好的一天啊！”
+这条推文是积极的还是消极的？
 
-A: positive
+A：积极的
 
-Q: Tweet: "I hate this class"
-Is this tweet positive or negative?
+Q：推文：“我讨厌这门课”
+这条推文是积极的还是消极的？
 
-A: negative
+A：消极的
 
-Q: Tweet: "I love pockets on jeans"
+Q：推文：“我喜欢牛仔裤口袋”
 
-A:
+A：
 ```
 
-By adding additional context/examples, we can often improve the performance of AIs
-on different tasks. The next chapter covers slightly more advanced prompting techniques.
+通过添加额外的上下文/示例，我们通常可以提高人工智能在不同任务上的表现。下一章将介绍略微更高级的提示技巧。
 
-## Notes
+## 注释
 
-In the next chapters, you may see the words **AI, model, and LLM
-used interchangeably**. See the [vocabulary reference](https://learnprompting.org/docs/vocabulary) for more information.
+在接下来的章节中，您可能会看到**AI、模型和LLM这些词通常交替使用**。有关更多信息，请参见[词汇表](https://learnprompting.org/docs/vocabulary)。
 
-Prompts inside of prompts, or self-augmented prompts(@kojima2022large), will be 
-covered in the next few sections.
+提示信息中包含提示信息，或者称为自我增强的提示信息(@kojima2022large)，将在接下来的几个章节中介绍。

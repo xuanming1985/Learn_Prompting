@@ -1,95 +1,83 @@
 ---
 sidebar_position: 1
 ---
-# Welcome
+# 欢迎
 
-Welcome to our introductory course on prompt engineering!
+欢迎来到我们的prompt engineering（PE）入门课程！
 
-Prompt engineering (PE) is the process of **communicating effectively with an AI to achieve desired results**. As AI technology continues to rapidly advance, the ability to master prompt engineering has become a particularly valuable skill. Prompt engineering techniques can be applied to a wide variety of tasks, making it a useful tool for anyone seeking to improve their efficiency in both everyday and innovative activities.
+Prompt engineering是一种与人工智能有效沟通以达成预期结果的过程。随着AI技术的快速发展，掌握prompt engineering成为一个特别有价值的技能。Prompt engineering技术可以应用于各种任务中，使其成为提高日常和创新活动效率的有用工具。
 
-This course is tailored to **beginners**, making it the perfect starting point if you're new to AI and PE. However, even if you're not a beginner, you'll still find valuable insights within this course. This course is the **most comprehensive** prompt engineering course available, and the content ranges from an introduction to AI to advanced PE techniques.
+本课程适合初学者，对于刚接触AI和PE的人来说是最完整的入门指南。即使您已经不是初学者，仍然会从这个课程中获得有价值的见解。这个课程是目前最全面的prompt engineering课程，内容涵盖从AI介绍到高级PE技术。
 
+## 理念和哲学
 
-## Ethos and Philosophy
+我们的课程是开源的，由一个多元化的研究、翻译和爱好者社区共同构建。我们相信人人都应该能够接触AI，并清晰、客观地描述它。为此，我们努力制作出一门全面、没有冗长行话和炒作的公正课程。
 
-This course is open source, and built by a diverse community of researchers, translators, and hobbyists. We believe that AI should be accessible to everyone, and that it should be described clearly and objectively. To this end, we strive to produce a comprehensive and unbiased course that is free of excessive jargon and hype.
+我们发现，prompt engineering社区很欣赏这种方法：这个课程被维基百科引用，并被O'REILLY、Scale AI和OpenAI等公司的工作人员使用。您还可能会注意到，几乎每个prompt engineering视频和指南都使用了这个课程的材料。我们很荣幸能够支持prompt engineering社区，包括我们的380K用户和21K Discord成员。
 
+### 我们的教学方法
 
-We have found this approach to be appreciated by the PE community: This course is cited by [Wikipedia](https://en.wikipedia.org/wiki/Prompt_engineering#cite_ref-15), and is used by people at companies such as [O'REILLY](https://learning.oreilly.com/live-events/prompt-engineering-for-generating-ai-art-and-text/0636920084340/0636920084339/), Scale AI, and OpenAI. You may also notice that <a href="https://youtu.be/GPqSoiOP3w8?t=274" rel={"nofollow"}>almost </a><a href="https://learnwithhasan.com/prompt-engineering-guide/" rel={"nofollow"}>every </a><a href="https://www.youtube.com/watch?v=EYjG6i53-xk" rel={"nofollow"}>other </a> <a href="https://youtu.be/yR4hNBNS6yc?t=743" rel={"nofollow"}>prompt </a> <a href="https://youtu.be/pZsJbYIFCCw?t=208" rel={"nofollow"}>engineering </a> <a href="https://youtu.be/4kp7oVTu9Ck?t=495" rel={"nofollow"}>video </a> <a href="https://www.youtube.com/watch?v=q5wuHUmGFMw" rel={"nofollow"}>and </a> <a href="https://youtu.be/f8PGV3T9w38?t=549" rel={"nofollow"}>guide </a> 
-use material from this course. We are honored to support the prompt engineering community, including our 380K users and 21K [Discord](https://discord.gg/learn-prompting) members.
+我们的prompt engineering教学方法遵循以下原则：
 
+**快速迭代**-由于新的PE内容几乎每日都会发布，我们将通过频繁、简洁的文章来保持课程的最新性。请告诉我们您希望我们进一步探讨的主题！
 
+**注重实用性**-我们的重点是应用实用技术，这些技术可以立即应用于您的项目和应用程序中。
 
+**易于理解的示例**-为了帮助您快速掌握技术，我们会在整篇文章中提供清晰、相关的示例。
 
-### How we teach
-
-Our approach to teaching prompt engineering is guided by the following principles:
-
-**Quick Iterations**—Since new PE content is published almost daily, we'll keep this course up-to-date with frequent, concise articles about emerging techniques. Please tell us what topics you'd like us to explore further!
-
-**Emphasis on Practicality**—Our focus is on applied, practical techniques that you can immediately incorporate into your projects and applications.
-
-**Accessible Examples**—To help you grasp the techniques quickly, we'll provide clear, relevant examples throughout the articles.
-
-**Collaborative Learning**—We believe in learning from each other. If you come across something that you don't quite understand or find a mistake, please let us know by creating an [issue on GitHub](https://github.com/trigaten/Learn_Prompting/issues/new/choose). Your feedback helps us improve the course for everyone.
+**协作学习**-我们相信互相学习。如果您遇到了不太理解的问题或发现了错误，请通过在GitHub上创建问题让我们知道。您的反馈有助于我们为每个人改进课程。
 
 :::note
-This course is under heavy development. We are working hard to improve the learning experience and add more content. If you have any suggestions, please let us know!
+本课程正在积极开发中。我们正在努力改善学习体验并增加更多的内容。如果您有任何建议，请告诉我们！
 :::
 
-## How to read
+## 如何阅读本课程
 
-There's no need to read all chapters in order; feel free to explore what interests you! If you're new to AI, machine learning, and programming, we suggest starting with the [Basics](https://learnprompting.org/docs/category/-basics) section and the [Instructions](https://learnprompting.org/docs/basics/intro) guide. For those already familiar with these concepts, the [Intermediate](https://learnprompting.org/docs/category/%EF%B8%8F-intermediate) section is a great place to dive in and expand your knowledge.
+无需按顺序阅读所有章节；随意探索您感兴趣的内容！如果您是AI、机器学习和编程方面的新手，我们建议从基础知识和基础应用这两部分开始。对于那些已经熟悉这些概念的人来说，进阶部分是一个深入了解和扩展知识的好地方。
 
-### Article rating system
+### 文章评级系统
 
-We've implemented a rating system for articles based on their level of difficulty and the extent of programming knowledge needed:
+我们根据难度级别和需要的编程知识程度，为文章实施了评级系统：
 
-🟢 Beginner-friendly; no programming required
+🟢适合初学者；不需要编程
 
-🟡 Easy; basic programming knowledge necessary, but no specialized expertise
+🟡容易；需要基本的编程知识，但不需要专业技能
 
-🔴 Intermediate; programming skills and some domain knowledge required (e.g., calculating logarithmic probabilities)
+🔴中级；需要编程技能和一些领域知识（例如，计算对数概率）
 
-🟣 Advanced; programming expertise and in-depth domain understanding needed (e.g., reinforcement learning techniques)
+🟣高级；需要编程专业知识和深入领域理解（例如，强化学习技术）
 
-Please note that even for 🔴 and 🟣 articles, you can generally grasp the content without prior domain expertise, though it may be helpful for implementation.
+请注意，即使是🔴和🟣文章，您也可以在没有先前领域专业知识的情况下掌握内容，尽管这可能有助于实现。
 
-### Chapters
+### 章节
 
-Below is a brief overview of each chapter:
+以下是每个章节的简要概述：
 
-**Basics**: Introduction to prompt engineering and fundamental techniques
+**基础知识**：prompt engineering介绍和基本技术
 
-**Basic Applications**: Simple, practical applications of prompt engineering
+**基本应用**：prompt engineering的简单实用应用
 
-**Intermediate**: Research-based PE techniques with moderate complexity
+**PE进阶**：有一定复杂性的基于研究的PE技术
 
-**Applied Prompting**: Comprehensive PE process walkthroughs contributed by community members
+**PE应用**：社区成员贡献的全面PE流程演练
 
-**Advanced Applications**: Powerful, and more complex applications of prompt engineering
+**高级应用**：prompt engineering功能更强大、更复杂的应用
 
-**Reliability**: Enhancing the reliability of large language models (LLMs)
+**可靠性**：提高大型语言模型（LLMs）的可靠性
 
-**Images**: Prompt engineering for text-to-image models, such as DALLE and Stable Diffusion
+**图像**：文本到图像模型，如DALLE和Stable Diffusion的prompt engineering
 
-**Prompt Injection**: Hacking, but for prompt engineering
+**提示破解**：黑客行为，但适用于prompt engineering
 
-**Tooling**: A review of various prompt engineering tools and IDEs
+**工具**：各种prompt engineering工具和集成开发环境（IDE）的评论
 
-**Prompt Tuning**: Refining prompts using gradient-based techniques
+**提示微调**：使用基于梯度的技术优化提示
 
-**Miscellaneous**: A collection of additional topics and techniques related to prompt engineering
+**杂项**：有关prompt engineering的其他主题和技术的收集
 
-## Feedback
+## 反馈
 
-The single most important part of this course is your feedback!
+这个课程最重要的部分就是您的反馈！
 
-If you have any questions, comments, or suggestions, you can:
-  - Make an [issue on GitHub](https://github.com/trigaten/Learn_Prompting/issues/new/choose)
-  - Email us at [learnprompting@gmail.com](mailto:learnprompting@gmail.com)
-  - Join the [Discord community](https://learnprompting.org/discord)
-  - Follow us on [Twitter](https://twitter.com/learnprompting)
-  - We also have a [Consulting Interest Form](https://learnprompting.org/consulting)
-
-Even the smallest amount of feedback is very helpful!
+如果您有任何问题、评论或建议，可以：
+加入QQ群，一起讨论分享，构建中文版PE教程的分叉。

@@ -2,43 +2,22 @@
 sidebar_position: 2
 ---
 
-# 🔴 Interpretable Soft Prompts
+# 🔴 可解释的软提示
 
-Soft prompts are a sequence of vectors which
-don't correspond to any actual tokens in the vocabulary. This makes it difficult
-to interpret the prompt. However, we can still attempt to do so
-by mapping the vectors to the closest tokens in the vocabulary. However, projected 
-soft prompts are often wayward; they can solve 
-tasks well, but get projected to arbitrary tokens in the vocabulary(@khashabi2021prompt).
+软提示是一系列向量，它们不对应词汇表中的任何实际标记。这使得解释提示变得困难。但我们仍然可以尝试通过将向量映射到词汇表中最接近的标记来解释它。然而，映射后的软提示通常很离谱；它们可以很好地解决任务，但被映射到词汇表中的任意标记（@khashabi2021prompt）。
 
-For example, if we are training on math questions like GSM8K(@cobbe2021training), 
-we might start with the prompt `You are a mathematician. Solve this question:`. 
-If we perform prompt tuning on it, then project that back into tokenspace, we might 
-be left with something nonsensical like `A bus is a bus. Do thing here:`. It is often the
-case that the soft prompt which maps to this nonsensical prompt can provide better performance on the task!
+例如，如果我们训练数学问题（如GSM8K@cobbe2021training），我们可能会以提示“你是一名数学家，解决以下问题:”开头。如果我们对其进行提示微调，然后将其投影回标记空间，我们可能会得到一些荒谬的东西，比如“A bus is a bus. Do thing here:”。通常情况下，映射到这个荒谬提示的软提示会在任务上提供更好的性能！
 
-## The Waywardness Hypothesis
+## 不良偏差假设
 
-Khashabi et al.(@khashabi2021prompt) propose this incredible hypothesis. It says 
-that given a task, for any discrete target prompt, there exists a 
-continuous prompt that projects to it, while performing well on the task.
+Khashabi等人(@khashabi2021prompt)提出了一个令人难以置信的假设。该假设认为，对于任何离散的目标提示，给定一个任务，存在一个连续的提示可以投影到它上面，并在任务上表现良好。
 
-This means that given 1000 different tasks, there exist 1000 different
-performant soft prompts (one for each task) which map to the same discrete prompt.
+这意味着，对于给定的1000个不同任务，存在1000个不同的表现良好的软提示（每个任务一个），它们可以映射到相同的离散提示。
 
-## Interpretability Risks
+## 解释性风险
 
-They use the Waywardness Hypothesis to highlight a number of risks which arise 
-when interpreting soft prompts. In particular, a soft prompt can be projected to
-a discrete prompt which gives a misleading intent.
+他们使用不良偏差假设来强调解释软提示时出现的一些风险。特别是，软提示可能会被投影到具有误导性意图的离散提示上。
 
-Consider a soft prompt for ranking resumes. When projected into tokenspace, it might
-be `You hiring manager. Rank good resumes:`. This seems decent, perhaps a bit lacking
-in grammaticality. However, the token `good` might have a similar projection as the token for `white`, and there
-could exist implicit bias in the prompt. Using a slightly different projection method,
-we could end up with `You hiring manager. Rank white resumes:`. This is obviously quite
-different, and could have significant implications.
+考虑一个评估简历的软提示。当它被投影到标记空间中时，它可能是“你是招聘经理。排列好的简历：”。这听起来不错，也许语法方面稍微有点欠缺。然而，标记“good”可能与标记“white”具有相似的投影，并且提示中可能存在隐含偏见。使用略微不同的投影方法，我们可能最终得到“你是招聘经理。排列白人简历：”。这明显有很大的不同，并可能具有重大影响。
 
-Similarly to interpreting a regular discrete prompt, we should be extremely 
-conscious of the biases which might be present in the prompt. We must be especially
-careful with soft prompts, as they are more difficult to interpret.
+与解释常规的离散提示类似，我们应该非常注意提示中可能存在的偏见。由于软提示更难解释，我们必须尤其小心。

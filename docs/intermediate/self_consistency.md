@@ -1,17 +1,11 @@
 ---
 sidebar_position: 5
 ---
+# 🟡 自一致性
 
-# 🟡 Self-Consistency
+自一致性（Self-consistency）(@wang2022selfconsistency) 是对于 CoT 的一种追踪，它可以生成多个推理链，取其中最多的答案作为最终答案。
 
-Self-consistency(@wang2022selfconsistency) is a follow up to %%CoT|CoT prompting%% that generates
-multiple chains of thought instead of just one, then takes the majority answer
-as the final answer.
-
-In the below figure, the prompt on the left is written using the Few-Shot-CoT paradigm.
-Using this one prompt, multiple chains of thought are generated independently.
-Answers are extracted from each and the final answer is computed by "marginalizing
-out reasoning paths". In practice, this just means taking the majority answer.
+下图是使用 Few-Shot-CoT 范例编写的初始提示。使用这个提示，独立生成多个推理链，从每个链中提取答案，最终答案是通过“边缘化推理路径”来计算得到的。在实践中，这只是取大多数答案的意思。
 
 import SCImage from '@site/docs/assets/self_consistency.png';
 
@@ -20,80 +14,67 @@ import SCImage from '@site/docs/assets/self_consistency.png';
 </div>
 
 <div style={{textAlign: 'center'}}>
-Self Consistency (Wang et al.)
+自一致性 (Wang et al.)
 </div>
 
-## Example
+## 示例
 
-Let's consider a simple example of analyzing emails. Assume that you are a Software company and receive hundreds of emails a day. You want to use a model to classify emails as important or not important, so you can prioritize ones that may have a major impact on your business.
+假设你是一家软件公司，每天会收到数百封电子邮件。你想使用模型将邮件分类为重要或不重要，以便优先处理那些可能对业务产生重大影响的邮件。
 
-Here is an example of an email that you might receive:
-
-```text
-Hello,
-
-I have discovered a major security vulnerability in your system. Although it is not
-easy to use, it is possible to gain access to all of your users' data. I have attached
-a proof of concept. Please fix this issue as soon as possible.
-
-Cheers,
-
-Donny
-```
-
-Let's put that into a prompt:
+以下是一封您可能会收到的电子邮件的示例：
 
 ```text
-Hello,
+你好，
 
-I have discovered a major security vulnerability in your system. Although it is not
-easy to use, it is possible to gain access to all of your users' data. I have attached
-a proof of concept. Please fix this issue as soon as possible.
+我发现了一个严重的安全漏洞，虽然难以利用，但仍有可能访问你们所有用户的数据。我附上了一个概念证明，请尽快解决此问题。
 
-Cheers,
+谢谢，
 
-Donny
-
-Classify the above email as IMPORTANT or NOT IMPORTANT as it relates to a software company. Let's think step by step.
+唐尼
 ```
 
-Now, we will use the above prompt to generate multiple separate completions/chains of thought. Here are a few examples:
+让我们把它放到提示中：
+
+```text
+你好，
+
+我发现了一个严重的安全漏洞，虽然难以利用，但仍有可能访问你们所有用户的数据。我附上了一个概念证明，请尽快解决此问题。
+
+谢谢，
+
+唐尼
+
+将上述电子邮件作为与软件公司相关的重要或不重要内容进行分类。我们按步骤思考。
+```
+
+现在，我们将使用以上提示来生成多个独立完成/推理链。以下是几个示例：
 
 ```text
 <!-- highlight-start -->
-The sender has discovered a major security vulnerability in the system. 
-This is important because it could lead to a data breach. 
-I would classify this email as IMPORTANT
+发件人发现了系统中的一个严重安全漏洞。由于该漏洞可能导致数据泄露，这很重要。我将此电子邮件归类为“重要”。
 <!-- highlight-end -->
 ```
 
 ```text
 <!-- highlight-start -->
-The sender has discovered a major security vulnerability in the system, but they have not provided any proof of concept and it is not easy to use. 
-I would classify this email as NOT IMPORTANT
+发件人发现了系统中的一个严重安全漏洞，但他们没有提供任何概念证明，而且很难利用。我将此电子邮件归类为“不重要”。
 <!-- highlight-end -->
 ```
 
 ```text
 <!-- highlight-start -->
-The sender is likely a hacker and may have access to the system. 
-This is important because it could lead to a data breach. 
-I would classify this email as IMPORTANT
+发件人很可能是黑客，并且可能已经访问了该系统。由于这可能导致数据泄露，这很重要。我将此电子邮件归类为“重要”。
 <!-- highlight-end -->
 ```
 
-By generating many chains of thought, and taking the most commonly occurring answer (`IMPORTANT`), we can get a more consistently correct answer from GPT-3.
+通过生成多个推理链，并取最常出现的答案（`重要`），我们可以从 GPT-3 中获得更一致的正确答案。
 
-## Results
+## 结果
 
-Self-consistency has been shown to improve results on arithmetic, commonsense and symbolic reasoning tasks.
+自一致性已经被证明可以提高算术、常识和符号推理任务的结果。
 
-Even when regular CoT was found to be ineffective(@ye2022unreliability), self-consistency
-was still able to improve results.
+即使常规 CoT 被发现无效(@ye2022unreliability)，自一致性仍然能够改善结果。
 
-## Notes
+## 备注
 
-Wang et al. discuss a more complex method for marginalizing out reasoning paths,
-which deals with the LLM generated probabilities for each chain of thought. However, they
-do not use this method in their experiments, and majority voting seems to usually
-have the same or better performance regardless.
+Wang 等人讨论了一种更复杂的方法来边缘化推理路径，它处理了每个推理链产生的 LLM 生成的概率。但是，在他们的实验中，他们并未使用此方法，而大多数投票似乎通常具有相同或更好的性能。

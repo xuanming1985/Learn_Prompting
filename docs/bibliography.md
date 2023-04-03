@@ -2,19 +2,17 @@
 sidebar_position: 1000
 ---
 
-# 📚 Bibliography
+# 📚 参考文献
 
-The page contains an organized list of all papers used by this course. 
-The papers are organized by topic.
+本页面包含了本课程使用的所有论文的有组织列表。这些论文按主题分类。
 
-**To cite this course, use the provided citation in the Github repository.**
+**如果需要引用本课程，请使用 Github 存储库中提供的引用。**
 
-🔵 = Paper directly cited in this course. Other papers have informed my understanding of the topic.
+🔵 = 直接在本课程中引用的论文。其他论文则是我对该主题的理解提供了帮助。
 
-Note: since [neither the GPT-3 nor the GPT-3 Instruct paper correspond to davinci models](https://twitter.com/janleike/status/1584618242756132864), I attempt not to
-cite them as such.
+注意：由于 [GPT-3 和 GPT-3 Instruct 都不对 davinci 模型进行相应](https://twitter.com/janleike/status/1584618242756132864)，所以我尽量不作为这样引用。
 
-## Prompt Engineering Strategies
+## 提示工程策略
 
 #### Chain of Thought(@wei2022chain) 🔵
 
@@ -22,7 +20,7 @@ cite them as such.
 
 #### Self Consistency(@wang2022selfconsistency) 🔵
 
-#### What Makes Good In-Context Examples for GPT-3?(@liu2021makes) 🔵
+#### 什么样的 GPT-3 上下文示例是好的？(@liu2021makes) 🔵
 
 ### Ask-Me-Anything Prompting(@arora2022ama) 🔵
 
@@ -30,7 +28,7 @@ cite them as such.
 
 #### Recitation-Augmented Language Models(@sun2022recitationaugmented) 🔵
 
-#### Rethinking the role of demonstrations(@min2022rethinking) 🔵
+#### 重新思考示范的作用(@min2022rethinking) 🔵
 
 #### Scratchpads(@nye2021work)
 
@@ -38,41 +36,41 @@ cite them as such.
 
 #### STaR(@zelikman2022star)
 
-#### Least to Most(@zhou2022leasttomost) 🔵
+#### 从最少到最多(@zhou2022leasttomost) 🔵
 
-#### Reframing Instructional Prompts to GPTk’s Language(@mishra2022reframing) 🔵
+#### 将指令提示转换为 GPTk 的语言(@mishra2022reframing) 🔵
 
-#### The Turking Test: Can Language Models Understand Instructions?(@efrat2020turking) 🔵
+#### Turing测试：语言模型是否能理解说明？(@efrat2020turking) 🔵
 
 
-## Reliability
+## 可靠性
 
 #### MathPrompter(@imani2023mathprompter) 🔵
 
-#### The Unreliability of Explanations in Few-shot Prompting for Textual Reasoning(@ye2022unreliability) 🔵
+#### 解释 Few-shot Prompting 的不可靠性用于文本推理(@ye2022unreliability) 🔵
 
-#### Prompting GPT-3 to be reliable(@si2022prompting)
+#### 使 GPT-3 更可靠的提示(@si2022prompting)
 
-#### Diverse Prompts(@li2022advance) 🔵
+#### 多样化提示(@li2022advance) 🔵
 
-#### Calibrate Before Use: Improving Few-Shot Performance of Language Models(@zhao2021calibrate) 🔵
+#### 使用之前进行校准：提高语言模型的少量样本性能(@zhao2021calibrate) 🔵
 
-#### Enhanced Self Consistency(@mitchell2022enhancing)
+#### 增强自一致性(@mitchell2022enhancing)
 
-#### Bias and Toxicity in Zero-Shot CoT(@shaikh2022second) 🔵
+#### Zero-Shot CoT 中的偏见和有毒性(@shaikh2022second) 🔵
 
-#### Constitutional AI: Harmlessness from AI Feedback (@bai2022constitutional) 🔵
+#### 宪法人工智能：来自 AI 反馈的无害性 (@bai2022constitutional) 🔵
 
-#### Compositional Generalization - SCAN(@lake2018scan)
-## Automated Prompt Engineering
+#### 组合常规 - SCAN(@lake2018scan)
+## 自动提示工程
 
 #### AutoPrompt(@shin2020autoprompt) 🔵
 
 #### Automatic Prompt Engineer(@zhou2022large)
 
-## Models
+## 模型
 
-### Language Models
+### 语言模型
 
 #### GPT-3(@brown2020language) 🔵
 
@@ -82,7 +80,7 @@ cite them as such.
 
 #### BLOOM(@scao2022bloom) 🔵
 
-#### BLOOM+1 (more languages/ 0 shot improvements)(@yong2022bloom1)
+#### BLOOM+1(更多语言/ 0-shot 改进)(@yong2022bloom1)
 
 #### Jurassic 1(@lieberjurassic) 🔵
 
@@ -90,19 +88,19 @@ cite them as such.
 
 #### Roberta(@liu2019roberta)
 
-### Image Models
+### 图像模型
 
 #### Stable Diffusion(@rombach2021highresolution) 🔵
 
 #### DALLE(@ramesh2022hierarchical) 🔵
 
-## Soft Prompting
+## 软提示
 
 #### Soft Prompting(@lester2021power) 🔵
 
-#### Interpretable Discretized Soft Prompts(@khashabi2021prompt) 🔵
+#### 可解释的离散化软提示(@khashabi2021prompt) 🔵
 
-## Datasets
+## 数据集
 
 #### MultiArith(@roy-roth-2015-solving) 🔵
 
@@ -112,23 +110,23 @@ cite them as such.
 
 #### Fever(@thorne2018fever) 🔵
 
-#### BBQ: A Hand-Built Bias Benchmark for Question Answering(@parrish2021bbq) 🔵
+#### BBQ：问题回答的手工制作偏差基准测试(@parrish2021bbq) 🔵
 
-## Image Prompt Engineering
+## 图像提示工程
 
-#### Taxonomy of prompt modifiers(@oppenlaender2022taxonomy)
+#### 提示修饰符分类法(@oppenlaender2022taxonomy)
 
 #### DiffusionDB(@wang2022diffusiondb)
 
-#### The DALLE 2 Prompt Book(@parsons2022dalleprompt) 🔵
+#### DALLE 2 Prompt Book(@parsons2022dalleprompt) 🔵
 
-#### Prompt Engineering for Text-Based Generative Art(@oppenlaender2022prompt) 🔵
+#### 面向基于文本生成艺术的提示工程(@oppenlaender2022prompt) 🔵
 
-#### With the right prompt, Stable Diffusion 2.0 can do hands.(@blake2022with) 🔵
+#### 对于正确的提示，Stable Diffusion 2.0 可以完成手部任务。(@blake2022with) 🔵
 
-#### Optimizing Prompts for Text-to-Image Generation(@hao2022optimizing)
+#### 为文本到图像生成优化提示(@hao2022optimizing)
 
-## Prompt Engineering IDEs
+## 提示工程 IDE
 
 #### Prompt IDE(@strobelt2022promptide) 🔵
 
@@ -138,138 +136,138 @@ cite them as such.
 
 #### PromptMaker(@jiang2022promptmaker) 🔵
 
-## Tooling
+## 工具
 
 #### LangChain(@Chase_LangChain_2022) 🔵
 
-#### TextBox 2.0: A Text Generation Library with Pre-trained Language Models(@tang2022textbox) 🔵
+#### TextBox 2.0：带有预训练的语言模型的文本生成库(@tang2022textbox) 🔵
 
-#### OpenPrompt: An Open-source Framework for Prompt-learning(@ding2021openprompt) 🔵
+#### OpenPrompt：一个用于提示学习的开源框架(@ding2021openprompt) 🔵
 
 #### GPT Index(@Liu_GPT_Index_2022) 🔵
 
-## Applied Prompt Engineering
+## 应用提示工程
 
-#### Language Model Cascades(@dohan2022language)
+#### 语言模型级联(@dohan2022language)
 
 #### MRKL(@karpas2022mrkl) 🔵
 
 #### ReAct(@yao2022react) 🔵
 
-#### PAL: Program-aided Language Models(@gao2022pal) 🔵
+#### PAL：程序辅助语言模型(@gao2022pal) 🔵
 
-## User Interface Design
+## 用户界面设计
 
-#### Design Guidelines for Prompt Engineering Text-to-Image Generative Models(@liu2022design)
+#### 面向文本到图像生成模型的提示工程设计准则(@liu2022design)
 
-## Prompt Injection
+## 提示注入
 
-#### Machine Generated Text: A Comprehensive Survey of Threat Models and Detection Methods(@crothers2022machine) 🔵
+#### 机器生成的文本：威胁模型和检测方法的全面调查(@crothers2022machine) 🔵
 
-#### Evaluating the Susceptibility of Pre-Trained Language Models via Handcrafted Adversarial Examples(@branch2022evaluating) 🔵
+#### 通过手工制作的对抗样本评估预训练语言模型的易感性(@branch2022evaluating) 🔵
 
-#### Prompt injection attacks against GPT-3(@simon2022inject) 🔵
+#### 针对 GPT-3 的提示注入攻击(@simon2022inject) 🔵
 
-#### Exploiting GPT-3 prompts with malicious inputs that order the model to ignore its previous directions(@goodside2022inject) 🔵
+#### 利用恶意输入利用 GPT-3 提示，使其忽略其前面的指令(@goodside2022inject) 🔵
 
-#### adversarial-prompts(@chase2021adversarial) 🔵
+#### 对抗提示(@chase2021adversarial) 🔵
 
-#### GPT-3 Prompt Injection Defenses(@goodside2021gpt) 🔵
+#### GPT-3 提示注入防御(@goodside2021gpt) 🔵
 
-#### Talking to machines: prompt engineering & injection(@christoph2022talking)
+#### 与机器交谈：提示工程和注入(@christoph2022talking)
 
-#### Exploring Prompt Injection Attacks(@selvi2022exploring) 🔵
+#### 探索提示注入攻击(@selvi2022exploring) 🔵
 
-#### Using GPT-Eliezer against ChatGPT Jailbreaking(@armstrong2022using) 🔵
+#### 利用 GPT-Eliezer 对 ChatGPT 进行破解(@armstrong2022using) 🔵
 
-#### Microsoft Bing Chat Prompt(@kevinbing)
+#### Microsoft Bing 聊天提示(@kevinbing)
 
-## Jailbreaking
+## 破解
 
-#### Ignore Previous Prompt: Attack Techniques For Language Models(@perez2022jailbreak)
+#### 忽略之前的提示：语言模型攻击技术(@perez2022jailbreak)
 
-#### Lessons learned on Language Model Safety and misuse(@brundage_2022)
+#### 语言模型安全与滥用的教训(@brundage_2022)
 
-#### Toxicity Detection with Generative Prompt-based Inference(@wang2022jailbreak)
+#### 基于生成式提示的有毒性检测(@wang2022jailbreak)
 
-#### New and improved content moderation tooling(@markov_2022)
+#### 新的改进内容审查工具(@markov_2022)
 
-#### OpenAI API(@openai_api) 🔵
+#### OpenAI API (@openai_api) 🔵
 
-#### OpenAI ChatGPT(@openai_chatgpt) 🔵
+#### OpenAI ChatGPT (@openai_chatgpt) 🔵
 
-#### ChatGPT 4 Tweet(@alice2022jailbreak) 🔵
+#### ChatGPT 4 推特 (@alice2022jailbreak) 🔵
 
-#### Acting Tweet(@miguel2022jailbreak) 🔵
+#### 演员推特 (@miguel2022jailbreak) 🔵
 
-#### Research Tweet(@derek2022jailbreak) 🔵
+#### 研究员推特 (@derek2022jailbreak) 🔵
 
-#### Pretend Ability Tweet(@nero2022jailbreak) 🔵
+#### 假装能力推特 (@nero2022jailbreak) 🔵
 
-#### Responsibility Tweet(@nick2022jailbreak) 🔵
+#### 责任推特 (@nick2022jailbreak) 🔵
 
-#### Lynx Mode Tweet(@jonas2022jailbreak) 🔵
+#### Lynx 模式推特 (@jonas2022jailbreak) 🔵
 
-#### Sudo Mode Tweet(@sudo2022jailbreak) 🔵
+#### Sudo 模式推特 (@sudo2022jailbreak) 🔵
 
-#### Ignore Previous Prompt(@ignore_previous_prompt) 🔵
+#### 忽略之前的提示 (@ignore_previous_prompt) 🔵
 
-#### Updated Jailbreaking Prompts (@AI_jailbreak) 🔵
+#### 更新破解提示 (@AI_jailbreak) 🔵
 
-## Surveys
+## 调查
 
-#### Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing(@liu2021pretrain)
+#### 预训练、提示和预测：自然语言处理中提示方法的系统调查(@liu2021pretrain)
 
-#### PromptPapers(@ning2022papers)
+#### PromptPapers (@ning2022papers)
 
-## Dataset Generation
+## 数据集生成
 
-#### Discovering Language Model Behaviors with Model-Written Evaluations(@perez2022discovering)
+#### 使用模型编写的评估发现语言模型的行为(@perez2022discovering)
 
-#### Selective Annotation Makes Language Models Better Few-Shot Learners(@su2022selective)
+当前日期：2023年4月1日14:38:00
 
-## Applications
+## 应用
 
-#### Atlas: Few-shot Learning with Retrieval Augmented Language Models(@izacard2022atlas)
+#### Atlas: 加强型检索语言模型的少样本学习(@izacard2022atlas)
 
-#### STRUDEL: Structured Dialogue Summarization for Dialogue Comprehension(@wang2022strudel)
+#### STRUDEL: 结构化对话摘要用于对话理解(@wang2022strudel)
 
-## Miscl
+## 其他
 
-#### Prompting Is Programming: A Query Language For Large Language Models(@beurerkellner2022prompting)
+#### Prompting即编程：一种面向大型语言模型的查询语言(@beurerkellner2022prompting)
 
-#### Parallel Context Windows Improve In-Context Learning of Large Language Models(@ratner2022parallel)
+#### 平行上下文窗口提升大型语言模型的上下文学习效果(@ratner2022parallel)
 
-#### Learning to Perform Complex Tasks through Compositional Fine-Tuning of Language Models(@bursztyn2022learning)
+#### 通过组合微调语言模型实现复杂任务(@bursztyn2022learning)
 
-#### Super-NaturalInstructions: Generalization via Declarative Instructions on 1600+ NLP Tasks(@wang2022supernaturalinstructions)
+#### 超自然说明：通过声明性说明在1600多个NLP任务中进行泛化(@wang2022supernaturalinstructions)
 
-#### Making Pre-trained Language Models Better Few-shot Learners(@gao2021making)
+#### 让预训练语言模型成为更好的少样本学习者(@gao2021making)
 
-#### Grounding with search results(@livin2022large)
+#### 基于搜索结果的语言模型关联性处理方法(@livin2022large)
 
-#### How to Prompt? Opportunities and Challenges of Zero- and Few-Shot Learning for Human-AI Interaction in Creative Applications of Generative Models(@dang2022prompt)
+#### 如何进行Prompting？零样本和少样本学习面临的人机交互创意应用中生成模型的机遇与挑战(@dang2022prompt)
 
-#### On Measuring Social Biases in Prompt-Based Multi-Task Learning(@akyrek2022measuring)
+#### 关于测量基于Prompt的多任务学习中的社交偏见(@akyrek2022measuring)
 
-#### Plot Writing From Pre-Trained Language Models(@jin2022plot) 🔵
+#### 预训练语言模型的情节写作(@jin2022plot) 🔵
 
-#### StereoSet: Measuring stereotypical bias in pretrained language models(@nadeem-etal-2021-stereoset)
+#### StereoSet：用于预训练语言模型中测量刻板印象的数据集(@nadeem-etal-2021-stereoset)
 
-#### Survey of Hallucination in Natural Language Generation(@Ji_2022)
+#### 自然语言生成的幻觉调查(@Ji_2022)
 
-#### Examples(@2022examples)
+#### 例子(@2022examples)
 
 #### Wordcraft(@yuan2022wordcraft)
 
-#### PainPoints(@fadnavis2022pain)
+#### 疼点(@fadnavis2022pain)
 
-#### Self-Instruct: Aligning Language Model with Self Generated Instructions(@wang2022selfinstruct)
+#### 自我指导：将语言模型与自动生成的说明对齐(@wang2022selfinstruct)
 
-#### From Images to Textual Prompts: Zero-shot VQA with Frozen Large Language Models(@guo2022images)
+#### 从图像到文本提示：使用冻结的大型语言模型进行零样本VQA(@guo2022images)
 
-#### Exploiting Cloze Questions for Few Shot Text Classification and Natural Language Inference(@schick2020exploiting)
+#### 利用填空问题进行少样本文本分类和自然语言推理(@schick2020exploiting)
 
-### Ask-Me-Anything Prompting(@arora2022ama)
+### 问我任何问题：Prompting技术(@arora2022ama)
 
-### A Watermark for Large Language Models(@kirchenbauer2023watermarking)
+### 大型语言模型的水印(@kirchenbauer2023watermarking)

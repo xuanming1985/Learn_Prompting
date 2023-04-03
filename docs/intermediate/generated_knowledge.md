@@ -2,103 +2,99 @@
 sidebar_position: 7
 ---
 
-# 🟡 Generated Knowledge
+# 🟡 生成式知识
 
+生成式知识的基本思想是在向%%LLM|LLM%% 提出最终问题之前，先要求它生成有关所提问题的潜在有用信息。
 
-The idea behind the generated knowledge approach(@liu2021generated) is to ask the %%LLM|LLM%% to generate potentially useful information about a given question/prompt before generating a final response.
+例如，假设您想撰写一篇关于某种动物的小型博客文章，比如[白熊](https://zh.wikipedia.org/wiki/%E7%99%BD%E7%86%8A)。在让 %%LLM|LLM%% 写博客文章之前，您可以要求它生成一些关于白熊的事实。这将有助于LLM撰写更具信息性的博客文章。有两种简单的方法。
 
-For example, say you want to write a small blog post about some animal, like [Spirit bears](https://en.wikipedia.org/wiki/Kermode_bear). Before asking the %%LLM|LLM%% to write the blog post, you can ask it to generate some facts about Spirit bears. This will help the LLM write a more informative blog post. There are two simple ways of going about this.
+## 单提示法
 
-## Single prompt approach
-
-The first approach asks the LLM to generate knowledge then write the post, all with a single prompt.
+第一种方法要求LLM在一次提示中生成知识然后写文章。
 
 ```text
-Generate 4 facts about the Kermode bear, then use these facts to write a short blog post using the information:
+生成4个有关Kermode熊的事实，然后使用这些事实来撰写一篇内容简短的博客文章：
 // highlight-start
-The Kermode bear, also known as the spirit bear, is a rare subspecies of the American black bear that is found in the coastal regions of British Columbia, Canada. 
+Kermode熊，又称灵熊，是黑熊的一个罕见亚种，在加拿大不列颠哥伦比亚省的沿海地区发现。
 
-1. The Kermode bear is a unique subspecies of the American black bear, with approximately 10% of the population having white fur. 
+1. Kermode熊是黑熊的一个独特亚种，约有10%的人口有白色毛皮。
 
-2. The Kermode bear is a symbol of the First Nations people of British Columbia, and is seen as a spirit animal. 
+2. Kermode熊是不列颠哥伦比亚省的原住民的象征，被视为灵性动物。
 
-3. The Kermode bear is an important part of the ecosystem, helping to disperse seeds and maintain the balance of the forest. 
+3. Kermode熊是生态系统的重要组成部分，帮助传播种子和维持森林的平衡。
 
-4. The Kermode bear is a protected species, and its population is monitored closely by the provincial government.
+4. Kermode熊是一种受保护的物种，其人口受到省政府的严密监控。
 
-The Kermode bear is a unique and special animal that is found in the coastal regions of British Columbia, Canada. Approximately 10% of the population of this subspecies of the American black bear have white fur, making them a rare sight. The Kermode bear is a symbol of the First Nations people of British Columbia, and is seen as a spirit animal. It is an important part of the ecosystem, helping to disperse seeds and maintain the balance of the forest. The Kermode bear is a protected species, and its population is monitored closely by the provincial government. It is a beautiful and majestic animal, and it is important that we do our part to protect and conserve this species.
+Kermode熊是一种独特而特殊的动物，生活在加拿大不列颠哥伦比亚省的沿海地区。约有10%的这个黑熊亚种的人口具有白色毛皮，是一种罕见珍奇动物。Kermode熊是不列颠哥伦比亚省的原住民的象征，被视为灵性动物。它是生态系统的重要组成部分，帮助传播种子和维持森林的平衡。Kermode熊是一种受保护的物种，其人口受到省政府的严密监控。它是美丽而威严的动物，我们有责任保护和保护这种物种。
 // highlight-end
 ```
 
 
-## Dual prompt approach
+## 双提示法
 
-In this approach, we first prompt the %%LLM|LLM%% to generate facts about the bear:
-  
+在这种方法中，我们首先提示%%LLM|LLM%%生成有关熊的事实：
+
 ```text
-Generate 10 facts about the Kermode bear:
+生成10个Kermode熊的事实：
+
 // highlight-start
-1. The Kermode bear, also known as the Spirit Bear, is a rare subspecies of the American black bear found in British Columbia, Canada.
+1. Kermode熊，又称灵熊，是黑熊的一个罕见亚种，在加拿大不列颠哥伦比亚省发现。
 
-2. The Kermode bear has a unique white or cream-colored coat, which is caused by a recessive gene.
+2. Kermode熊具有独特的白色或奶油色皮毛，这是由隐性基因引起的。
 
-3. The Kermode bear is a symbol of hope and renewal for the First Nations people of British Columbia.
+3.对于不列颠哥伦比亚省的原住民来说，Kermode熊是希望和更新的象征。
 
-4. The Kermode bear is a protected species and is listed as a species of special concern by the Committee on the Status of Endangered Wildlife in Canada.
+4. Kermode熊是一种受保护的物种，被列为加拿大濒危野生动物状况委员会所关注的物种之一。
 // highlight-end
 ```
 
-Then, we feed that information into another prompt to write the blog post:
+然后，我们把这些信息输入到另一个提示中来撰写博客文章：
 
 ```text
-1. The Kermode bear, also known as the Spirit Bear, is a rare subspecies of the American black bear found in British Columbia, Canada.
-
-2. The Kermode bear has a unique white or cream-colored coat, which is caused by a recessive gene.
-
-3. The Kermode bear is a symbol of hope and renewal for the First Nations people of British Columbia.
-
-4. The Kermode bear is a protected species and is listed as a species of special concern by the Committee on the Status of Endangered Wildlife in Canada.
-
-Use the above facts to write a one paragraph blog post about the Kermode bear:
+使用上述事实撰写一段关于Kermode熊的一段博客文章：
 
 // highlight-start
-
-The Kermode bear, also known as the Spirit Bear, is a rare subspecies of the American black bear found in British Columbia, Canada. This unique bear has a white or cream-colored coat, caused by a recessive gene, and is a symbol of hope and renewal for the First Nations people of British Columbia. The Kermode bear is a protected species and is listed as a species of special concern by the Committee on the Status of Endangered Wildlife in Canada, making it an important part of the region's biodiversity.
+Kermode熊，又称灵熊，是黑熊的一个罕见亚种，在加拿大不列颠哥伦比亚省发现。这种独特的熊具有白色或奶油色皮毛，这是由隐性基因引起的，对于不列颠哥伦比亚省的原住民来说，Kermode熊是希望和更新的象征。Kermode熊是一种受保护的物种，被列为加拿大濒危野生动物状况委员会所关注的物种之一，这使其成为该地区生物多样性的重要组成部分。
 
 // highlight-end
 ```
 
-I recommend this second approach since it can produce longer content more reliably.
+建议使用第二种方法，因为它可以更可靠地生成更长的内容。
 
-## Another use case
 
-The generated knowledge approach was actually introduced for a completely different task, that of answering difficult questions. Consider the following question, which GPT-3 answers incorrectly: 
+initial-prompt翻译：生成式知识的基本思想是在向%%LLM|LLM%% 提出最终问题之前，先要求它生成有关所提问题的潜在有用信息。
+initial-response翻译：生成式知识的基本思想是在向%%LLM|LLM%% 提出最终问题之前，先要求它生成有关所提问题的潜在有用信息。
+email里面的文本信息翻译：请您撰写一篇关于白熊的小型博客文章。在让%%LLM|LLM%%写博客文章之前，您可以要求它生成一些有关白熊的事实。
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="Which country is larger, Congo or South Africa?" initial-response="South Africa is larger than Congo." max-tokens="256" box-rows="3" model-temp="0" top-p="0">
+## 另一个用例
+
+生成知识的方法实际上是为了解决完全不同的问题而引入的，那就是回答困难问题。考虑以下问题，GPT-3错误回答：
+
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="哪个国家更大，刚果还是南非？" initial-response="南非比刚果更小。" max-tokens="256" box-rows="3" model-temp="0" top-p="0">
     <noscript>Failed to load Dyno Embed: JavaScript must be enabled</noscript>
 </div>
 
 <br/>
 
-If we first ask the %%LLM|LLM%% to generate facts about Congo and South Africa, we can then use that information to answer the question correctly. In theory, this is similar to %%CoT|CoT prompting%%, since we are effectively getting the LLM to generate intermediate reasoning in the form of related facts.
+如果我们首先要求%%LLM|LLM%%生成有关刚果和南非的事实，我们就可以使用那些信息来正确回答问题。理论上，这类似于%%CoT|CoT提示%%，因为我们实际上是让LLM以相关事实的形式生成中间推理。
 
-Let's start with the first step, *knowledge generation*. We can ask the %%LLM|LLM%% to generate facts about Congo and South Africa:
+让我们从第一步开始，即*知识生成*。我们可以要求%%LLM|LLM%%生成关于刚果和南非的事实：
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="Generate some knowledge about the sizes of South Africa and Congo:" initial-response="South Africa is the 25th largest country in the world, with an area of 1,221,037 square kilometers (471,445 square miles). Congo, on the other hand, is the 11th largest country in the world, with an area of 2,344,858 square kilometers (905,567 square miles). South Africa is almost half the size of Congo, with a population of 57.7 million compared to Congo's population of 84.3 million. South Africa is the most populous country in the region, while Congo is the second most populous." max-tokens="256" box-rows="6" model-temp="0" top-p="0">
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="关于南非和刚果的大小，请生成一些知识：" initial-response="南非是世界第25大国，面积为1,221,037平方公里（471,445平方英里）。另一方面，刚果是世界第11大国，面积为2,344,858平方公里（905,567平方英里）。南非的面积几乎是刚果的一半，人口为5,770万，而刚果的人口为8,43万。南非是该地区最人口众多的国家，而刚果是第二人口众多的国家。" max-tokens="256" box-rows="6" model-temp="0" top-p="0">
     <noscript>Failed to load Dyno Embed: JavaScript must be enabled</noscript>
 </div>
 
 <br/>
 
-Next, let's use that knowledge to answer the question correctly. This is the *knowledge integration* step!
+接下来，让我们使用这些知识来正确回答问题。这就是*知识整合*的步骤！
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="South Africa is the 25th largest country in the world, with an area of 1,221,037 square kilometers (471,445 square miles). Congo, on the other hand, is the 11th largest country in the world, with an area of 2,344,858 square kilometers (905,567 square miles). South Africa is almost half the size of Congo, with a population of 57.7 million compared to Congo's population of 84.3 million. South Africa is the most populous country in the region, while Congo is the second most populous.\n\nWhich country is larger, Congo or South Africa?" initial-response="Congo is larger than South Africa." max-tokens="256" box-rows="15" model-temp="0" top-p="0">
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="南非是世界第25大国，面积为1,221,037平方公里（471,445平方英里）。另一方面，刚果是世界第11大国，面积为2,344,858平方公里（905,567平方英里）。南非的面积几乎是刚果的一半，人口为5,770万，而刚果的人口为8,43万。南非是该地区最人口众多的国家，而刚果是第二人口众多的国家。\n\n哪个国家更大，刚果还是南非？" initial-response="刚果比南非更大。" max-tokens="256" box-rows="15" model-temp="0" top-p="0">
     <noscript>Failed to load Dyno Embed: JavaScript must be enabled</noscript>
 </div>
 
-## A more technical discussion
+## 更多技术讨论
 
-Although the above use case was similar to the way generated knowledge was originally introduced, it is not exactly the same. The below content covers the more technical context in which the approach was introduced. It follows the two intermediate steps (knowledge generation and knowledge integration) pattern that we saw above.
+虽然上述用例与引入生成知识的方式类似，但并不完全相同。下面的内容涵盖了介绍此方法时的更多技术背景。它遵循我们上面看到的两个中间步骤（知识生成和知识整合）模式。
 
 import KGImage from '@site/docs/assets/knowledge_generation.png';
 
@@ -107,14 +103,12 @@ import KGImage from '@site/docs/assets/knowledge_generation.png';
 </div>
 
 <div style={{textAlign: 'center'}}>
-Generated Knowledge (Liu et al.)
+生成的知识（Liu等人）
 </div>
 
-### Knowledge Generation
+### 知识生成
 
-In the knowledge generation step, the %%LLM|LLM%% is asked to generate a set of facts
-about the **question**. The LLM is prompted in few-shot fashion as seen below. 
-M different completions are generated using this same prompt (similar to the self-consistency approach).
+在知识生成步骤中，要求LLM生成一组关于问题的事实。LLM以few-shot方式进行提示，如下所示。使用相同提示生成M个补全方案（类似于自洽方法）。
 
 import KGP1Image from '@site/docs/assets/gen_k_p1.png';
 
@@ -123,43 +117,37 @@ import KGP1Image from '@site/docs/assets/gen_k_p1.png';
 </div>
 
 <div style={{textAlign: 'center'}}>
-Generated Knowledge Example (Liu et al.)
+生成的知识示例（Liu等人）
 </div>
 
 
-### Knowledge Integration
+### 知识整合
 
-Next, we generate "knowledge augmented" questions and prompt the %%LLM|LLM%% with them
-to get final answers. The easiest way to understand this is to go through an example.
+接下来，我们生成“知识增强”问题，并使用它们提示%%LLM|LLM%%，以获得最终答案。最简单的理解方法是通过以下示例。
 
-Let's assume we are attempting to answer the **question** 
-"Most Kangaroos have <mask\> limbs". Assume that at the knowledge generation step 
-we generated 2 knowledges (M=2):
+我们假设要回答的问题是“大多数袋鼠有<mask\>条腿”。假设在知识生成步骤中，我们生成了2个知识（M=2）：
 
-- Knowledge 1: `Kangaroos are marsupials that live in Australia.`
+- 知识1：`袋鼠是在澳大利亚生活的有袋动物。`
 
-- Knowledge 2: `Kangaroos are marsupials that have 5 limbs.`
+- 知识2：`袋鼠是一种有5条腿的有袋动物。`
 
-Now, we concatenate each knowledge with the question to generate knowledge augmented questions:
+现在，我们将每个知识与问题连接起来，生成知识增强的问题：
 
-- Knowledge Augmented Question 1: `Most Kangaroos have <mask\> limbs. Kangaroos are marsupials that live in Australia.`
+- 知识增强问题1：`大多数袋鼠有<mask\>条腿。袋鼠是在澳大利亚生活的有袋动物。`
 
-- Knowledge Augmented Question 2: `Most Kangaroos have <mask\> limbs. Kangaroos are marsupials that have 5 limbs.`
+- 知识增强问题2：`大多数袋鼠有<mask\>条腿。袋鼠是一种有5条腿的有袋动物。`
 
-We then prompt the LLM with these knowledge augmented questions and get the final answer proposals:
+然后，我们使用这些知识增强问题提示LLM，并获取最终答案提议：
 
-- Answer 1: `4`
+- 答案1：`4`
 
-- Answer 2: `5`
+- 答案2：`5`
 
-We select the answer with the highest probability as the final answer. The 
-highest probability could be the softmax probability of the answer token, or the
-log probability of the answer token(s).
+我们选择概率最高的答案作为最终答案。最高概率可能是答案令牌的softmax概率，也可能是答案令牌的对数概率。
 
-## Recitation-Augmented Language Models
+## 讲述增强语言模型
 
-The recitation-augmented(@sun2022recitationaugmented) approach it is similar to generated knowledge (basically the same). However, is much less complex than the formal implementation of generated knowledge.
-
+讲述增强（@sun2022recitationaugmented）方法与生成的知识相似（基本相同）。但是，它比生成的知识实现要简单得多。
 
 import RImage from '@site/docs/assets/recitation.png';
 
@@ -167,16 +155,14 @@ import RImage from '@site/docs/assets/recitation.png';
   <img src={RImage} style={{width: "250px"}} />
 </div>
 
-The idea here is to few shot prompt the LLM to generate information *and* answer in the *same* step. The fact that it is reciting/generating knowledge and answering the question in the same step is the main difference from the generated knowledge approach.
+这里的想法是在同一步骤中提示LLM以生成信息和答案。它在讲授/生成知识并在同一步骤中回答问题方面的差异是主要区别。
 
-To reiterate, this approach prompts the model with multiple (question, recitation, answer) exemplars, then asks the question. The authors note that this approach can be combined with self consistency or multiple completion paths.
+重申一下，该方法使用多个（问题、讲授、答案）示例提示模型，然后提出问题。作者指出，这种方法可以与自洽或多路径完成相结合。
 
+## 备注
 
+- 生成的知识在各种常识数据集上都表现出改进。
 
-## Notes
+- 对应所选答案的知识称为_选择的知识_。
 
-- Generated knowledge shows improvements on various commonsense datasets.
-
-- The knowledge corresponding to the selected answer is called the _selected knowledge_.
-
-- In practice, you could take the most frequently occurring answer as the final one.
+- 在实践中，您可以将最频繁出现的答案作为最终答案。

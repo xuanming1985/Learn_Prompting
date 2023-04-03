@@ -1,10 +1,9 @@
 ---
 sidebar_position: 70
 ---
+# 🟡 数学
 
-# 🟡 Math
-
-Throughout this course, we have seen many different prompting methods that can be used to improve %%LLM|LLM%% math ability. One recent approach, MathPrompter(@imani2023mathprompter), unifies some of these methods (%%CoT|CoT prompting%%, %%PAL|PAL%%, etc.) into a single technique. The overarching idea is to break down a math question into algebraic terms then use Python code to solve it in different ways.
+在本课程中，我们已经看到了许多不同的提示方法，可以用来提高%%LLM|LLM%%数学能力。最近的一种方法是MathPrompter（@imani2023mathprompter），将一些这些方法统一成一种技术。这个整体的想法是将数学问题分解成代数术语，然后使用Python代码以不同的方式解决它。
 
 import math from '@site/docs/assets/math.png';
 
@@ -12,80 +11,102 @@ import math from '@site/docs/assets/math.png';
   <img src={math} style={{width: "500px"}} />
 </div>
 
-MathPrompter has **four** steps. We will explain them using the following example problem. The example is taken directly from the paper.
+MathPrompter有**四个**步骤。我们将使用以下示例问题来解释它们。该示例直接摘自论文。
 
 ```text
-Q: At a restaurant, each adult meal costs $5 and kids eat free. If a group of 15
-people came in and 8 were kids, how much would it cost for the group to eat?
+问题：在一家餐厅里，每份成人餐花费5美元，孩子可以免费用餐。如果一组有15个人进来，其中8个是孩子，请问这个团体用餐需要多少费用？
 ```
 
-## Step 1: Generate Algabraic Template
+## 步骤1：生成代数模板
 
-The first step is to assign a variable to each number in the question. This helps because it allows easier translation of the question into an abstract math question, as well as into programming code.
+第一步是为问题中的每个数字分配一个变量。这有助于将问题转化为抽象的数学问题，并转化为编程代码。
 
-This can be done via few shot prompting:
+这可以通过few-shot prompting完成：
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="Q: A zoo charges $12 per adult ticket and allows children under 5 to enter for free. A family of 4 adults and 2 children under 5 visit the zoo. What is the total cost for the family to enter?\nQt: At a zoo, each adult ticket costs $A and children under 5 can enter for free. If a family of B adults and C children under 5 visit the zoo, what is the total cost for the family to enter?\nMapping: {A: 12, B: 4, C: 2}\n\nQ: A store sells shoes at $60 per pair and socks at $8 per pair. If a customer buys 2 pairs of shoes and 3 pairs of socks, what is the total cost of the purchase?\nQt: At a store, shoes cost $A per pair and socks cost $B per pair. If a customer buys C pairs of shoes and D pairs of socks, what is the total cost of the purchase?\nMapping: {A: 60, B: 8, C: 2, D: 3}\n\nQ: At a restaurant, each adult meal costs $5 and kids eat free. If a group of 15\npeople came in and 8 were kids, how much would it cost for the group to eat?" initial-response="Qt: At a restaurant, each adult meal costs $A and kids eat free. If a group of B people came in and C were kids, how much would it cost for the group to eat?\nMapping: {A: 5, B: 15, C: 8}" max-tokens="256" box-rows="14" model-temp="0" top-p="0">
-    <noscript>Failed to load Dyno Embed: JavaScript must be enabled</noscript>
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="Q1: 一家动物园收取12美元的成人门票，允许5岁以下的儿童免费进入。一个家庭包括4个成人和2个5岁以下的儿童来参观动物园。这个家庭的总门票费用是多少？映射：{A: 12, B: 4, C: 2}
+Q2: 一家商店出售60美元一双的鞋子和8美元一双的袜子。如果顾客购买了2双鞋和3双袜子，这次购物的总费用是多少？ 映射：{A: 60, B: 8, C: 2, D: 3}
+Q3: 在一家餐厅里，每份成人餐花费5美元，孩子可以免费用餐。如果一组有15个人进来，其中8个是孩子，请问这个团体用餐需要多少费用？" initial-response="Qt: 在一家餐厅里，每份成人餐价格为$A，孩子们可以免费进餐。如果来了一个由B人组成的团体，其中C个是孩子，那么这个团体吃饭要花多少钱？\n映射：{A: 5, B: 15, C: 8}" max-tokens="256" box-rows="14" model-temp="0" top-p="0">
+    <noscript>未能加载Dyno Embedde:必须启用JavaScript</noscript>
 </div>
 
-## Step 2: Math Prompts
+## 步骤2：数学提示
 
-The point of this step is to formulate the problem as both an algabraic statement and as Python code. This step has two simultaneous prompts, which help to give diverse representations of the problem.
+这一步的重点是将问题表示为代数语句和Python代码。该步骤有两个同时进行的提示，这有助于给出问题的各种不同的表示形式。
 
-### 2a: Algebraic Statement
+### 2a：代数语句
 
-We can few-shot prompt the LLM to represent the math problem as an algebraic statement. This is done by asking the LLM to generate the answer format, starting with "Answer =".
+我们可以few-shot提示LLM将数学问题表示为代数语句。这是通过要求LLM生成答案格式来完成的，以“Answer =”开头。
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="Qt: At a zoo, each adult ticket costs $A and children under 5 can enter for free. If a family of B adults and C children under 5 visit the zoo, what is the total cost for the family to enter?\nMapping: {A: 12, B: 4, C: 2}\n\nWrite a mathematical equation and generate the answer format\nstarting with ‘Answer =’\n\nAnswer = A * B\n\nQt: At a store, shoes cost $A per pair and socks cost $B per pair. If a customer buys C pairs of shoes and D pairs of socks, what is the total cost of the purchase?\nMapping: {A: 60, B: 8, C: 2, D: 3}\n\nWrite a mathematical equation and generate the answer format\nstarting with ‘Answer =’\n\nAnswer = A * C + B * D\n\nQt: At a restaurant, each adult meal costs $A and kids eat free. If a group of B people came in and C were kids, how much would it cost for the group to eat?\nMapping: {A: 5, B: 15, C: 8}\n\nWrite a mathematical equation and generate the answer format\nstarting with ‘Answer =’" initial-response="Answer = A * B - A * C" max-tokens="256" box-rows="14" model-temp="0" top-p="0">
-    <noscript>Failed to load Dyno Embed: JavaScript must be enabled</noscript>
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="Qt: 在一家餐厅里，每份成人餐价格为$A，孩子们可以免费进餐。如果来了一个由B人组成的团体，其中C个是孩子，那么这个团体吃饭要花多少钱？\n映射：{A: 5, B: 15, C: 8}\n\n编写一个数学方程并生成答案格式，以‘Answer =’开头\n\n答案 = A * (B - C)\n\nQt: 在一家商店里，鞋子的价格是每双$A，袜子的价格是每双$B。如果顾客购买了C双鞋和D双袜子，那么购买总价是多少？\n映射：{A: 60, B: 8, C: 2, D: 3}\n\n编写一个数学方程并生成答案格式，以‘Answer =’开头\n\n答案 = A * C + B * D\n\nQt: 在一家动物园里，每张成人门票收费$12，5岁以下的孩子可以免费进入。一个由4个成年人和2个5岁以下的儿童组成的家庭参观了动物园。这个家庭的总费用是多少？\n映射：{A: 12, B: 4, C: 2}\n\n编写一个数学方程并生成答案格式，以‘Answer =’开头" initial-response="Answer = A * B - A * C" max-tokens="256" box-rows="14" model-temp="0" top-p="0">
+    <noscript>未能加载Dyno Embedde:必须启用JavaScript</noscript>
 </div>
+当前日期：2023年4月1日13:27:57
 
-### 2b: Python Code
+### 2b: Python代码
 
-We can also ask the %%LLM|LLM%% to generate Python code that solves the problem. This is done by asking the LLM to generate a Python function.
+我们还可以向%%LLM|LLM%%询问生成解决问题的Python代码。这可以通过要求LLM生成Python函数来实现。
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="Qt: At a zoo, each adult ticket costs $A and children under 5 can enter for free. If a family of B adults and C children under 5 visit the zoo, what is the total cost for the family to enter?\nMapping: {A: 12, B: 4, C: 2}\n\nWrite a Python function that returns the answer.\n\ndef zoo_cost(A, B, C):\n  return A * B\n\n\nQt: At a store, shoes cost $A per pair and socks cost $B per pair. If a customer buys C pairs of shoes and D pairs of socks, what is the total cost of the purchase?\n\nWrite a Python function that returns the answer.\n\ndef store_cost(A, B, C, D):\n  return (A * C) + (B * D)\n\nQt: At a restaurant, each adult meal costs $A and kids eat free. If a group of B people came in and C were kids, how much would it cost for the group to eat?\n\nWrite a Python function that returns the answer." initial-response="def restaurant_cost(A, B, C):\n  return A * (B - C)" max-tokens="256" box-rows="14" model-temp="0" top-p="0">
-    <noscript>Failed to load Dyno Embed: JavaScript must be enabled</noscript>
-</div>
-
-### Answer Generation
-
-Now, we can use the Mapping that we generated previously to automatically fill in the variables.
+以下是一个例子：
 
 ```text
-Mapping: {A: 5, B: 15, C: 8}
+问题：在动物园里，每张成人门票的费用为$A，5岁以下的儿童可免费入场。如果一家有B名成人和C名5岁以下的孩子参观动物园，那么这个家庭进入动物园的总费用是多少？
+变量：{A: 12, B: 4, C: 2}
+请编写一个Python函数返回答案。
+
+def zoo_cost(A, B, C):
+   return A * B
+
+问题：在商店里，鞋子每双售价为$A，袜子每双售价为$B。如果一个顾客买了C双鞋和D双袜子，那么购买的总费用是多少？
+
+请编写一个Python函数返回答案。
+def store_cost(A, B, C, D):
+   return (A * C) + (B * D)
+
+问题：在餐厅里，每个成人餐费用为$A，孩子们免费进餐。如果B个人来餐馆用餐，其中C个人是孩子，那么整个小组吃饭需要多少钱？
+
+请编写一个Python函数返回答案。
+
+def restaurant_cost(A, B, C):
+   return A * (B - C)
 ```
 
-Algabraic: 
+### 答案生成
+
+现在，我们可以使用之前生成的变量映射自动填充变量。
+
 ```text
-Answer = 5 * 15 - 5 * 8
+变量：{A: 5, B: 15, C: 8}
 ```
 
-Python function:
+代数式：
+```text
+答案 = 5 * 15 - 5 * 8
+```
+
+Python函数：
 ```python
 def restaurant_cost(A=5, B=15, C=8):
   return A * (B - C)
 ```
 
-We can evaluate both using Python.
+我们可以使用Python对两者进行评估。
 
-Algebraic:
+代数式：
 ```python
 >>> eval("5 * 15 - 5 * 8")
 35
 ```
 
-Python function:
+Python函数：
 ```python
 >>> restaurant_cost()
 35
 ```
 
-## Step 4: Self-Consistency
+## 步骤4：自我一致性
 
-Finally, we will leverage %%Self-Consistency|self_consistency%% to rerun the above process multiple times (~5), then take the majority answer.
+最后，我们将利用 %%Self-Consistency|self_consistency%% 多次运行上述过程(~5次)，然后采取多数答案。
 
-## Conclusion
+## 结论
 
-MathPrompter reports 92.5% accuracy on the MultiArith(@roy-roth-2015-solving) dataset. The success of this technique is a great example of how **you** as a prompt engineer can take methods that you have learned throughout this course and combine them to deal with larger problems.
+MathPrompter在MultiArith(@roy-roth-2015-solving)数据集上报告了92.5％的准确率。这种技术的成功是一个很好的例子，它展示了**您**作为提示工程师如何将本课程学习的方法结合起来处理更大的问题。

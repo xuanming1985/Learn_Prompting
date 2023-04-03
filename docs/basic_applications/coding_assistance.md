@@ -2,11 +2,11 @@
 sidebar_position: 40
 ---
 
-# 🟢 Coding Assistance
+# 🟢 编程辅助
 
-You can use ChatGPT for debugging, code generation, reformatting, commenting, and more. It can work with code in over 40 programming languages. 
+您可以使用ChatGPT进行调试、代码生成、格式化、注释等等操作，它可以处理40多种编程语言的代码。
 
-|   Very Old  |         Old    |     Recent          |    Bleeding Edge      |
+|   极古老  |         古老    |     近期          |    先进         |
 |-------------|----------------|---------------------|-----------------------|
 | BASIC       | Perl           | Swift               | Kotlin                |
 | Assembly    | Pascal         | TypeScript          | Julia                 |
@@ -19,15 +19,15 @@ You can use ChatGPT for debugging, code generation, reformatting, commenting, an
 | Forth       | Tcl            | Groovy              | Vlang                 |
 | Ada         | SQL            | Scala Native        | Erlang                |
 
-## Code Generation
+## 代码生成
 
-Instructing ChatGPT to generate code is as simple as this:
+让ChatGPT生成代码非常简单，只需要这样：
 
 ```text
-Act as a junior python programmer. Please write the code to generate madlibs from 3 arrays of 6 items each: prepositions, verbs and nouns, with the nouns also being used as direct objects. After writing it, execute the code.
+请假设你是一名初级的Python程序员。请写一段代码，生成三个由6个项目组成的数组的madlibs，其中prepositions代表介词, verbs代表动词, nouns代表名词，并且名词也被用作直接对象。编写完后，请执行该代码。
 ```
 
-The output will be something like:
+输出结果将类似于：
 
 ```text
 // highlight-start
@@ -47,27 +47,27 @@ print(madlib)
 // highlight-end
 ```
 
-Try it here:
+在此处尝试：
 
 <div 
 trydyno-embed="" 
 openai-model="text-davinci-003" 
-initial-prompt="Act as a junior python programmer. Please write the code to generate madlibs from 3 arrays of 6 items each: prepositions, verbs and nouns, with the nouns also being used as direct objects." 
+initial-prompt="请假设你是一名初级的Python程序员。请写一段代码，生成三个由6个项目组成的数组的madlibs，其中prepositions代表介词, verbs代表动词, nouns代表名词，并且名词也被用作直接对象。" 
 initial-response="" 
 max-tokens="512" 
 box-rows="5" 
 model-temp="0.0" 
 top-p="0">
-    <noscript>Failed to load Dyno Embed: JavaScript must be enabled</noscript>
+    <noscript>无法加载Dyno Embed:必须启用JavaScript</noscript>
 </div>
 
-## Commenting and Reformatting Code
+## 代码注释和格式化
 
-You can ask ChatGPT to add comments to your code, and reformat it for legibility. After your prompt instruction, add three hashmarks and then paste in the code you'd like it to clean up:
+您可以请求ChatGPT为您的代码添加注释并格式化。在输入样本之后，添加三个井号然后粘贴要清理的代码：
 
 ```text
-Please add line comments to this Python code and reformat it for legibility:  
-
+请为此Python代码添加行注释并将其格式化以便阅读：
+  
 import math
 amplitude = 30
 frequency = 2
@@ -77,35 +77,35 @@ for i in range(num_points):
     print(' ' * (amplitude + y) + '*')
 ```
 
-The output will be something like:
+输出结果将类似于：
 
 ```text
 // highlight-start
-# Import the math module
+# 导入math库
 import math
 
-# Set the amplitude, frequency, and number of points in the wave
+# 设置波浪的振幅，频率和点数
 amplitude = 30
 frequency = 2
 num_points = 50
 
-# Loop over each point in the wave
+# 遍历波浪上的每个点
 for i in range(num_points):
-    # Calculate the y value of the wave using the sine function from the math module
+    # 使用math库中的正弦函数计算波浪的y值
     y = int(round(amplitude * math.sin(2 * math.pi * frequency * i / num_points)))
     
-    # Print a space for padding, followed by an asterisk at the appropriate position on the wave
+    # 打印一个填充空格，后跟位于波浪上适当位置的星号
     print(' ' * (amplitude + y) + '*')
 
 // highlight-end
 ```
 
-## Debugging
+## 调试
 
-Not only can ChatGPT detect syntax errors in code, but it can also find logical errors that would crop up when code is executed. Below is an example of a Python script that eventually causes a division by zero error one line 4 due to a logical error on line 3.  Try this simple prompt to find and fix the error:
+ChatGPT不仅可以检测代码中的语法错误，还可以查找在执行代码时会出现的逻辑错误。以下是一个Python脚本的示例，最终由于第3行的逻辑错误导致第4行出现除以零的错误。 尝试这个简单的提示，找到并修复错误：
 
 ```text
-Please debug this Python code:  
+请调试此Python代码：  
 
 1. pizza_cost = 100
 2. partygoers = 10
@@ -115,7 +115,7 @@ Please debug this Python code:
 6.    partygoers -= 2
 ```
 
-The output will include the corrected while loop, which is changed to ensure the denominator variable stays positive:
+输出将包括更正的while循环，该循环已更改以确保分母变量保持为正数：
 
 ```text
 // highlight-start
@@ -123,15 +123,14 @@ The output will include the corrected while loop, which is changed to ensure the
 // highlight-end
 ```
 
-For more nuanced errors, you may need to add more specifics: the error message, environment variables, included libraries or variations in inputs. 
+对于更复杂的错误，您可能需要添加更多的细节：错误消息、环境变量、包含的库或输入变化。
 
+## 代码优化
 
-## Optimizing Code
-
-If your script is taking too long to execute, ChatGPT can optimize it. Here's an example of optimizing an inefficient script that finds prime numbers:
+如果您的脚本执行时间过长，ChatGPT可以对其进行优化。以下是优化一个找质数的低效脚本的示例：
 
 ```text
-Act like a very senior python developer. Please optimize this script:  
+请假设你是一名非常有经验的Python开发者。请优化此脚本：
 
 for num in range(1, 101):
     if num  1:
@@ -142,7 +141,7 @@ for num in range(1, 101):
             print(num)
 ```
 
-The output might be a script that uses the [Sieve of Eratosthenes algorithm](https://www.geeksforgeeks.org/sieve-of-eratosthenes/) for finding prime numbers:
+输出可能是使用[Sieve of Eratosthenes算法](https://www.geeksforgeeks.org/sieve-of-eratosthenes/)查找质数的脚本：
 
 ```text
 // highlight-start
@@ -155,15 +154,13 @@ print(numbers)
 // highlight-end
 ```
 
-Note that we asked the bot to "act like a _senior_ developer" to optimize the script. You can also dictate that it have a certain area of expertise (e.g., sorting algorithms) or number of years of experience. Alternatively, if you have a script that seems overly complicated, you can ask ChatGPT to write that script "as a _very junior_ developer."
+请注意，我们要求机器人“假装成 _非常有经验的_ 开发者”来优化脚本。您还可以规定它在某个特定领域具有专业知识（例如，排序算法）或具有某些年限的经验。或者，如果您有一个看起来过于复杂的脚本，可以要求ChatGPT以“ _非常初级的_ 开发者”的身份编写该脚本。
+## 在编程语言之间进行转换
 
-
-## Translating Between Programming Languages
-
-A very useful feature ChatGPT offers is the ability to port programs from one language to another. A typical use for this might be upgrading code in an older language to a more modern one:
+ChatGPT提供的一个非常有用的功能是能够将程序从一种语言移植到另一种语言。一个典型的用例可能是将旧语言中的代码升级到更现代的语言：
 
 ```text
-Act like an experienced developer with knowledge of both COBOL and Python. Please convert this COBOL program to Python:  
+表现得像了解COBOL和Python的经验丰富的开发人员。请将此COBOL程序转换为Python：  
 
 
 IDENTIFICATION DIVISION.
@@ -184,7 +181,7 @@ DISPLAY "Social Security tax is: $", SS-TAX.
 STOP RUN.
 ```
 
-The output might be something like this:
+输出可能类似于：
 
 ```text
 // highlight-start
@@ -196,12 +193,12 @@ print("Social Security tax is: $", round(ss_tax, 2))
 ```
 
 
-## Handling Multiple Files and Refactoring your Codebase
+## 处理多个文件和重构您的代码库
 
-What if you want ChatGPT to evaluate **multiple** files? Simply supply the filenames and paste the code for each:
+如果您想要ChatGPT评估**多个**文件怎么办？ 只需提供文件名并粘贴每个文件的代码即可：
 
 ```text
-My Python script uses two files, listed below, in different directories. Please display the output from executing conversation.py:
+我的Python脚本使用两个文件，分别在不同的目录中。请显示执行conversation.py时的输出：
 
 BEGIN FILE 1: ./phrases/coming_and_going.py
 def hi(name):
@@ -220,30 +217,29 @@ Goodbye, John!
 // highlight-end
 ```
 
+使用此技术，您可以在单个提示中提交多个文件到ChatGPT并要求其重构代码。 或者，您可以要求它“记忆”每一个，然后在稍后的提示中执行它。
 
-Using this technique, you can submit multiple files to ChatGPT in a single prompt and ask it to refactor the code. Alternatively, you can ask it to "memorize" each one and then execute it in a later prompt.
+## 模拟数据库服务器
 
-## Simulating a Database Server
-
-Not only can ChatGPT work with code, but it can simulate server environments like databases, web and email servers. Consider this prompt:
+ChatGPT不仅可以处理代码，还可以模拟诸如数据库、Web和电子邮件服务器等服务器环境。考虑此提示：
 
 ```text
-Act as Microsoft SQL Server. Create a database called "politics" and inside it a table called "politicians." Fill it with 50 rows of famous politicians from around the world from different eras, 1900-2000. Add columns for their full names, country, dates of birth, and date of death if applicable. Create a view for top 3 politicians who lived the longest. Create and execute a Transact-SQL command that outputs the contents of that view.
+扮演Microsoft SQL Server。创建名为“politics”的数据库，其中包含名为“politicians”的表格。将50行来自不同年代（1900-2000年）世界各地著名政客的信息填入其中。为他们的全名、国家、出生日期和适用的死亡日期添加列。创建一个查看前3位活得最久的政治家的视图。创建并执行一个Transact-SQL命令，输出该视图的内容。
 ```
 
-The output will be something like:
+输出将类似于：
 
 ```text
 // highlight-start
--- Create the "politics" database
+-- 创建名为“politics”的数据库
 CREATE DATABASE politics;
 GO
 
--- Use the "politics" database
+-- 使用名为“politics”的数据库
 USE politics;
 GO
 
--- Create the "politicians" table
+-- 创建名为“politicians”的表格
 CREATE TABLE politicians (
     id INT PRIMARY KEY,
     full_name VARCHAR(50),
@@ -251,17 +247,17 @@ CREATE TABLE politicians (
     date_of_birth DATE,
     date_of_death DATE
 );
--- etc.
+-- 等等。
 // highlight-end
 ```
 
-From there, you can add columns, indexes and more:
+从那里，您可以添加列、索引等：
 
-```
-Add a column to the politicians table for the second-in-command and update it for each row.
+```text
+在politicians表格中添加一个副手列，并为每行更新它。
 ```
 
-The output might be something like:
+输出可能类似于：
 
 ```text
 // highlight-start
@@ -279,54 +275,53 @@ SET second_in_command =
 // highlight-end
 ```
 
-## Simulating a Web Server
+## 模拟Web服务器
 
-ChatGPT can simulate many other servers and APIs. Here's an example of a prompt that simulates an Apache server response to specific browser request headers:
+ChatGPT可以模拟许多其他服务器和API。这是一个模拟Apache服务器响应特定浏览器请求头的提示示例：
 
 ```text
-Act as an Apache web server. How would you respond to these HTTP headers?
+扮演一个Apache Web服务器。您将如何回应这些HTTP标头？
 
 GET /example HTTP/1.1
 Host: www.example.com
 ```
 
-The output will be something like:
+输出将类似于：
 
 ```text
 // highlight-start
 HTTP/1.1 200 OK
-Date: [current date and time]
+Date: [当前日期和时间]
 Server: Apache/2.4.41 (Ubuntu)
-Last-Modified: [date and time of last modification of the requested resource]
-Content-Type: [MIME type of the requested resource, e.g. text/html]
+Last-Modified：[请求资源的上次修改日期和时间]
+Content-Type：[所请求资源的MIME类型，例如text/html]
 // highlight-end
 ```
 
-Here are just some of the types of servers and APIs that ChatGPT can emulate:
+以下是ChatGPT可以模拟的某些服务器和API类型：
 
-|   Very Old  |     Old        |        Recent          |    Bleeding Edge     |
+|   很老      |     老        |        新近            |    前沿              |
 |-------------|----------------|------------------------|----------------------|
 | Telnet      | HTTP/1.0       | RESTful API            | GraphQL API          |
 | FTP         | SMTP           | SOAP API               | GRPC API             |
 | POP3        | LDAP           | OAuth 2.0              | Docker API           |
-| IMAP        | DHCP           | OpenAPI (Swagger)      | Kubernetes API       |
+| IMAP        | DHCP           | OpenAPI（Swagger）     | Kubernetes API       |
 | DNS         | NTP            | gRPC-web API           | Istio API            |
 | SNMP        | RADIUS         | MQTT API               | Prometheus API       |
 | Syslog      | SFTP           | WebSocket API          | Envoy API            |
 | TFTP        | SSH            | AWS API Gateway        | Istio Mixer API      |
 | NFS         | XML-RPC        | Azure API Management   | OpenTracing API      |
-| SMB         | JSON-RPC       | Google Cloud Endpoints | NATS Streaming API   |
 
 
-## Simulating a Command Line
+## 模拟命令行
 
-Since a shell within Linux (or Windows PowerShell) is also a programming language, you can interact with it using ChatGPT, and build an environment for your filesystem:
+由于Linux中的shell（或Windows PowerShell）也是一种编程语言，您可以使用ChatGPT与之交互，并为文件系统构建一个环境：
 
 ```
-Act as Debian Linux command shell. Please respond to my commands as the terminal would, with as little explanation as possible. My first command is: ls -l
+扮演Debian Linux命令shell。请像终端一样回应我的命令，尽可能简洁。我的第一个命令是：ls -l
 ```
 
-The output will be something like:
+输出将类似于：
 
 ```text
 // highlight-start
@@ -336,7 +331,7 @@ drwxr-xr-x  2 user  group   4096 Feb 28 09:12 directory1
 // highlight-end
 ```
 
-Try experimenting with other commands:
+尝试尝试其他命令：
 
 ```text
 >touch greeting.txt  
@@ -344,7 +339,7 @@ Try experimenting with other commands:
 >ls -l  
 ```
 
-ChatGPT should remember your changes (for a while, at least) and the final output ought to something like:
+ChatGPT应该会记住您的更改（至少是在一段时间内），最终输出应该类似于：
 
 ```text
 // highlight-start
@@ -355,8 +350,8 @@ drwxr-xr-x  2 user  group   4096 Feb 28 09:12 directory1
 // highlight-end
 ```
 
-A full discussion of using ChatGPT as a virtual machine can be found at [engraved.blog](https://www.engraved.blog/building-a-virtual-machine-inside/).
+有关使用ChatGPT作为虚拟机的完整讨论可在[engraved.blog](https://www.engraved.blog/building-a-virtual-machine-inside/)中找到。
 
 ---
 
-Contributed by Prompt Yes!, a company providing [prompt engineering training](https://promptyes.com/).
+由Prompt Yes! 提供[快速工程培训](https://promptyes.com/)。

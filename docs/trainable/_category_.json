@@ -1,8 +1,8 @@
 {
-  "label": "💪 Prompt Tuning",
+  "label": "💪 提示微调",
   "position": 70,
   "link": {
     "type": "generated-index",
-    "description": "Prompt engineering that you can fine tune with gradients"
+    "description": "使用梯度对提示工程进行微调"
   }
 }

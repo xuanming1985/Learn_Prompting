@@ -2,24 +2,13 @@
 sidebar_position: 3
 ---
 
-# 🟡 LLMs that Reason and Act
+# 🟡 能推理和执行的LLM
 
-ReAct(@yao2022react)(reason, act) is a paradigm for enabling language models to solve complex 
-tasks using natural language reasoning. ReAct is designed for tasks in which the LLM is 
-allowed to perform certain actions. For example, as in a MRKL system, a LLM may be able 
-to interact with external APIs to retrieve information. When asked a question, the LLM
-could choose to perform an action to retrieve information, and then answer the question
-based on the retrieved information.
+ReAct（@yao2022react）（reason，act）是一种使语言模型使用自然语言推理解决复杂任务的范例。ReAct旨在用于允许LLM执行某些操作的任务。例如，在MRKL系统中，LLM可以与外部API交互以检索信息。当被问及问题时，LLM可以选择执行操作来检索信息，然后根据检索到的信息回答问题。
 
-ReAct Systems can be thought of as MRKL systems, with the added ability to **reason
-about** the actions they can perform.
+可以把ReAct系统想象成MRKL系统，具有**思考和行动的能力**。
 
-Examine the following image. The question in the top box is sourced from HotPotQA(@yang2018hotpotqa),
-a question answering dataset that requires complex reasoning. ReAct is able to answer the question by
-first reasoning about the question (Thought 1), and then performing an action (Act 1) to send a query 
-to Google. It then receives an observation (Obs 1), and continues with this thought, action, observation
-loop until it reaches a conclusion (Act 3). 
-
+查看以下图片。上方的问题源自HotPotQA（@yang2018hotpotqa），这是一个需要进行复杂推理的问答数据集。 ReAct可以通过先对问题进行推理（思路1），然后执行操作（Act 1）向Google发送查询来回答问题。然后，它收到了一个观察值（观察1），并继续这个思路、行动、观察循环，直到得出结论（Act 3）。
 
 import react_qa from '@site/docs/assets/react_qa.png';
 
@@ -28,22 +17,14 @@ import react_qa from '@site/docs/assets/react_qa.png';
 </div>
 
 <div style={{textAlign: 'center'}}>
-ReAct System (Yao et al.)
+ReAct系统（Yao等）
 </div>
 
+具有强化学习知识的读者可能会认为这个过程与状态、行动、奖励、状态... 的经典强化学习循环类似。 ReAct在他们的论文中对此进行了一些形式化处理。
 
-Readers with knowledge of reinforcement learning may recognize this process as similar to the classic
-RL loop of state, action, reward, state,... ReAct provides some formalization for 
-this in their paper.
+## 结果
 
-
-## Results
-
-Google used the PaLM(@chowdhery2022palm) LLM in experiments with ReAct. 
-Comparisons to standard prompting (question only), CoT, and other configurations
-show that ReAct's performance is promising for complex reasoning tasks. Google 
-also performs studies on the FEVER dataset(@thorne2018fever), which covers
-fact extraction and verification. 
+谷歌在与ReAct一起的实验中使用了PaLM（@chowdhery2022palm）LLM。与标准提示（仅问题）、CoT和其他配置进行比较，显示出ReAct在复杂推理任务方面的表现非常有前途。谷歌还对涵盖事实提取和验证的FEVER数据集（@thorne2018fever）进行了研究。
 
 import react_performance from '@site/docs/assets/react_performance.png';
 
@@ -52,6 +33,5 @@ import react_performance from '@site/docs/assets/react_performance.png';
 </div>
 
 <div style={{textAlign: 'center'}}>
-ReAct Results (Yao et al.)
+ReAct结果（Yao等）
 </div>
-

@@ -2,22 +2,12 @@
 sidebar_position: 1
 ---
 
-# 🟢 Introduction
+# 🟢 简介
 
-This chapter covers how to make completions more reliable, as well as how to 
-implement checks to ensure that outputs are reliable. 
+本章将介绍如何使完成结果更可靠，以及如何实施检查以确保输出结果的可靠性。
 
-To a certain extent, most
-of the previous techniques covered have to do with improving completion
-accuracy, and thus reliability, in particular self-consistency(@wang2022selfconsistency).
-However, there are a number of other techniques that can be used to improve reliability,
-beyond basic prompting strategies.
+在一定程度上，之前介绍的大多数技巧都是为了提高完成结果的准确性和可靠性，特别是自洽性(@wang2022selfconsistency)。但除了基本的提示策略外，还有许多其他技术可以用来提高可靠性。
 
-%%LLMs|LLM%% exhibit various problems including hallucinations(@ye2022unreliability), 
-flawed explanations with %%CoT|CoT prompting%% methods(@ye2022unreliability), and multiple biases
-including majority label bias, recency bias, and common token bias(@zhao2021calibrate). 
-Additionally, zero-shot CoT can be particularly biased when dealing with sensitive topics
-(@shaikh2022second).
+%%LLMs|LLM%%存在各种问题，包括幻觉(@ye2022unreliability)、使用%%CoT|CoT提示%%方法时存在错误的解释(@ye2022unreliability)，以及多个偏见，包括大多数标签偏见、近期偏见和常见词偏见(@zhao2021calibrate)。此外，在处理敏感话题时，零样本的CoT可能特别具有偏见(@shaikh2022second)。
 
-Common solutions to some of these problems include calibrators to remove _a priori_ biases,
-and verifiers to score completions, as well as promoting diversity in completions.
+解决这些问题的常见方法包括校准器以删除_a priori_偏见，以及评分完成结果的验证器，以及促进完成结果的多样性。

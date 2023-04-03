@@ -1,67 +1,54 @@
 ---
 sidebar_position: 2
 ---
-# 🟢 Giving Instructions
+# 🟢 给出指示
 
-One of the simplest prompting methods is just giving instructions (sometimes called *instruction prompting*)(@efrat2020turking)(@mishra2022reframing). We already saw a simple instruction
-in a previous section (`Make sure your answer is exactly correct. What is 965*590? Make sure your answer is exactly correct:`). However,
-modern AIs can follow much more complex instructions. 
+最简单的提示方法之一是给出指示（有时称为*指示提示*）(@efrat2020turking)(@mishra2022reframing)。我们已经在前面的部分中看到了一个简单的指示（`确保你的答案完全正确。965乘以590等于多少？确保你的答案完全正确：`）。然而，现代AI可以遵循更复杂的指示。
 
-Below is our first [Dyno embed](https://learnprompting.org/docs/basics/intro#dyno-embeds). If you do not see it, make sure to turn Javascript on in your browser. Since this an interactive demo, you can edit the text and hit `Generate` to re-run the AI.
+以下是我们的第一个[Dyno embed](https://learnprompting.org/docs/basics/intro#dyno-embeds)。如果您没有看到它，请确保在浏览器中打开JavaScript。由于这是一个交互式演示，您可以编辑文本并点击“生成”按钮重新运行AI。
 
-#### Example 1
+#### 示例1
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="A user has input their first and last name into a form. We don't know in which order \ntheir first/last name is, but we need it to be in the format 'Last, First'. Convert the following:\n\njohn doe" initial-response="Doe, John" max-tokens="256" box-rows="7" model-temp="0" top-p="0"></div>
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="一个用户通过表格输入了他们的名字和姓氏。我们不知道他们的名字和姓氏的顺序，但我们需要它们以“姓氏，名字”的格式呈现。转换以下内容：\n\njohn doe" initial-response="Doe, John" max-tokens="256" box-rows="7" model-temp="0" top-p="0"></div>
 
-<br/>The AI is easily able to solve this problem. We can also ask it can solve many other
-simple and more complex problems.
+<br/> AI很容易解决这个问题。我们还可以要求它解决许多其他简单和更复杂的问题。
 
-#### Example 2
+#### 示例2
 
-Here is a more complicated example[^A]:
+这是一个更复杂的例子[^A]:
 
 ```
-Read the following sales email. Remove any personally identifiable information (PII),
-and replace it with the appropriate placeholder. For example, replace the name "John Doe"
-with "[NAME]".
+阅读以下销售电子邮件。删除任何个人可识别信息（PII），并用适当的占位符替换它们。例如，将名称“John Doe”替换为“[NAME]”。
 
-Hi John,
+嗨John，
 
-I'm writing to you because I noticed you recently purchased a new car. I'm a salesperson
-at a local dealership (Cheap Dealz), and I wanted to let you know that we have a great deal on a new
-car. If you're interested, please let me know.
+我给你写信是因为我注意到你最近购买了一辆新车。我是本地经销商（Cheap Dealz）的销售员，我想让你知道我们有一款新车的超值优惠。如果您有兴趣，请告诉我。
 
-Thanks,
+谢谢，
 
 Jimmy Smith
 
-Phone: 410-805-2345
-Email: jimmysmith@cheapdealz.com
+电话：410-805-2345
+电子邮件：jimmysmith@cheapdealz.com
 ```
 
-Here is the [AI's response](https://beta.openai.com/playground/p/002o3gmji5jlwUfRq9d7KDHc?model=text-davinci-003):
+这里是AI的响应：
 
 ```text
 // highlight-start
-Hi [NAME],
+嗨[NAME]，
 
-I'm writing to you because I noticed you recently purchased a new car. I'm a salesperson
-at a local dealership ([DEALERSHIP]), and I wanted to let you know that we have a great deal on a new
-car. If you're interested, please let me know.
+我给你写信是因为我注意到你最近购买了一辆新车。我是本地经销商（[DEALERSHIP]）的销售员，我想让你知道我们有一款新车的超值优惠。如果您有兴趣，请告诉我。
 
-Thanks,
+谢谢，
 
 [SALESPERSON]
 
-Phone: [PHONE NUMBER]
-Email: [EMAIL ADDRESS]
+电话：[PHONE NUMBER]
+电子邮件：[EMAIL ADDRESS]
 // highlight-end
 ```
 
-It is very exciting to see how the model can extrapolate from the instructions. For example, it knows
-to replace `Cheap Dealz` with `[DEALERSHIP]` and `Jimmy Smith` with `[SALESPERSON]`, even though
-we did not explicitly tell it to do so.
+非常令人兴奋的是，模型可以从指示中推断出更多信息。例如，它知道要用`[DEALERSHIP]`替换`Cheap Dealz`，用`[SALESPERSON]`替换`Jimmy Smith`，即使我们没有明确告诉它这样做。
 
-[^A]: Allowing AI to remove PII from text is a promising approach, but it should be used with extraordinary caution as it may make mistakes.
-
-
+[^A]: 允许AI从文本中删除PII是一种有前途的方法，但应格外谨慎使用，因为它可能会犯错误。

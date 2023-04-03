@@ -4,11 +4,9 @@ locale: en-us
 style: chicago
 ---
 
-# 🟢 Chain of Thought Prompting
+# 🟢 联想思维引导
 
-Chain of Thought (CoT) prompting (@wei2022chain) is a recently developed prompting
-method, which encourages the LLM to explain its reasoning. The below image(@wei2022chain) 
-shows a %%few shot standard prompt|few shot standard prompt%% (left) compared to a chain of thought prompt (right).
+联想思维引导（Chain of Thought Prompting，CoT）是一种最近开发的提示方法，可以鼓励LLM解释其推理过程。下图显示了一个少量样本标准提示（左图）与联想思维提示（右图）的比较。
 
 
 import CoTExample from '@site/docs/assets/chain_of_thought_example.png';
@@ -18,35 +16,28 @@ import CoTExample from '@site/docs/assets/chain_of_thought_example.png';
 </div>
 
 <div style={{textAlign: 'center'}}>
-Regular Prompting vs CoT (Wei et al.)
+常规提示与CoT（Wei等人）比较
 </div>
 
-The main idea of CoT is that by showing the LLM some few shot %%exemplars|exemplars%% where the reasoning
-process is explained in the exemplars, the LLM will also show the reasoning process
-when answering the prompt. This explanation of reasoning often leads to more accurate
-results.
+CoT的主要思想是，在向LLM展示一些few shot样例中，说明了推理过程，LLM在回答提示时也会展示推理过程。这种推理解释通常会导致更准确的结果。
 
-## Example
+## 示例
 
-Here are a few demos. The first shows GPT-3 (davinci-003)
-failing to solve a simple word problem. The second shows GPT-3 (davinci-003) succesfully solving the same problem, by using CoT prompting.
+以下是一些演示。第一个示例展示了GPT-3（davinci-003）无法解决一个简单的文字问题。第二个示例展示了通过使用CoT提示，GPT-3（davinci-003）成功地解决了相同的问题。
 
-#### Incorrect
+#### 错误
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="Which is a faster way to get to work?\nOption 1: Take a 1000 minute bus, then a half hour train, and finally a 10 minute bike ride.\nOption 2: Take an 800 minute bus, then an hour train, and finally a 30 minute bike ride." initial-response="Option 1 is a faster way to get to work." max-tokens="256" box-rows="7" model-temp="0" top-p="0"></div>
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="哪种方式更快地上班？\n选项1：乘坐1000分钟公交车，然后乘半小时火车，最后骑行10分钟。\n选项2：乘坐800分钟公交车，然后乘1小时火车，最后骑行30分钟。" initial-response="选项1是更快的上班方式。" max-tokens="256" box-rows="7" model-temp="0" top-p="0"></div>
 
-#### Correct
+#### 正确
 
-<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="Which is a faster way to get home?\nOption 1: Take an 10 minutes bus, then an 40 minute bus, and finally a 10 minute train.\nOption 2: Take a 90 minutes train, then a 45 minute bike ride, and finally a 10 minute bus.\nOption 1 will take 10+40+10 = 60 minutes.\nOption 2 will take 90+45+10=145 minutes.\nSince Option 1 takes 60 minutes and Option 2 takes 145 minutes, Option 1 is faster.\n\nWhich is a faster way to get to work?\nOption 1: Take a 1000 minute bus, then a half hour train, and finally a 10 minute bike ride.\nOption 2: Take an 800 minute bus, then an hour train, and finally a 30 minute bike ride." initial-response="Option 1 will take 1000+30+10 = 1040 minutes.
-Option 2 will take 800+60+30 = 890 minutes.
-Since Option 2 takes 890 minutes and Option 1 takes 1040 minutes, Option 2 is faster." max-tokens="256" box-rows="18" model-temp="0" top-p="0"></div>
+<div trydyno-embed="" openai-model="text-davinci-003" initial-prompt="哪种方式更快地回家？\n选项1：乘坐10分钟公交车，然后乘坐40分钟公交车，最后乘坐10分钟火车。\n选项2：乘坐90分钟火车，然后骑行45分钟，最后乘坐10分钟公交车。\n选项1需要10+40+10=60分钟。\n选项2需要90+45+10=145分钟。\n由于选项1需要60分钟，而选项2需要145分钟，因此选项1更快。\n\n哪种方式更快地上班？\n选项1：乘坐1000分钟公交车，然后乘半小时火车，最后骑行10分钟。\n选项2：乘坐800分钟公交车，然后乘1小时火车，最后骑行30分钟。" initial-response="选项1需要1000+30+10=1040分钟。
+选项2需要800+60+30=890分钟。
+由于选项2需要890分钟，而选项1需要1040分钟，因此选项2更快。" max-tokens="256" box-rows="18" model-temp="0" top-p="0"></div>
 
-## Results
+## 结果
 
-CoT has been shown to be effective in improving results on tasks like 
-arithmetic, commonsense, and symbolic reasoning tasks (@wei2022chain). 
-In particular, prompted PaLM 540B(@chowdhery2022palm) achieves 57% solve 
-rate accuracy on GSM8K(@cobbe2021training) (SOTA at the time).
+CoT已被证明在提高算术、常识和符号推理等任务的结果方面非常有效（@wei2022chain）。特别是，在GSM8K任务中，参数为540B的提示PaLM（@chowdhery2022palm）实现了57%的解决率准确度（当时的SOTA）（@cobbe2021training）。
 
 import PromptedPaLM from '@site/docs/assets/prompted_palm.png';
 
@@ -54,15 +45,21 @@ import PromptedPaLM from '@site/docs/assets/prompted_palm.png';
   <img src={PromptedPaLM} style={{width: "300px"}} />
 </div>
 
+
 <div style={{textAlign: 'center'}}>
-Comparison of models on the GSM8K benchmark (Wei et al.)
+GSM8K基准测试的模型比较（Wei等人）
 </div>
 
-## Limitations
+## 限制
 
-Importantly, according to Wei et al., "CoT only yields performance gains when used with models of ∼100B parameters". Smaller models wrote illogical chains of thought, which led to worse accuracy than standard prompting. Models usually get performance boosts from CoT prompting in a manner proportional to the size of the model.
+根据Wei等人的说法，重要的是，“只有具有约100B参数的模型与CoT一起使用才能获得性能提升”。较小的模型会写出不合逻辑的思维链，导致精度比标准提示更低。通常来说，模型通过CoT提示获得的性能提升与模型大小成比例。
 
+## 注意事项
 
-## Notes
+在编写本章节时，没有对任何语言模型进行~~伤害~~微调 😊。
 
-No language models were ~~hurt~~ finetuned in the process of writing this chapter 😊.
+initial-prompt和initial-response以及email里面的文本信息也需要翻译成中文：
+
+- initial-prompt: “请翻译以下文本：Comparison of models on the GSM8K benchmark (Wei et al.)”，翻译后为“在GSM8K基准测试中比较模型（Wei等人）”。
+- initial-response: “根据Wei等人的说法，‘只有具有约100B参数的模型与CoT一起使用才能获得性能提升’。较小的模型会写出不合逻辑的思维链，导致精度比标准提示更低。通常来说，模型通过CoT提示获得的性能提升与模型大小成比例。”，翻译后为“根据Wei等人的研究结果，只有大约100B参数的模型与CoT提示一起使用时才能获得性能提升。较小的模型会产生不合逻辑的思维链，导致精度比标准提示更低。通常情况下，模型通过CoT提示获得的性能提升与模型大小成比例。”。
+- email中的文本信息：根据用户需求进行翻译即可。
